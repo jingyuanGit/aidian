@@ -1,48 +1,66 @@
-import { EventEmitter } from 'events';
-import * as nodePath from 'path';
+// Minimal inline EventEmitter — does not depend on Node.js 'events' module
+class BridgeEmitter {
+  private _e: Record<string, Array<(...args: unknown[]) => void>> = Object.create(null);
 
-// Minimal stream-like classes for environments without Node stream module
-class FakeReadable extends EventEmitter {
-  push(chunk: Buffer | null): void {
-    if (chunk === null) {
-      this.emit('end');
-    } else {
-      this.emit('data', chunk);
+  on(type: string, fn: (...args: unknown[]) => void): this {
+    if (!this._e[type]) this._e[type] = [];
+    this._e[type].push(fn);
+    return this;
+  }
+
+  once(type: string, fn: (...args: unknown[]) => void): this {
+    const wrapper = (...args: unknown[]): void => {
+      this.off(type, wrapper);
+      fn(...args);
+    };
+    (wrapper as { _f?: typeof fn })._f = fn;
+    return this.on(type, wrapper);
+  }
+
+  off(type: string, fn: (...args: unknown[]) => void): this {
+    if (this._e[type]) {
+      this._e[type] = this._e[type].filter(
+        (f) => f !== fn && (f as { _f?: typeof fn })._f !== fn,
+      );
     }
+    return this;
+  }
+
+  emit(type: string, ...args: unknown[]): boolean {
+    const listeners = (this._e[type] || []).slice();
+    for (const fn of listeners) fn(...args);
+    return listeners.length > 0;
+  }
+
+  removeAllListeners(type?: string): this {
+    if (type) delete this._e[type];
+    else this._e = Object.create(null);
+    return this;
+  }
+
+  setMaxListeners(): this { return this; }
+  listenerCount(type: string): number { return (this._e[type] || []).length; }
+}
+
+// Minimal inline stream-like classes — no Node.js 'stream' module needed
+class BridgeReadable extends BridgeEmitter {
+  push(chunk: Uint8Array | null): void {
+    if (chunk === null) this.emit('end');
+    else this.emit('data', chunk);
   }
 }
 
-class FakeWritable extends EventEmitter {
+class BridgeWritable extends BridgeEmitter {
   write(chunk: Buffer | string): boolean {
     this.emit('data', chunk);
     return true;
   }
-  end(): void {
-    this.emit('finish');
-  }
+  end(): void { this.emit('finish'); }
 }
 
-function makeStreams(): {
-  stdin: FakeWritable;
-  stdout: FakeReadable;
-  stderr: FakeReadable;
-} {
-  // Try Node.js PassThrough; fall back to manual EventEmitter streams on mobile
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { PassThrough } = require('stream') as typeof import('stream');
-    return {
-      stdin: new PassThrough() as unknown as FakeWritable,
-      stdout: new PassThrough() as unknown as FakeReadable,
-      stderr: new PassThrough() as unknown as FakeReadable,
-    };
-  } catch {
-    return {
-      stdin: new FakeWritable(),
-      stdout: new FakeReadable(),
-      stderr: new FakeReadable(),
-    };
-  }
+// Inline path.basename — no Node.js 'path' module needed
+function basename(p: string): string {
+  return p.replace(/\\/g, '/').split('/').filter(Boolean).pop() ?? p;
 }
 
 export interface AndroidBridgeSpawnOptions {
@@ -57,6 +75,7 @@ export interface AndroidBridgeSpawnOptions {
  * Python bridge server running inside OperitAI on the Android device.
  *
  * The server prepends /sdcard/ to the vault folder name to build the cwd.
+ * Uses only browser-native APIs (WebSocket, Buffer/Uint8Array) — no Node.js deps.
  */
 export function createAndroidBridgeSpawnFunction(
   host: string,
@@ -65,10 +84,13 @@ export function createAndroidBridgeSpawnFunction(
   return (spawnOptions: AndroidBridgeSpawnOptions): unknown => {
     const { cwd = '', env, args = [], signal } = spawnOptions;
     // Send only the vault folder name; server prepends /sdcard/
-    const vaultPath = nodePath.basename(cwd);
+    const vaultPath = basename(cwd);
 
-    const { stdin, stdout, stderr } = makeStreams();
-    const emitter = new EventEmitter();
+    const stdin = new BridgeWritable();
+    const stdout = new BridgeReadable();
+    const stderr = new BridgeReadable();
+    const emitter = new BridgeEmitter();
+
     let exited = false;
     let sendSignal = (_sig: string): void => { /* no-op until WS opens */ };
 
@@ -83,7 +105,7 @@ export function createAndroidBridgeSpawnFunction(
       },
     });
 
-    // Filter env to only custom keys to avoid sending all of process.env
+    // Filter env to only custom keys to avoid sending entire process.env
     const customEnv: Record<string, string> = {};
     if (env) {
       for (const [k, v] of Object.entries(env)) {
@@ -91,7 +113,7 @@ export function createAndroidBridgeSpawnFunction(
       }
     }
 
-    // Use global WebSocket (available in Obsidian's Chromium runtime)
+    // Use global WebSocket (available in Obsidian's Chromium/WebView runtime)
     const ws = new WebSocket(`ws://${host}:${port}/spawn`);
 
     ws.onopen = (): void => {
@@ -103,11 +125,18 @@ export function createAndroidBridgeSpawnFunction(
         env: customEnv,
       }));
 
-      // Forward stdin writes → WebSocket
-      stdin.on('data', (chunk: Buffer | string): void => {
+      // Forward stdin writes → WebSocket (base64-encoded)
+      stdin.on('data', (chunk: unknown): void => {
         if (ws.readyState === WebSocket.OPEN) {
-          const buf = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk as string);
-          ws.send(JSON.stringify({ type: 'stdin', data: buf.toString('base64') }));
+          let b64: string;
+          if (typeof chunk === 'string') {
+            b64 = btoa(unescape(encodeURIComponent(chunk)));
+          } else if (chunk instanceof Uint8Array) {
+            b64 = uint8ToBase64(chunk);
+          } else {
+            b64 = '';
+          }
+          ws.send(JSON.stringify({ type: 'stdin', data: b64 }));
         }
       });
 
@@ -125,9 +154,9 @@ export function createAndroidBridgeSpawnFunction(
         code?: number;
       };
       if (msg.type === 'stdout' && msg.data) {
-        stdout.push(Buffer.from(msg.data, 'base64'));
+        stdout.push(base64ToUint8(msg.data));
       } else if (msg.type === 'stderr' && msg.data) {
-        stderr.push(Buffer.from(msg.data, 'base64'));
+        stderr.push(base64ToUint8(msg.data));
       } else if (msg.type === 'exit') {
         if (!exited) {
           exited = true;
@@ -166,4 +195,21 @@ export function createAndroidBridgeSpawnFunction(
 
     return fakeProcess;
   };
+}
+
+function uint8ToBase64(bytes: Uint8Array): string {
+  let binary = '';
+  for (let i = 0; i < bytes.byteLength; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
+}
+
+function base64ToUint8(b64: string): Uint8Array {
+  const binary = atob(b64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes;
 }
