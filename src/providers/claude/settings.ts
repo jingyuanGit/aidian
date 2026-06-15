@@ -11,6 +11,12 @@ export const CLAUDE_SAFE_MODES = ['acceptEdits', 'auto', 'default'] as const;
 export type ClaudeSafeMode = typeof CLAUDE_SAFE_MODES[number];
 export type ClaudeSettingSource = 'user' | 'project' | 'local';
 
+export interface AndroidBridgeSettings {
+  enabled: boolean;
+  host: string;
+  port: number;
+}
+
 export interface ClaudeProviderSettings {
   safeMode: ClaudeSafeMode;
   cliPath: string;
@@ -24,6 +30,7 @@ export interface ClaudeProviderSettings {
   lastModel: string;
   environmentVariables: string;
   environmentHash: string;
+  androidBridge: AndroidBridgeSettings;
 }
 
 export const DEFAULT_CLAUDE_PROVIDER_SETTINGS: Readonly<ClaudeProviderSettings> = Object.freeze({
@@ -39,6 +46,7 @@ export const DEFAULT_CLAUDE_PROVIDER_SETTINGS: Readonly<ClaudeProviderSettings> 
   lastModel: 'haiku',
   environmentVariables: '',
   environmentHash: '',
+  androidBridge: { enabled: false, host: 'localhost', port: 7869 },
 });
 
 function normalizeHostnameCliPaths(value: unknown): HostnameCliPaths {
@@ -110,6 +118,14 @@ export function getClaudeProviderSettings(
     environmentHash: (config.environmentHash as string | undefined)
       ?? (settings.lastEnvHash as string | undefined)
       ?? DEFAULT_CLAUDE_PROVIDER_SETTINGS.environmentHash,
+    androidBridge: {
+      enabled: (config.androidBridge as AndroidBridgeSettings | undefined)?.enabled
+        ?? DEFAULT_CLAUDE_PROVIDER_SETTINGS.androidBridge.enabled,
+      host: (config.androidBridge as AndroidBridgeSettings | undefined)?.host
+        ?? DEFAULT_CLAUDE_PROVIDER_SETTINGS.androidBridge.host,
+      port: (config.androidBridge as AndroidBridgeSettings | undefined)?.port
+        ?? DEFAULT_CLAUDE_PROVIDER_SETTINGS.androidBridge.port,
+    },
   };
 }
 

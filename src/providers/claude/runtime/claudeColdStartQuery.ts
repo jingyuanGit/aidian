@@ -13,6 +13,7 @@ import {
 import {
   resolveEffortLevel,
 } from '../types/models';
+import { createAndroidBridgeSpawnFunction } from './androidBridgeSpawn';
 import { createCustomSpawnFunction } from './customSpawn';
 
 export interface ColdStartQueryConfig {
@@ -91,7 +92,9 @@ export async function runColdStartQuery(
     permissionMode: 'bypassPermissions',
     allowDangerouslySkipPermissions: true,
     settingSources: resolveClaudeSettingSources(claudeSettings.loadUserSettings),
-    spawnClaudeCodeProcess: createCustomSpawnFunction(enhancedPath),
+    spawnClaudeCodeProcess: claudeSettings.androidBridge.enabled
+      ? createAndroidBridgeSpawnFunction(claudeSettings.androidBridge.host, claudeSettings.androidBridge.port) as Options['spawnClaudeCodeProcess']
+      : createCustomSpawnFunction(enhancedPath),
   };
 
   if (config.tools !== undefined) {

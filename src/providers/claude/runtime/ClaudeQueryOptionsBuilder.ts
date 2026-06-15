@@ -20,6 +20,7 @@ import {
 import {
   resolveEffortLevel,
 } from '../types/models';
+import { createAndroidBridgeSpawnFunction } from './androidBridgeSpawn';
 import { createCustomSpawnFunction } from './customSpawn';
 import {
   DISABLED_BUILTIN_SUBAGENTS,
@@ -286,7 +287,12 @@ export class QueryOptionsBuilder {
     };
 
     QueryOptionsBuilder.applyExtraArgs(options, claudeSettings);
-    options.spawnClaudeCodeProcess = createCustomSpawnFunction(ctx.enhancedPath);
+    if (claudeSettings.androidBridge.enabled) {
+      const { host, port } = claudeSettings.androidBridge;
+      options.spawnClaudeCodeProcess = createAndroidBridgeSpawnFunction(host, port) as Options['spawnClaudeCodeProcess'];
+    } else {
+      options.spawnClaudeCodeProcess = createCustomSpawnFunction(ctx.enhancedPath);
+    }
 
     return { options, claudeSettings };
   }

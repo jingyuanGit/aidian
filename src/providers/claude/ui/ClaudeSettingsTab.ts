@@ -403,5 +403,57 @@ export const claudeSettingsTabRenderer: ProviderSettingsTabRenderer = {
     const bangBashValidationEl = container.createDiv({
       cls: 'claudian-bang-bash-validation claudian-setting-validation claudian-setting-validation-error claudian-hidden',
     });
+
+    // --- Android Bridge ---
+
+    new Setting(container).setName('Android Bridge').setHeading();
+
+    new Setting(container)
+      .setName('Enable Android Bridge')
+      .setDesc('Route Claude CLI through a Python WebSocket server running in OperitAI (for Obsidian on Android)')
+      .addToggle((toggle) =>
+        toggle
+          .setValue(claudeSettings.androidBridge.enabled)
+          .onChange(async (value) => {
+            updateClaudeProviderSettings(settingsBag, {
+              androidBridge: { ...claudeSettings.androidBridge, enabled: value },
+            });
+            claudeWorkspace.cliResolver.reset();
+            await context.plugin.saveSettings();
+          })
+      );
+
+    new Setting(container)
+      .setName('Bridge host')
+      .setDesc('Host where the Python bridge server is running (default: localhost)')
+      .addText((text) =>
+        text
+          .setPlaceholder('localhost')
+          .setValue(claudeSettings.androidBridge.host)
+          .onChange(async (value) => {
+            updateClaudeProviderSettings(settingsBag, {
+              androidBridge: { ...claudeSettings.androidBridge, host: value.trim() || 'localhost' },
+            });
+            await context.plugin.saveSettings();
+          })
+      );
+
+    new Setting(container)
+      .setName('Bridge port')
+      .setDesc('Port for the Python bridge server (default: 7869)')
+      .addText((text) =>
+        text
+          .setPlaceholder('7869')
+          .setValue(String(claudeSettings.androidBridge.port))
+          .onChange(async (value) => {
+            const parsed = parseInt(value, 10);
+            if (!isNaN(parsed) && parsed > 0 && parsed < 65536) {
+              updateClaudeProviderSettings(settingsBag, {
+                androidBridge: { ...claudeSettings.androidBridge, port: parsed },
+              });
+              await context.plugin.saveSettings();
+            }
+          })
+      );
   },
 };

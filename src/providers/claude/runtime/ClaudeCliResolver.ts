@@ -22,6 +22,11 @@ export class ClaudeCliResolver {
     const hostnameKey = this.cachedHostname;
     const claudeSettings = getClaudeProviderSettings(settings);
 
+    // Android bridge mode: no local CLI needed; return sentinel to pass non-null guards
+    if (claudeSettings.androidBridge.enabled) {
+      return 'android-bridge';
+    }
+
     const hostnamePath = (claudeSettings.cliPathsByHost[hostnameKey] ?? '').trim();
     const normalizedLegacy = claudeSettings.cliPath.trim();
     const normalizedEnv = getRuntimeEnvironmentText(settings, 'claude');
