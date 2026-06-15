@@ -240,10 +240,52 @@ const polyfill = `/* aidian-mobile-polyfill */
     _isNodeEnv = !!(_testFs && typeof _testFs.existsSync === 'function');
   } catch(e) { /* mobile — fs unavailable */ }
 
-  // Run the bundle with the appropriate require
-  (function(require) {
+  // CJS globals that Node.js provides but mobile environments don't.
+  // The SDK uses __filename for createRequire() calls at the top level.
+  var __filename = typeof __filename !== 'undefined' ? __filename : 'main.js';
+  var __dirname  = typeof __dirname  !== 'undefined' ? __dirname  : '/';
+
+  // Ensure Buffer exists (Electron provides it; mobile may not).
+  if (typeof Buffer === 'undefined') {
+    var Buffer = {
+      alloc: function(n) { return new Uint8Array(n); },
+      from: function(d, enc) {
+        if (typeof d === 'string') {
+          if (enc === 'base64') {
+            try { return Uint8Array.from(atob(d), function(c) { return c.charCodeAt(0); }); } catch(e) {}
+          }
+          return new Uint8Array(d.split('').map(function(c) { return c.charCodeAt(0); }));
+        }
+        return new Uint8Array(d);
+      },
+      isBuffer: function() { return false; },
+      concat: function(list) {
+        var total = list.reduce(function(n, b) { return n + b.length; }, 0);
+        var out = new Uint8Array(total), off = 0;
+        list.forEach(function(b) { out.set(b, off); off += b.length; });
+        return out;
+      },
+    };
+  }
+
+  // Ensure process exists
+  if (typeof process === 'undefined') {
+    var process = { env: {}, platform: 'linux', version: 'v0.0.0', versions: {},
+      argv: [], cwd: function() { return '/'; }, exit: function() {},
+      nextTick: function(fn) { setTimeout(fn, 0); } };
+  }
+
+  // Run the bundle with the appropriate require; catch and report errors.
+  try {
+    (function(require) {
 ${original}
-  })(_isNodeEnv ? __outer_require__ : _pRequire);
+    })(_isNodeEnv ? __outer_require__ : _pRequire);
+  } catch(e) {
+    // Store error so it can be retrieved via the browser console:
+    //   localStorage.getItem('aidian_load_error')
+    try { localStorage.setItem('aidian_load_error', (e && (e.stack || e.message)) || String(e)); } catch(_) {}
+    throw e;
+  }
 
 })(typeof require !== 'undefined' ? require : undefined);
 `;
