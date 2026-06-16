@@ -105,11 +105,28 @@ const polyfill = `/* aidian-mobile-polyfill */
     },
     'node:path': null,
     'child_process': {
-      spawn: function() { var e = new Error('child_process unavailable'); return { stdin: { write: function(){}, end: function(){} }, stdout: { on: function(){} }, stderr: { on: function(){} }, on: function(){}, kill: function(){} }; },
+      spawn: function() {
+        // Full EventEmitter-like stream stub so callers can use .on()/.off()/.removeListener()
+        function fakeStream() { this._h = {}; }
+        fakeStream.prototype.on = fakeStream.prototype.addListener = function(ev, fn) { (this._h[ev] = this._h[ev] || []).push(fn); return this; };
+        fakeStream.prototype.off = fakeStream.prototype.removeListener = function(ev, fn) { if (this._h[ev]) this._h[ev] = this._h[ev].filter(function(f) { return f !== fn; }); return this; };
+        fakeStream.prototype.emit = function(ev) { var a = Array.prototype.slice.call(arguments, 1); (this._h[ev] || []).forEach(function(f) { f.apply(null, a); }); return this; };
+        fakeStream.prototype.write = function() { return true; };
+        fakeStream.prototype.end = function() { return this; };
+        fakeStream.prototype.destroy = function() { return this; };
+        fakeStream.prototype.toString = function() { return ''; };
+        var stdin = new fakeStream(), stdout = new fakeStream(), stderr = new fakeStream();
+        var proc = new fakeStream();
+        proc.stdin = stdin; proc.stdout = stdout; proc.stderr = stderr;
+        proc.pid = -1;
+        proc.kill = function() { return true; };
+        proc.shutdown = function() { return Promise.resolve(); };
+        return proc;
+      },
       exec: function(c, cb) { if (cb) cb(new Error('unavailable'), '', ''); },
       execSync: function() { throw new Error('unavailable'); },
       execFile: function(f, a, cb) { if (typeof a === 'function') a(new Error('unavailable')); else if (cb) cb(new Error('unavailable')); },
-      spawnSync: function() { return { pid: -1, status: 1, stderr: Buffer && Buffer.alloc ? Buffer.alloc(0) : new Uint8Array(0), stdout: Buffer && Buffer.alloc ? Buffer.alloc(0) : new Uint8Array(0), error: new Error('unavailable') }; },
+      spawnSync: function() { return { pid: -1, status: 1, stderr: new Uint8Array(0), stdout: new Uint8Array(0), error: new Error('unavailable') }; },
     },
     'node:child_process': null,
     'os': {
@@ -138,7 +155,48 @@ const polyfill = `/* aidian-mobile-polyfill */
     },
     'node:crypto': null,
     'readline': {
-      createInterface: function() { return { on: function() { return this; }, close: function() {}, question: function(q, cb) { if (cb) cb(''); }, [Symbol.asyncIterator]: function() { return { next: function() { return Promise.resolve({done:true}); } }; } }; },
+      createInterface: function(opts) {
+        var input = opts && opts.input;
+        var lines = [], waiters = [], ended = false, buf = '';
+        var dec = typeof TextDecoder !== 'undefined' ? new TextDecoder() : null;
+        function processChunk(chunk) {
+          if (chunk instanceof Uint8Array || (typeof Buffer !== 'undefined' && Buffer.isBuffer(chunk))) {
+            buf += dec ? dec.decode(chunk, {stream:true}) : String.fromCharCode.apply(null, chunk);
+          } else if (typeof chunk === 'string') { buf += chunk; }
+          var parts = buf.split('\\n'); buf = parts.pop();
+          for (var i = 0; i < parts.length; i++) {
+            var line = parts[i];
+            if (waiters.length > 0) { waiters.shift()({value:line, done:false}); }
+            else { lines.push(line); }
+          }
+        }
+        function onEnd() {
+          ended = true;
+          if (buf.length > 0) { var rem = buf; buf = '';
+            if (waiters.length > 0) waiters.shift()({value:rem, done:false});
+            else lines.push(rem); }
+          while (waiters.length > 0) waiters.shift()({value:undefined, done:true});
+        }
+        if (input && typeof input.on === 'function') {
+          input.on('data', processChunk); input.on('end', onEnd);
+        }
+        return {
+          on: function() { return this; }, off: function() { return this; },
+          close: function() {
+            ended = true;
+            if (input && typeof input.off === 'function') { input.off('data', processChunk); input.off('end', onEnd); }
+            while (waiters.length > 0) waiters.shift()({value:undefined, done:true});
+          },
+          question: function(q, cb) { if (cb) cb(''); },
+          [Symbol.asyncIterator]: function() {
+            return { next: function() {
+              if (lines.length > 0) return Promise.resolve({value:lines.shift(), done:false});
+              if (ended) return Promise.resolve({value:undefined, done:true});
+              return new Promise(function(resolve) { waiters.push(resolve); });
+            }};
+          }
+        };
+      },
     },
     'node:readline': null,
     'module': { createRequire: function() { return _pRequire; } },
@@ -245,6 +303,11 @@ const polyfill = `/* aidian-mobile-polyfill */
   var __filename = typeof __filename !== 'undefined' ? __filename : 'main.js';
   var __dirname  = typeof __dirname  !== 'undefined' ? __dirname  : '/';
 
+  // 'global' is the Node.js global object; browsers don't have it.
+  // isexe (required by cross-spawn → which) accesses global.TESTING_WINDOWS
+  // without a typeof guard at module init time.
+  var global = typeof globalThis !== 'undefined' ? globalThis : (typeof window !== 'undefined' ? window : (typeof self !== 'undefined' ? self : this));
+
   // Ensure Buffer exists (Electron provides it; mobile may not).
   if (typeof Buffer === 'undefined') {
     var Buffer = {
@@ -268,11 +331,26 @@ const polyfill = `/* aidian-mobile-polyfill */
     };
   }
 
-  // Ensure process exists
+  // Ensure process exists (with EventEmitter methods — SDK calls process.on("exit", ...) at spawn)
   if (typeof process === 'undefined') {
-    var process = { env: {}, platform: 'linux', version: 'v0.0.0', versions: {},
-      argv: [], cwd: function() { return '/'; }, exit: function() {},
-      nextTick: function(fn) { setTimeout(fn, 0); } };
+    var process = (function() {
+      var _h = {};
+      return {
+        env: {}, platform: 'linux', version: 'v0.0.0', versions: {},
+        argv: [], execPath: '', cwd: function() { return '/'; }, exit: function() {},
+        nextTick: function(fn) { setTimeout(fn, 0); },
+        hrtime: function() { return [0, Date.now() * 1e6]; },
+        on: function(ev, fn) { (_h[ev] = _h[ev] || []).push(fn); return this; },
+        off: function(ev, fn) { if (_h[ev]) _h[ev] = _h[ev].filter(function(f) { return f !== fn; }); return this; },
+        removeListener: function(ev, fn) { return this.off(ev, fn); },
+        emit: function(ev) { var a = Array.prototype.slice.call(arguments, 1); (_h[ev] || []).forEach(function(f) { f.apply(null, a); }); return true; },
+        addListener: function(ev, fn) { return this.on(ev, fn); },
+        once: function(ev, fn) { var self = this; function w() { self.off(ev, w); fn.apply(this, arguments); } return this.on(ev, w); },
+        listenerCount: function(ev) { return (_h[ev] || []).length; },
+        stderr: { write: function() {} }, stdout: { write: function() {} },
+        uptime: function() { return 0; },
+      };
+    })();
   }
 
   // Run the bundle with the appropriate require; catch and report errors.

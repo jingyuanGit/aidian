@@ -55,7 +55,10 @@ class BridgeWritable extends BridgeEmitter {
     this.emit('data', chunk);
     return true;
   }
-  end(): void { this.emit('finish'); }
+  end(): void {
+    this.emit('finish');
+    this.emit('end_called');
+  }
 }
 
 // Inline path.basename — no Node.js 'path' module needed
@@ -94,12 +97,18 @@ export function createAndroidBridgeSpawnFunction(
     let exited = false;
     let sendSignal = (_sig: string): void => { /* no-op until WS opens */ };
 
+    let killed = false;
     const fakeProcess = Object.assign(emitter, {
       pid: -1,
       stdin,
       stdout,
       stderr,
+      // exitCode must stay null while alive; SDK throws if exitCode !== null
+      exitCode: null as number | null,
+      killed: false,
       kill: (sig?: string): boolean => {
+        killed = true;
+        fakeProcess.killed = true;
         sendSignal(sig ?? 'SIGTERM');
         return true;
       },
@@ -140,6 +149,13 @@ export function createAndroidBridgeSpawnFunction(
         }
       });
 
+      // Forward stdin EOF → bridge so claude can start processing
+      stdin.on('end_called', (): void => {
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ type: 'stdin_end' }));
+        }
+      });
+
       sendSignal = (sig: string): void => {
         if (ws.readyState === WebSocket.OPEN) {
           ws.send(JSON.stringify({ type: 'signal', signal: sig }));
@@ -160,6 +176,7 @@ export function createAndroidBridgeSpawnFunction(
       } else if (msg.type === 'exit') {
         if (!exited) {
           exited = true;
+          fakeProcess.exitCode = msg.code ?? 0;
           stdout.push(null);
           stderr.push(null);
           emitter.emit('exit', msg.code ?? 0, null);
@@ -172,6 +189,7 @@ export function createAndroidBridgeSpawnFunction(
     const handleClose = (): void => {
       if (!exited) {
         exited = true;
+        fakeProcess.exitCode = 1;
         stdout.push(null);
         stderr.push(null);
         emitter.emit('exit', 1, null);
