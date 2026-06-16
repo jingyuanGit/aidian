@@ -148,6 +148,7 @@ export class QueryOptionsBuilder {
       ctx.settings.permissionMode,
       claudeSettings.safeMode,
       ctx.canUseTool,
+      claudeSettings.androidBridge.enabled,
     );
     QueryOptionsBuilder.applyThinking(options, ctx.settings, ctx.settings.model);
     options.hooks = ctx.hooks;
@@ -200,6 +201,7 @@ export class QueryOptionsBuilder {
       ctx.settings.permissionMode,
       claudeSettings.safeMode,
       ctx.canUseTool,
+      claudeSettings.androidBridge.enabled,
     );
     options.hooks = ctx.hooks;
     QueryOptionsBuilder.applyThinking(options, ctx.settings, ctx.modelOverride ?? ctx.settings.model);
@@ -232,18 +234,27 @@ export class QueryOptionsBuilder {
     options: Options,
     permissionMode: PermissionMode,
     claudeSafeMode: ClaudeSafeMode,
-    canUseTool?: CanUseTool
+    canUseTool?: CanUseTool,
+    androidBridgeEnabled = false,
   ): void {
-    options.allowDangerouslySkipPermissions = true;
+    // allowDangerouslySkipPermissions is set in buildBaseOptions —
+    // do NOT override here.  When the Android bridge is active we must
+    // keep it false because Claude CLI refuses the flag under root.
+    // Likewise, bypassPermissions maps to --dangerously-skip-permissions
+    // internally, so it must be downgraded when running under root (bridge).
 
     if (canUseTool) {
       options.canUseTool = canUseTool;
     }
 
-    options.permissionMode = QueryOptionsBuilder.resolveClaudeSdkPermissionMode(
+    const sdkMode = QueryOptionsBuilder.resolveClaudeSdkPermissionMode(
       permissionMode,
       claudeSafeMode,
     );
+    // bypassPermissions triggers the same root guard as --dangerously-skip-permissions
+    options.permissionMode = androidBridgeEnabled && sdkMode === 'bypassPermissions'
+      ? 'acceptEdits'
+      : sdkMode;
   }
 
   private static applyExtraArgs(
@@ -287,6 +298,9 @@ export class QueryOptionsBuilder {
     };
 
     QueryOptionsBuilder.applyExtraArgs(options, claudeSettings);
+    // Claude CLI refuses --dangerously-skip-permissions when running as root.
+    // The Android bridge runs inside OperitAI which is typically root.
+    options.allowDangerouslySkipPermissions = !claudeSettings.androidBridge.enabled;
     if (claudeSettings.androidBridge.enabled) {
       const { host, port } = claudeSettings.androidBridge;
       options.spawnClaudeCodeProcess = createAndroidBridgeSpawnFunction(host, port) as Options['spawnClaudeCodeProcess'];

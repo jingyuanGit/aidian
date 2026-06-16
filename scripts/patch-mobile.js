@@ -136,7 +136,7 @@ const polyfill = `/* aidian-mobile-polyfill */
       type: function() { return 'Linux'; },
       arch: function() { return 'arm64'; },
       tmpdir: function() { return '/tmp'; },
-      EOL: '\\n',
+      EOL: String.fromCharCode(10),
       cpus: function() { return []; },
       networkInterfaces: function() { return {}; },
       totalmem: function() { return 0; },
@@ -163,7 +163,7 @@ const polyfill = `/* aidian-mobile-polyfill */
           if (chunk instanceof Uint8Array || (typeof Buffer !== 'undefined' && Buffer.isBuffer(chunk))) {
             buf += dec ? dec.decode(chunk, {stream:true}) : String.fromCharCode.apply(null, chunk);
           } else if (typeof chunk === 'string') { buf += chunk; }
-          var parts = buf.split('\\n'); buf = parts.pop();
+          var parts = buf.split(String.fromCharCode(10)); buf = parts.pop();
           for (var i = 0; i < parts.length; i++) {
             var line = parts[i];
             if (waiters.length > 0) { waiters.shift()({value:line, done:false}); }
@@ -177,15 +177,44 @@ const polyfill = `/* aidian-mobile-polyfill */
             else lines.push(rem); }
           while (waiters.length > 0) waiters.shift()({value:undefined, done:true});
         }
+        var _ev = {}; // { line: [fn,...], close: [fn,...] }
+        function emit(ev, val) {
+          (_ev[ev] || []).slice().forEach(function(f) { f(val); });
+        }
+        function deliverLine(line) {
+          emit('line', line);
+          if (waiters.length > 0) { waiters.shift()({value:line, done:false}); }
+          else { lines.push(line); }
+        }
+        // Override processChunk to emit 'line' events for rl.on('line', ...)
+        processChunk = function(chunk) {
+          if (chunk instanceof Uint8Array || (typeof Buffer !== 'undefined' && Buffer.isBuffer(chunk))) {
+            buf += dec ? dec.decode(chunk, {stream:true}) : String.fromCharCode.apply(null, chunk);
+          } else if (typeof chunk === 'string') { buf += chunk; }
+          var parts = buf.split(String.fromCharCode(10)); buf = parts.pop();
+          for (var i = 0; i < parts.length; i++) { deliverLine(parts[i]); }
+        };
+        onEnd = function() {
+          ended = true;
+          if (buf.length > 0) { deliverLine(buf); buf = ''; }
+          while (waiters.length > 0) waiters.shift()({value:undefined, done:true});
+          emit('close');
+        };
+        // Register listeners (after overriding processChunk/onEnd)
         if (input && typeof input.on === 'function') {
           input.on('data', processChunk); input.on('end', onEnd);
         }
-        return {
-          on: function() { return this; }, off: function() { return this; },
+        var rl = {
+          on: function(ev, fn) { (_ev[ev] = _ev[ev] || []).push(fn); return rl; },
+          off: function(ev, fn) {
+            if (_ev[ev]) _ev[ev] = _ev[ev].filter(function(f) { return f !== fn; });
+            return rl;
+          },
           close: function() {
             ended = true;
             if (input && typeof input.off === 'function') { input.off('data', processChunk); input.off('end', onEnd); }
             while (waiters.length > 0) waiters.shift()({value:undefined, done:true});
+            emit('close');
           },
           question: function(q, cb) { if (cb) cb(''); },
           [Symbol.asyncIterator]: function() {
@@ -196,6 +225,7 @@ const polyfill = `/* aidian-mobile-polyfill */
             }};
           }
         };
+        return rl;
       },
     },
     'node:readline': null,

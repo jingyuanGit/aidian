@@ -89,8 +89,10 @@ export async function runColdStartQuery(
       ...customEnv,
       PATH: enhancedPath,
     },
-    permissionMode: 'bypassPermissions',
-    allowDangerouslySkipPermissions: true,
+    // bypassPermissions maps to --dangerously-skip-permissions internally,
+    // which Claude CLI refuses under root.  Downgrade when bridge is active.
+    permissionMode: claudeSettings.androidBridge.enabled ? 'acceptEdits' : 'bypassPermissions',
+    allowDangerouslySkipPermissions: !claudeSettings.androidBridge.enabled,
     settingSources: resolveClaudeSettingSources(claudeSettings.loadUserSettings),
     spawnClaudeCodeProcess: claudeSettings.androidBridge.enabled
       ? createAndroidBridgeSpawnFunction(claudeSettings.androidBridge.host, claudeSettings.androidBridge.port) as Options['spawnClaudeCodeProcess']

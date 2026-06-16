@@ -26,29 +26,12 @@ claude CLI
 2. **server.py** - 处理 `stdin_end` 关闭 proc.stdin，修复了 asyncio 死锁 (先等 stdout/stderr EOF，再取消 pump_ws)
 3. **patch-mobile.js readline stub** - 从简单 dummy 改为功能性实现，修复了 `'\n'` → `'\\n'` 的 SyntaxError
 4. `node --check main.js` 通过，`new Function(code)` 通过，`compileScript` 通过
+5. **2026-06-16 SyntaxError 已修复** - 根因是 `split('\\n')` 在 patch-mobile.js template literal 中生成了 `split('\n')`，但 Obsidian 的 eval 机制将其中的 `\n` 解释为真实换行符，导致字符串字面量换行 → SyntaxError。修复方案：改用 `String.fromCharCode(10)` 替代 `'\n'`。
 
-### 未解决问题: 插件无法 enable
-**现象**: 每次调用 `app.plugins.enablePlugin('aidian')` 时，控制台报错：
-```
-Plugin failure: aidian
-SyntaxError: Invalid or unexpected token
-    at eval (<anonymous>)
-    at http://localhost/app.js:1:2718738
-```
-
-**诊断情况**:
-- `node --check main.js` → **通过**
-- `node -e 'new Function(code)'` → **通过**
-- CDP `Runtime.compileScript` (发送本地文件内容) → **通过，无错误**
-- Chrome 149 支持 `[Symbol.asyncIterator]` 计算属性 → **确认支持**
-- 设备文件 md5 与本地文件一致
-- 文件无 BOM，LF 行尾，无 CRLF
-
-**未查明**: 
-- Obsidian 的 `eval()` 与 CDP 的 `compileScript` 结果不一致的原因
-- 可能是 Obsidian 对插件内容有预处理？
-- 可能是文件太大(4.3MB)导致 Android WebView eval 时 OOM？
-- 待查: 用 `chrome://inspect/#devices` 直接在 DevTools console 调试
+### 已解决: 插件 SyntaxError
+**根因**: patch-mobile.js 的 readline stub 中 `split('\\n')` 和 os.EOL 中的 `'\\n'`，经 template literal 处理后生成 `'\n'`。虽然 raw 字节正确（`5c 6e`），但 Obsidian 的插件 eval 路径会将 `\n` 转换为真实换行（0x0A），导致单引号字符串跨行 → SyntaxError。
+**修复**: 在 patch-mobile.js 中将 `'\\n'` 全部替换为 `String.fromCharCode(10)`。
+**部署路径修正**: vault 实际路径是 `/storage/emulated/0/jy-note/`，不是 `/sdcard/obsidian/aidian/`。
 
 ## 关键文件
 
@@ -74,11 +57,12 @@ SyntaxError: Invalid or unexpected token
 ```bash
 # 在 Mac 上:
 cd /Users/chenjingyuan/projects/ai/obsidian-askai-android/aidian
-npm run build
-node scripts/patch-mobile.js
-adb push main.js /sdcard/obsidian/aidian/.obsidian/plugins/aidian/main.js
-adb push manifest.json /sdcard/obsidian/aidian/.obsidian/plugins/aidian/manifest.json
-adb push styles.css /sdcard/obsidian/aidian/.obsidian/plugins/aidian/styles.css
+npm run build && node scripts/patch-mobile.js
+
+# 推送到正确 vault 路径 (/storage/emulated/0/jy-note/)
+adb push main.js /storage/emulated/0/jy-note/.obsidian/plugins/aidian/main.js
+adb push manifest.json /storage/emulated/0/jy-note/.obsidian/plugins/aidian/manifest.json
+adb push styles.css /storage/emulated/0/jy-note/.obsidian/plugins/aidian/styles.css
 
 # 查找 Obsidian PID 并设置 CDP:
 adb shell ps -ef | grep obsidian
@@ -88,7 +72,7 @@ adb forward tcp:9222 localabstract:webview_devtools_remote_<PID>
 pip3 install aiohttp
 python3 ~/android-bridge/server.py
 # 或者如果代码在 vault 里:
-python3 /sdcard/obsidian/aidian/android-bridge/server.py
+python3 /storage/emulated/0/jy-note/android-bridge/server.py
 ```
 
 ## 下一步

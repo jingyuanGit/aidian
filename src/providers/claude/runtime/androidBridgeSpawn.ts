@@ -125,6 +125,54 @@ export function createAndroidBridgeSpawnFunction(
     // Use global WebSocket (available in Obsidian's Chromium/WebView runtime)
     const ws = new WebSocket(`ws://${host}:${port}/spawn`);
 
+    // Buffer stdin writes until the WebSocket connects.
+    // The SDK may write to stdin and call .end() BEFORE ws.onopen fires,
+    // because spawn() returns immediately while WebSocket connects async.
+    const stdinBuffer: Array<{ type: 'data'; b64: string } | { type: 'end' }> = [];
+    let wsReady = false;
+
+    function flushStdinBuffer(): void {
+      while (stdinBuffer.length > 0) {
+        const item = stdinBuffer.shift()!;
+        if (item.type === 'data') {
+          ws.send(JSON.stringify({ type: 'stdin', data: item.b64 }));
+        } else if (item.type === 'end') {
+          ws.send(JSON.stringify({ type: 'stdin_end' }));
+        }
+      }
+    }
+
+    // Register stdin listeners immediately — buffer everything until WS opens
+    stdin.on('data', (chunk: unknown): void => {
+      let b64: string;
+      if (typeof chunk === 'string') {
+        b64 = btoa(unescape(encodeURIComponent(chunk)));
+      } else if (chunk instanceof Uint8Array) {
+        b64 = uint8ToBase64(chunk);
+      } else {
+        b64 = '';
+      }
+      if (wsReady) {
+        ws.send(JSON.stringify({ type: 'stdin', data: b64 }));
+      } else {
+        stdinBuffer.push({ type: 'data', b64 });
+      }
+    });
+
+    stdin.on('end_called', (): void => {
+      if (wsReady) {
+        ws.send(JSON.stringify({ type: 'stdin_end' }));
+      } else {
+        stdinBuffer.push({ type: 'end' });
+      }
+    });
+
+    sendSignal = (sig: string): void => {
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: 'signal', signal: sig }));
+      }
+    };
+
     ws.onopen = (): void => {
       ws.send(JSON.stringify({
         type: 'spawn',
@@ -133,34 +181,8 @@ export function createAndroidBridgeSpawnFunction(
         vaultPath,
         env: customEnv,
       }));
-
-      // Forward stdin writes → WebSocket (base64-encoded)
-      stdin.on('data', (chunk: unknown): void => {
-        if (ws.readyState === WebSocket.OPEN) {
-          let b64: string;
-          if (typeof chunk === 'string') {
-            b64 = btoa(unescape(encodeURIComponent(chunk)));
-          } else if (chunk instanceof Uint8Array) {
-            b64 = uint8ToBase64(chunk);
-          } else {
-            b64 = '';
-          }
-          ws.send(JSON.stringify({ type: 'stdin', data: b64 }));
-        }
-      });
-
-      // Forward stdin EOF → bridge so claude can start processing
-      stdin.on('end_called', (): void => {
-        if (ws.readyState === WebSocket.OPEN) {
-          ws.send(JSON.stringify({ type: 'stdin_end' }));
-        }
-      });
-
-      sendSignal = (sig: string): void => {
-        if (ws.readyState === WebSocket.OPEN) {
-          ws.send(JSON.stringify({ type: 'signal', signal: sig }));
-        }
-      };
+      wsReady = true;
+      flushStdinBuffer();
     };
 
     ws.onmessage = (event: MessageEvent): void => {
