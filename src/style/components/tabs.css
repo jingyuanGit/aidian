@@ -1,16 +1,16 @@
-.claudian-tab-bar-container {
+.aidian-tab-bar-container {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.claudian-tab-badges {
+.aidian-tab-badges {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.claudian-tab-badge {
+.aidian-tab-badge {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,45 +26,45 @@
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 
-.claudian-tab-badge:hover {
+.aidian-tab-badge:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.claudian-tab-badge-active {
+.aidian-tab-badge-active {
   border-color: var(--interactive-accent);
   color: var(--text-normal);
 }
 
-.claudian-tab-badge-streaming {
-  border-color: var(--claudian-brand, #da7756);
+.aidian-tab-badge-streaming {
+  border-color: var(--aidian-brand, #da7756);
 }
 
-.claudian-tab-badge-streaming[data-provider="claude"] {
-  border-color: var(--claudian-brand-claude, #D97757);
+.aidian-tab-badge-streaming[data-provider="claude"] {
+  border-color: var(--aidian-brand-claude, #D97757);
 }
 
-.claudian-tab-badge-streaming[data-provider="codex"] {
-  border-color: var(--claudian-brand-codex, #d0d0d0);
+.aidian-tab-badge-streaming[data-provider="codex"] {
+  border-color: var(--aidian-brand-codex, #d0d0d0);
 }
 
-.claudian-tab-badge-streaming[data-provider="opencode"] {
-  border-color: var(--claudian-brand-opencode, #C8C8C8);
+.aidian-tab-badge-streaming[data-provider="opencode"] {
+  border-color: var(--aidian-brand-opencode, #C8C8C8);
 }
 
-.claudian-tab-badge-streaming[data-provider="pi"] {
-  border-color: var(--claudian-brand-pi, #ffffff);
+.aidian-tab-badge-streaming[data-provider="pi"] {
+  border-color: var(--aidian-brand-pi, #ffffff);
 }
 
-.claudian-tab-badge-attention {
+.aidian-tab-badge-attention {
   border-color: var(--text-error);
 }
 
-.claudian-tab-badge-idle {
+.aidian-tab-badge-idle {
   border-color: var(--background-modifier-border);
 }
 
-.claudian-tab-content-container {
+.aidian-tab-content-container {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -72,7 +72,7 @@
   overflow: hidden;
 }
 
-.claudian-tab-content {
+.aidian-tab-content {
   position: relative; /* For scroll-to-bottom button positioning */
   display: flex;
   flex-direction: column;

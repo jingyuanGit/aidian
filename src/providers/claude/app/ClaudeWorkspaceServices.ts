@@ -11,7 +11,7 @@ import type {
   ProviderWorkspaceServices,
 } from '../../../core/providers/types';
 import type { VaultFileAdapter } from '../../../core/storage/VaultFileAdapter';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { getVaultPath } from '../../../utils/path';
 import { AgentManager } from '../agents/AgentManager';
 import { ClaudeCommandCatalog } from '../commands/ClaudeCommandCatalog';
@@ -34,7 +34,7 @@ export interface ClaudeWorkspaceServices extends ProviderWorkspaceServices {
 }
 
 export async function createClaudeWorkspaceServices(
-  plugin: ClaudianPlugin,
+  plugin: AidianPlugin,
   adapter: VaultFileAdapter,
 ): Promise<ClaudeWorkspaceServices> {
   const claudeStorage = new StorageService(plugin, adapter);

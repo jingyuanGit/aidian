@@ -43,7 +43,7 @@ global.ResizeObserver = MockResizeObserver as unknown as typeof ResizeObserver;
 
 // Mock provider runtime used by ProviderRegistry
 jest.mock('@/providers/claude/runtime/ClaudeChatRuntime', () => ({
-  ClaudianService: jest.fn().mockImplementation(() => ({
+  AidianService: jest.fn().mockImplementation(() => ({
     ensureReady: jest.fn().mockResolvedValue(true),
     cleanup: jest.fn(),
     isReady: jest.fn().mockReturnValue(false),
@@ -119,7 +119,7 @@ const createMockModeSelector = () => ({
   renderOptions: jest.fn(),
 });
 
-const createMockClaudianService = (overrides?: {
+const createMockAidianService = (overrides?: {
   ensureReady?: jest.Mock;
   syncConversationState?: jest.Mock;
   onReadyStateChange?: jest.Mock;
@@ -670,7 +670,7 @@ describe('Tab - Service Initialization', () => {
       const options = createMockOptions();
       const tab = createTab(options);
       tab.serviceInitialized = true;
-      tab.service = createMockClaudianService() as any;
+      tab.service = createMockAidianService() as any;
 
       await initializeTabService(tab, options.plugin, options.mcpManager);
 
@@ -678,7 +678,7 @@ describe('Tab - Service Initialization', () => {
       expect(tab.service).toEqual(expect.objectContaining({ providerId: 'claude' }));
     });
 
-    it('should create ClaudianService on first initialization', async () => {
+    it('should create AidianService on first initialization', async () => {
       const options = createMockOptions();
       const tab = createTab(options);
 
@@ -690,7 +690,7 @@ describe('Tab - Service Initialization', () => {
 
     it('should create the runtime for the conversation provider', async () => {
       const createChatRuntimeSpy = jest.spyOn(ProviderRegistry, 'createChatRuntime');
-      const mockRuntime = createMockClaudianService({ providerId: 'codex' });
+      const mockRuntime = createMockAidianService({ providerId: 'codex' });
       createChatRuntimeSpy.mockReturnValue(mockRuntime as any);
 
       const conversation = {
@@ -722,8 +722,8 @@ describe('Tab - Service Initialization', () => {
 
     it('should recreate the runtime when the conversation provider changes', async () => {
       const createChatRuntimeSpy = jest.spyOn(ProviderRegistry, 'createChatRuntime');
-      const oldService = createMockClaudianService({ providerId: 'claude' });
-      const newService = createMockClaudianService({ providerId: 'codex' });
+      const oldService = createMockAidianService({ providerId: 'claude' });
+      const newService = createMockAidianService({ providerId: 'codex' });
       createChatRuntimeSpy.mockReturnValue(newService as any);
 
       const conversation = {
@@ -759,8 +759,8 @@ describe('Tab - Service Initialization', () => {
 
     it('should NOT call ensureReady for blank tabs (lazy start)', async () => {
       const mockEnsureReady = jest.fn().mockResolvedValue(true);
-      const runtimeModule = jest.requireMock('@/providers/claude/runtime/ClaudeChatRuntime') as { ClaudianService: jest.Mock };
-      runtimeModule.ClaudianService.mockImplementationOnce(() => createMockClaudianService({ ensureReady: mockEnsureReady }));
+      const runtimeModule = jest.requireMock('@/providers/claude/runtime/ClaudeChatRuntime') as { AidianService: jest.Mock };
+      runtimeModule.AidianService.mockImplementationOnce(() => createMockAidianService({ ensureReady: mockEnsureReady }));
 
       const options = createMockOptions();
       const tab = createTab(options);
@@ -775,8 +775,8 @@ describe('Tab - Service Initialization', () => {
 
     it('should sync existing conversations with saved external contexts', async () => {
       const mockSyncConversationState = jest.fn();
-      const runtimeModule = jest.requireMock('@/providers/claude/runtime/ClaudeChatRuntime') as { ClaudianService: jest.Mock };
-      runtimeModule.ClaudianService.mockImplementationOnce(() => createMockClaudianService({
+      const runtimeModule = jest.requireMock('@/providers/claude/runtime/ClaudeChatRuntime') as { AidianService: jest.Mock };
+      runtimeModule.AidianService.mockImplementationOnce(() => createMockAidianService({
         syncConversationState: mockSyncConversationState,
       }));
 
@@ -907,7 +907,7 @@ describe('Tab - Service Initialization', () => {
       tab.providerId = 'codex';
       tab.lifecycleState = 'blank';
 
-      const staleService = createMockClaudianService({ providerId: 'codex' });
+      const staleService = createMockAidianService({ providerId: 'codex' });
       tab.service = staleService as any;
       tab.serviceInitialized = true;
 
@@ -1046,12 +1046,12 @@ describe('Tab - Service Initialization', () => {
           providerConfigs: {
             opencode: {
               availableModes: [
-                { id: 'claudian-yolo', name: 'YOLO' },
-                { id: 'claudian-safe', name: 'Safe' },
+                { id: 'aidian-yolo', name: 'YOLO' },
+                { id: 'aidian-safe', name: 'Safe' },
                 { id: 'plan', name: 'Plan' },
               ],
               enabled: true,
-              selectedMode: 'claudian-yolo',
+              selectedMode: 'aidian-yolo',
             },
           },
           savedProviderEffort: {
@@ -1091,7 +1091,7 @@ describe('Tab - Service Initialization', () => {
 
       await toolbarCallbacks.onPermissionModeChange('normal');
 
-      expect(plugin.settings.providerConfigs.opencode.selectedMode).toBe('claudian-safe');
+      expect(plugin.settings.providerConfigs.opencode.selectedMode).toBe('aidian-safe');
       expect(plugin.settings.savedProviderPermissionMode).toEqual(expect.objectContaining({
         claude: 'yolo',
         opencode: 'normal',
@@ -1170,7 +1170,7 @@ describe('Tab - Service Initialization', () => {
       initializeTabUI(tab, plugin);
       initializeTabControllers(tab, plugin, {} as any, createMockMcpManager());
 
-      const staleService = createMockClaudianService({ providerId: 'codex' });
+      const staleService = createMockAidianService({ providerId: 'codex' });
       tab.lifecycleState = 'bound_active';
       tab.conversationId = 'conv-1';
       tab.providerId = 'codex';
@@ -1302,8 +1302,8 @@ describe('Tab - Destruction', () => {
       const unsubscribeFn = jest.fn();
       const mockOnReadyStateChange = jest.fn(() => unsubscribeFn);
 
-      const runtimeModule = jest.requireMock('@/providers/claude/runtime/ClaudeChatRuntime') as { ClaudianService: jest.Mock };
-      runtimeModule.ClaudianService.mockImplementationOnce(() => createMockClaudianService({ onReadyStateChange: mockOnReadyStateChange }));
+      const runtimeModule = jest.requireMock('@/providers/claude/runtime/ClaudeChatRuntime') as { AidianService: jest.Mock };
+      runtimeModule.AidianService.mockImplementationOnce(() => createMockAidianService({ onReadyStateChange: mockOnReadyStateChange }));
 
       const options = createMockOptions();
       const tab = createTab(options);
@@ -1398,7 +1398,7 @@ describe('Tab - Service Callbacks', () => {
       const addMessageSpy = jest.spyOn(tab.state, 'addMessage');
       const addMessage = jest.fn(() => {
         const msgEl = createMockEl();
-        msgEl.createDiv({ cls: 'claudian-message-content' });
+        msgEl.createDiv({ cls: 'aidian-message-content' });
         return msgEl;
       });
       const scrollToBottom = jest.fn();
@@ -2676,7 +2676,7 @@ describe('Tab - Service Initialization Error Handling', () => {
 
     // Mark as already initialized
     tab.serviceInitialized = true;
-    const originalService = createMockClaudianService() as any;
+    const originalService = createMockAidianService() as any;
     tab.service = originalService;
 
     await initializeTabService(tab, options.plugin, options.mcpManager);
@@ -3986,7 +3986,7 @@ describe('Tab - Blank Tab Draft Model Change', () => {
     const tab = createTab(createMockOptions({ plugin }));
     initializeTabUI(tab, plugin);
 
-    const staleService = createMockClaudianService({ providerId: 'codex' });
+    const staleService = createMockAidianService({ providerId: 'codex' });
     tab.service = staleService as any;
     tab.serviceInitialized = false;
 
@@ -4013,10 +4013,10 @@ describe('Tab - Blank Tab Draft Model Change', () => {
 describe('Tab - First Send Binding', () => {
   it('derives provider from draft model on first send (Claude)', async () => {
     const mockEnsureReady = jest.fn().mockResolvedValue(true);
-    const runtimeModule = jest.requireMock('@/providers/claude/runtime/ClaudeChatRuntime') as { ClaudianService: jest.Mock };
-    runtimeModule.ClaudianService.mockImplementationOnce(() => createMockClaudianService({ ensureReady: mockEnsureReady }));
+    const runtimeModule = jest.requireMock('@/providers/claude/runtime/ClaudeChatRuntime') as { AidianService: jest.Mock };
+    runtimeModule.AidianService.mockImplementationOnce(() => createMockAidianService({ ensureReady: mockEnsureReady }));
     const createChatRuntimeSpy = jest.spyOn(ProviderRegistry, 'createChatRuntime')
-      .mockReturnValue(createMockClaudianService() as any);
+      .mockReturnValue(createMockAidianService() as any);
 
     const plugin = createMockPlugin();
     const tab = createTab(createMockOptions({ plugin }));
@@ -4035,7 +4035,7 @@ describe('Tab - First Send Binding', () => {
 
   it('derives provider from draft model on first send (Codex)', async () => {
     const createChatRuntimeSpy = jest.spyOn(ProviderRegistry, 'createChatRuntime')
-      .mockReturnValue(createMockClaudianService({ providerId: 'codex' }) as any);
+      .mockReturnValue(createMockAidianService({ providerId: 'codex' }) as any);
 
     const plugin = createMockPlugin();
     const tab = createTab(createMockOptions({ plugin }));

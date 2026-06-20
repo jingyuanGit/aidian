@@ -29,11 +29,11 @@ export class PluginSettingsManager {
   private render() {
     this.containerEl.empty();
 
-    const headerEl = this.containerEl.createDiv({ cls: 'claudian-plugin-header' });
-    headerEl.createSpan({ text: 'Claude Code Plugins', cls: 'claudian-plugin-label' });
+    const headerEl = this.containerEl.createDiv({ cls: 'aidian-plugin-header' });
+    headerEl.createSpan({ text: 'Claude Code Plugins', cls: 'aidian-plugin-label' });
 
     const refreshBtn = headerEl.createEl('button', {
-      cls: 'claudian-settings-action-btn',
+      cls: 'aidian-settings-action-btn',
       attr: { 'aria-label': 'Refresh' },
     });
     setIcon(refreshBtn, 'refresh-cw');
@@ -44,7 +44,7 @@ export class PluginSettingsManager {
     const plugins = this.pluginManager.getPlugins();
 
     if (plugins.length === 0) {
-      const emptyEl = this.containerEl.createDiv({ cls: 'claudian-plugin-empty' });
+      const emptyEl = this.containerEl.createDiv({ cls: 'aidian-plugin-empty' });
       emptyEl.setText('No Claude code plugins found. Enable plugins via the Claude CLI.');
       return;
     }
@@ -52,10 +52,10 @@ export class PluginSettingsManager {
     const projectPlugins = plugins.filter(p => p.scope === 'project');
     const userPlugins = plugins.filter(p => p.scope === 'user');
 
-    const listEl = this.containerEl.createDiv({ cls: 'claudian-plugin-list' });
+    const listEl = this.containerEl.createDiv({ cls: 'aidian-plugin-list' });
 
     if (projectPlugins.length > 0) {
-      const sectionHeader = listEl.createDiv({ cls: 'claudian-plugin-section-header' });
+      const sectionHeader = listEl.createDiv({ cls: 'aidian-plugin-section-header' });
       sectionHeader.setText('Project plugins');
 
       for (const plugin of projectPlugins) {
@@ -64,7 +64,7 @@ export class PluginSettingsManager {
     }
 
     if (userPlugins.length > 0) {
-      const sectionHeader = listEl.createDiv({ cls: 'claudian-plugin-section-header' });
+      const sectionHeader = listEl.createDiv({ cls: 'aidian-plugin-section-header' });
       sectionHeader.setText('User plugins');
 
       for (const plugin of userPlugins) {
@@ -74,29 +74,29 @@ export class PluginSettingsManager {
   }
 
   private renderPluginItem(listEl: HTMLElement, plugin: PluginInfo) {
-    const itemEl = listEl.createDiv({ cls: 'claudian-plugin-item' });
+    const itemEl = listEl.createDiv({ cls: 'aidian-plugin-item' });
     if (!plugin.enabled) {
-      itemEl.addClass('claudian-plugin-item-disabled');
+      itemEl.addClass('aidian-plugin-item-disabled');
     }
 
-    const statusEl = itemEl.createDiv({ cls: 'claudian-plugin-status' });
+    const statusEl = itemEl.createDiv({ cls: 'aidian-plugin-status' });
     if (plugin.enabled) {
-      statusEl.addClass('claudian-plugin-status-enabled');
+      statusEl.addClass('aidian-plugin-status-enabled');
     } else {
-      statusEl.addClass('claudian-plugin-status-disabled');
+      statusEl.addClass('aidian-plugin-status-disabled');
     }
 
-    const infoEl = itemEl.createDiv({ cls: 'claudian-plugin-info' });
+    const infoEl = itemEl.createDiv({ cls: 'aidian-plugin-info' });
 
-    const nameRow = infoEl.createDiv({ cls: 'claudian-plugin-name-row' });
+    const nameRow = infoEl.createDiv({ cls: 'aidian-plugin-name-row' });
 
-    const nameEl = nameRow.createSpan({ cls: 'claudian-plugin-name' });
+    const nameEl = nameRow.createSpan({ cls: 'aidian-plugin-name' });
     nameEl.setText(plugin.name);
 
-    const actionsEl = itemEl.createDiv({ cls: 'claudian-plugin-actions' });
+    const actionsEl = itemEl.createDiv({ cls: 'aidian-plugin-actions' });
 
     const toggleBtn = actionsEl.createEl('button', {
-      cls: 'claudian-plugin-action-btn',
+      cls: 'aidian-plugin-action-btn',
       attr: { 'aria-label': plugin.enabled ? 'Disable' : 'Enable' },
     });
     setIcon(toggleBtn, plugin.enabled ? 'toggle-right' : 'toggle-left');

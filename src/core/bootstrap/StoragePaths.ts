@@ -1,7 +1,7 @@
-export const CLAUDIAN_STORAGE_PATH = '.claudian';
+export const AIDIAN_STORAGE_PATH = '.aidian';
 
-export const LEGACY_CLAUDIAN_SETTINGS_PATH = '.claude/claudian-settings.json';
-export const CLAUDIAN_SETTINGS_PATH = `${CLAUDIAN_STORAGE_PATH}/claudian-settings.json`;
+export const LEGACY_AIDIAN_SETTINGS_PATH = '.claude/aidian-settings.json';
+export const AIDIAN_SETTINGS_PATH = `${AIDIAN_STORAGE_PATH}/aidian-settings.json`;
 
 export const LEGACY_SESSIONS_PATH = '.claude/sessions';
-export const SESSIONS_PATH = `${CLAUDIAN_STORAGE_PATH}/sessions`;
+export const SESSIONS_PATH = `${AIDIAN_STORAGE_PATH}/sessions`;

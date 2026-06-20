@@ -1,5 +1,5 @@
 import { ProviderSettingsCoordinator } from '../../../core/providers/ProviderSettingsCoordinator';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { DEFAULT_CODEX_PRIMARY_MODEL } from '../types/models';
 import { CodexAppServerProcess } from './CodexAppServerProcess';
 import { resolveCodexAppServerLaunchSpec } from './codexAppServerSupport';
@@ -34,7 +34,7 @@ export class CodexAuxQueryRunner {
   private threadId: string | null = null;
   private launchSpec: CodexLaunchSpec | null = null;
 
-  constructor(private readonly plugin: ClaudianPlugin) {}
+  constructor(private readonly plugin: AidianPlugin) {}
 
   async query(config: CodexAuxQueryConfig, prompt: string): Promise<string> {
     if (!this.process || !this.transport) {
@@ -168,7 +168,7 @@ export class CodexAuxQueryRunner {
     this.transport.start();
 
     const initializeResult = await this.transport.request<InitializeResult>('initialize', {
-      clientInfo: { name: 'claudian-aux', version: '1.0.0' },
+      clientInfo: { name: 'aidian-aux', version: '1.0.0' },
       capabilities: { experimentalApi: true },
     });
 

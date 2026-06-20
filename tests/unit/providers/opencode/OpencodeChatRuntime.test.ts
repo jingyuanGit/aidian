@@ -19,7 +19,7 @@ function createMockPlugin(overrides: Record<string, unknown> = {}): any {
     app: {
       vault: {
         adapter: {
-          basePath: '/tmp/claudian-test-vault',
+          basePath: '/tmp/aidian-test-vault',
         },
       },
     },
@@ -98,11 +98,11 @@ describe('OpencodeChatRuntime', () => {
     jest.spyOn(launchArtifacts, 'prepareOpencodeLaunchArtifacts').mockImplementation(async (params) => {
       expect(params.runtimeEnv.OPENCODE_DB).toBe('/persisted/opencode.db');
       return {
-        configPath: '/tmp/claudian-opencode-config.json',
+        configPath: '/tmp/aidian-opencode-config.json',
         configContent: '{}\n',
         databasePath: '/persisted/opencode.db',
         launchKey: 'launch-key',
-        systemPromptPath: '/tmp/claudian-opencode-system.md',
+        systemPromptPath: '/tmp/aidian-opencode-system.md',
       };
     });
     (runtime as any).startProcess = jest.fn().mockImplementation(async () => {
@@ -142,11 +142,11 @@ describe('OpencodeChatRuntime', () => {
     jest.spyOn(launchArtifacts, 'prepareOpencodeLaunchArtifacts').mockImplementation(async (params) => {
       expect(params.runtimeEnv.OPENCODE_DB).toBeUndefined();
       return {
-        configPath: '/tmp/claudian-opencode-config.json',
+        configPath: '/tmp/aidian-opencode-config.json',
         configContent: '{}\n',
         databasePath: '/default/opencode.db',
         launchKey: 'launch-key',
-        systemPromptPath: '/tmp/claudian-opencode-system.md',
+        systemPromptPath: '/tmp/aidian-opencode-system.md',
       };
     });
     (runtime as any).startProcess = jest.fn().mockImplementation(async () => {
@@ -176,11 +176,11 @@ describe('OpencodeChatRuntime', () => {
     jest.spyOn(launchArtifacts, 'prepareOpencodeLaunchArtifacts').mockImplementation(async (params) => {
       expect(params.runtimeEnv.OPENCODE_DB).toBe(':memory:');
       return {
-        configPath: '/tmp/claudian-opencode-config.json',
+        configPath: '/tmp/aidian-opencode-config.json',
         configContent: '{}\n',
         databasePath: ':memory:',
         launchKey: 'launch-key',
-        systemPromptPath: '/tmp/claudian-opencode-system.md',
+        systemPromptPath: '/tmp/aidian-opencode-system.md',
       };
     });
     (runtime as any).startProcess = jest.fn().mockImplementation(async () => {
@@ -206,11 +206,11 @@ describe('OpencodeChatRuntime', () => {
     const mockConnection = { dispose: jest.fn() };
 
     jest.spyOn(launchArtifacts, 'prepareOpencodeLaunchArtifacts').mockResolvedValue({
-      configPath: '/tmp/claudian-opencode-config.json',
+      configPath: '/tmp/aidian-opencode-config.json',
       configContent: '{}\n',
       databasePath: '/default/opencode.db',
       launchKey: 'launch-key',
-      systemPromptPath: '/tmp/claudian-opencode-system.md',
+      systemPromptPath: '/tmp/aidian-opencode-system.md',
     });
     const shutdownProcess = jest.spyOn(runtime as any, 'shutdownProcess').mockResolvedValue(undefined);
     const startProcess = jest.spyOn(runtime as any, 'startProcess').mockImplementation(async () => {
@@ -386,7 +386,7 @@ describe('OpencodeChatRuntime', () => {
     expect((runtime as any).resolveSelectedModeId()).toBe(OPENCODE_YOLO_MODE_ID);
   });
 
-  it('falls back to the managed YOLO mode when a saved custom mode is not managed by Claudian', () => {
+  it('falls back to the managed YOLO mode when a saved custom mode is not managed by Aidian', () => {
     const plugin = createMockPlugin({
       settings: {
         permissionMode: 'yolo',
@@ -413,7 +413,7 @@ describe('OpencodeChatRuntime', () => {
             availableModes: [
               { id: OPENCODE_BUILD_MODE_ID, name: 'build' },
               { id: 'compaction', name: 'compaction' },
-              { id: OPENCODE_SAFE_MODE_ID, name: 'claudian-safe' },
+              { id: OPENCODE_SAFE_MODE_ID, name: 'aidian-safe' },
               { id: 'plan', name: 'plan' },
             ],
             selectedMode: '',

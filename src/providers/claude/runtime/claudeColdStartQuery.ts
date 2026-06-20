@@ -2,7 +2,7 @@ import type { Options } from '@anthropic-ai/claude-agent-sdk';
 import { query as agentQuery } from '@anthropic-ai/claude-agent-sdk';
 
 import { ProviderSettingsCoordinator } from '../../../core/providers/ProviderSettingsCoordinator';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { getEnhancedPath, getMissingNodeError, parseEnvironmentVariables } from '../../../utils/env';
 import { getVaultPath } from '../../../utils/path';
 import { extractAssistantText } from '../auxiliary/extractAssistantText';
@@ -17,7 +17,7 @@ import { createAndroidBridgeSpawnFunction } from './androidBridgeSpawn';
 import { createCustomSpawnFunction } from './customSpawn';
 
 export interface ColdStartQueryConfig {
-  plugin: ClaudianPlugin;
+  plugin: AidianPlugin;
   systemPrompt: string;
   /** Tools available to the model. Omit for SDK default (all tools). */
   tools?: string[];

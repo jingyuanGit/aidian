@@ -777,7 +777,7 @@ ${inlineOutput}
       setupLinkedAgentOutput(manager, 'task-1', 'agent-untrusted-output', 'out-1');
 
       const homeDir = process.env.HOME ?? process.cwd();
-      const untrustedDir = mkdtempSync(join(homeDir, '.claudian-untrusted-'));
+      const untrustedDir = mkdtempSync(join(homeDir, '.aidian-untrusted-'));
       const fullOutputFile = join(untrustedDir, 'agent-untrusted.output');
       const fullOutput = [
         JSON.stringify({

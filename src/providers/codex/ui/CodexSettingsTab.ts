@@ -59,7 +59,7 @@ export const codexSettingsTabRenderer: ProviderSettingsTabRenderer = {
     if (isWindowsHost) {
       new Setting(container)
         .setName('Installation method')
-        .setDesc('How Claudian should launch Codex on Windows. Native Windows uses a Windows executable path. WSL launches the Linux CLI inside a selected distro.')
+        .setDesc('How Aidian should launch Codex on Windows. Native Windows uses a Windows executable path. WSL launches the Linux CLI inside a selected distro.')
         .addDropdown((dropdown) => {
           dropdown
             .addOption('native-windows', 'Native Windows')
@@ -102,7 +102,7 @@ export const codexSettingsTabRenderer: ProviderSettingsTabRenderer = {
       .setDesc(getCliPathCopy().desc);
 
     const validationEl = container.createDiv({
-      cls: 'claudian-cli-path-validation claudian-setting-validation claudian-setting-validation-error claudian-hidden',
+      cls: 'aidian-cli-path-validation aidian-setting-validation aidian-setting-validation-error aidian-hidden',
     });
 
     const validatePath = (value: string): string | null => {
@@ -132,16 +132,16 @@ export const codexSettingsTabRenderer: ProviderSettingsTabRenderer = {
       const error = validatePath(value);
       if (error) {
         validationEl.setText(error);
-        validationEl.toggleClass('claudian-hidden', false);
+        validationEl.toggleClass('aidian-hidden', false);
         if (inputEl) {
-          inputEl.toggleClass('claudian-input-error', true);
+          inputEl.toggleClass('aidian-input-error', true);
         }
         return false;
       }
 
-      validationEl.toggleClass('claudian-hidden', true);
+      validationEl.toggleClass('aidian-hidden', true);
       if (inputEl) {
-        inputEl.toggleClass('claudian-input-error', false);
+        inputEl.toggleClass('aidian-input-error', false);
       }
       return true;
     };
@@ -159,7 +159,7 @@ export const codexSettingsTabRenderer: ProviderSettingsTabRenderer = {
         updateCliPathValidation(cliPathInputEl.value, cliPathInputEl);
       }
       if (wslDistroSettingEl) {
-        wslDistroSettingEl.toggleClass('claudian-hidden', installationMethod !== 'wsl');
+        wslDistroSettingEl.toggleClass('aidian-hidden', installationMethod !== 'wsl');
       }
       if (wslDistroInputEl) {
         wslDistroInputEl.disabled = installationMethod !== 'wsl';
@@ -197,7 +197,7 @@ export const codexSettingsTabRenderer: ProviderSettingsTabRenderer = {
         .onChange(async (value) => {
           await persistCliPath(value);
         });
-      text.inputEl.addClass('claudian-settings-cli-path-input');
+      text.inputEl.addClass('aidian-settings-cli-path-input');
       cliPathInputEl = text.inputEl;
 
       updateCliPathValidation(currentValue, text.inputEl);
@@ -218,7 +218,7 @@ export const codexSettingsTabRenderer: ProviderSettingsTabRenderer = {
             await context.plugin.saveSettings();
           });
 
-        text.inputEl.addClass('claudian-settings-cli-path-input');
+        text.inputEl.addClass('aidian-settings-cli-path-input');
         text.inputEl.disabled = installationMethod !== 'wsl';
         wslDistroInputEl = text.inputEl;
       });
@@ -371,13 +371,13 @@ export const codexSettingsTabRenderer: ProviderSettingsTabRenderer = {
     if (codexCatalog) {
       new Setting(container).setName('Codex skills').setHeading();
 
-      const skillsDesc = container.createDiv({ cls: 'claudian-sp-settings-desc' });
+      const skillsDesc = container.createDiv({ cls: 'aidian-sp-settings-desc' });
       skillsDesc.createEl('p', {
         cls: 'setting-item-description',
         text: 'Manage vault-level Codex skills stored in .codex/skills/ or .agents/skills/. Home-level skills are excluded here.',
       });
 
-      const skillsContainer = container.createDiv({ cls: 'claudian-slash-commands-container' });
+      const skillsContainer = container.createDiv({ cls: 'aidian-slash-commands-container' });
       new CodexSkillSettings(skillsContainer, codexCatalog, context.plugin.app);
     }
 
@@ -391,13 +391,13 @@ export const codexSettingsTabRenderer: ProviderSettingsTabRenderer = {
 
     new Setting(container).setName('Codex subagents').setHeading();
 
-    const subagentDesc = container.createDiv({ cls: 'claudian-sp-settings-desc' });
+    const subagentDesc = container.createDiv({ cls: 'aidian-sp-settings-desc' });
     subagentDesc.createEl('p', {
       cls: 'setting-item-description',
       text: 'Manage vault-level Codex subagents stored in .codex/agents/. Each TOML file defines one custom agent.',
     });
 
-    const subagentContainer = container.createDiv({ cls: 'claudian-slash-commands-container' });
+    const subagentContainer = container.createDiv({ cls: 'aidian-slash-commands-container' });
     new CodexSubagentSettings(subagentContainer, codexWorkspace.subagentStorage, context.plugin.app, () => {
       void codexWorkspace.refreshAgentMentions?.();
     });
@@ -405,11 +405,11 @@ export const codexSettingsTabRenderer: ProviderSettingsTabRenderer = {
     // --- MCP Servers ---
 
     new Setting(container).setName(t('settings.mcpServers.name')).setHeading();
-    const mcpNotice = container.createDiv({ cls: 'claudian-mcp-settings-desc' });
+    const mcpNotice = container.createDiv({ cls: 'aidian-mcp-settings-desc' });
     const mcpDesc = mcpNotice.createEl('p', { cls: 'setting-item-description' });
     mcpDesc.appendText('Codex manages MCP servers via its own CLI. Configure with ');
     mcpDesc.createEl('code').appendText('codex mcp');
-    mcpDesc.appendText(' and they will be available in Claudian. ');
+    mcpDesc.appendText(' and they will be available in Aidian. ');
     mcpDesc.createEl('a', {
       text: 'Learn more',
       href: 'https://developers.openai.com/codex/mcp',

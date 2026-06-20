@@ -53,7 +53,7 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
       );
 
     const validationEl = container.createDiv({
-      cls: 'claudian-cli-path-validation claudian-setting-validation claudian-setting-validation-error claudian-hidden',
+      cls: 'aidian-cli-path-validation aidian-setting-validation aidian-setting-validation-error aidian-hidden',
     });
     const cliPathsByHost = { ...piSettings.cliPathsByHost };
     let cliPathInputEl: HTMLInputElement | null = null;
@@ -62,13 +62,13 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
       const error = validateCliPath(value);
       if (error) {
         validationEl.setText(error);
-        validationEl.toggleClass('claudian-hidden', false);
-        inputEl?.toggleClass('claudian-input-error', true);
+        validationEl.toggleClass('aidian-hidden', false);
+        inputEl?.toggleClass('aidian-input-error', true);
         return false;
       }
 
-      validationEl.toggleClass('claudian-hidden', true);
-      inputEl?.toggleClass('claudian-input-error', false);
+      validationEl.toggleClass('aidian-hidden', true);
+      inputEl?.toggleClass('aidian-input-error', false);
       return true;
     };
 
@@ -116,37 +116,37 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
       .setName('Visible models')
       .setDesc('Choose which Pi models appear in the chat selector. Filter by provider or type to search. The current session model stays pinned even if it is not selected here.');
 
-    const pickerEl = container.createDiv({ cls: 'claudian-provider-model-picker claudian-provider-model-picker--pi' });
+    const pickerEl = container.createDiv({ cls: 'aidian-provider-model-picker aidian-provider-model-picker--pi' });
 
     let searchQuery = '';
     let providerFilter = ALL_PROVIDERS_KEY;
     let loadingModelCatalog = false;
     let modelCatalogLoadFailed = false;
 
-    const summaryEl = pickerEl.createDiv({ cls: 'claudian-provider-model-picker-summary' });
-    const selectedEl = pickerEl.createDiv({ cls: 'claudian-provider-model-picker-selected' });
-    const catalogEl = pickerEl.createEl('details', { cls: 'claudian-provider-model-picker-catalog' });
+    const summaryEl = pickerEl.createDiv({ cls: 'aidian-provider-model-picker-summary' });
+    const selectedEl = pickerEl.createDiv({ cls: 'aidian-provider-model-picker-selected' });
+    const catalogEl = pickerEl.createEl('details', { cls: 'aidian-provider-model-picker-catalog' });
     catalogEl.open = getPiProviderSettings(settingsBag).visibleModels.length === 0;
 
     const catalogSummaryEl = catalogEl.createEl('summary', {
-      cls: 'claudian-provider-model-picker-catalog-summary',
+      cls: 'aidian-provider-model-picker-catalog-summary',
     });
     catalogSummaryEl.createSpan({
-      cls: 'claudian-provider-model-picker-catalog-caret',
+      cls: 'aidian-provider-model-picker-catalog-caret',
       text: '▸',
     });
     catalogSummaryEl.createSpan({
-      cls: 'claudian-provider-model-picker-catalog-title',
+      cls: 'aidian-provider-model-picker-catalog-title',
       text: 'Browse models',
     });
     const catalogSummaryCountEl = catalogSummaryEl.createSpan({
-      cls: 'claudian-provider-model-picker-catalog-count',
+      cls: 'aidian-provider-model-picker-catalog-count',
     });
 
-    const controlsEl = catalogEl.createDiv({ cls: 'claudian-provider-model-picker-controls' });
+    const controlsEl = catalogEl.createDiv({ cls: 'aidian-provider-model-picker-controls' });
 
     const searchInput = controlsEl.createEl('input', {
-      cls: 'claudian-provider-model-picker-search',
+      cls: 'aidian-provider-model-picker-search',
       type: 'search',
     });
     searchInput.placeholder = 'Filter by model, provider, or ID...';
@@ -156,7 +156,7 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
     });
 
     const providerSelectEl = controlsEl.createEl('select', {
-      cls: 'claudian-provider-model-picker-provider',
+      cls: 'aidian-provider-model-picker-provider',
     });
     providerSelectEl.addEventListener('change', () => {
       providerFilter = providerSelectEl.value;
@@ -164,7 +164,7 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
     });
 
     const discoverButtonEl = controlsEl.createEl('button', {
-      cls: 'claudian-provider-model-picker-action',
+      cls: 'aidian-provider-model-picker-action',
       text: 'Discover',
     });
     discoverButtonEl.setAttribute('type', 'button');
@@ -172,7 +172,7 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
       void loadModelCatalog({ force: true });
     });
 
-    const listEl = catalogEl.createDiv({ cls: 'claudian-provider-model-picker-list' });
+    const listEl = catalogEl.createDiv({ cls: 'aidian-provider-model-picker-list' });
 
     const getEnrichedModels = (): EnrichedPiModel[] => {
       const current = getPiProviderSettings(settingsBag);
@@ -227,7 +227,7 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
 
       summaryEl.createSpan({ text: 'Visible: ' });
       summaryEl.createSpan({
-        cls: 'claudian-provider-model-picker-summary-value',
+        cls: 'aidian-provider-model-picker-summary-value',
         text: String(current.visibleModels.length),
       });
       summaryEl.createSpan({
@@ -253,22 +253,22 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
       selectedEl.empty();
       const current = getPiProviderSettings(settingsBag);
       if (current.visibleModels.length === 0) {
-        selectedEl.toggleClass('claudian-hidden', true);
+        selectedEl.toggleClass('aidian-hidden', true);
         return;
       }
 
-      selectedEl.toggleClass('claudian-hidden', false);
+      selectedEl.toggleClass('aidian-hidden', false);
       const enrichedById = new Map(
         getEnrichedModels().map((model) => [model.encodedId, model] as const),
       );
 
-      const headerEl = selectedEl.createDiv({ cls: 'claudian-provider-model-picker-selected-header' });
+      const headerEl = selectedEl.createDiv({ cls: 'aidian-provider-model-picker-selected-header' });
       headerEl.createEl('span', {
-        cls: 'claudian-provider-model-picker-selected-label',
+        cls: 'aidian-provider-model-picker-selected-label',
         text: `Selected (${current.visibleModels.length})`,
       });
       const clearAllBtn = headerEl.createEl('button', {
-        cls: 'claudian-provider-model-picker-selected-clear',
+        cls: 'aidian-provider-model-picker-selected-clear',
         text: 'Clear all',
       });
       clearAllBtn.setAttribute('aria-label', 'Clear all selected Pi models');
@@ -276,7 +276,7 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
         void persistVisibleModels([]);
       });
 
-      const rowsEl = selectedEl.createDiv({ cls: 'claudian-provider-model-picker-selected-rows' });
+      const rowsEl = selectedEl.createDiv({ cls: 'aidian-provider-model-picker-selected-rows' });
 
       for (const encodedId of current.visibleModels) {
         const enriched = enrichedById.get(encodedId);
@@ -284,44 +284,44 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
           ? `${enriched.providerLabel}/${enriched.modelLabel}`
           : encodedId;
 
-        const rowEl = rowsEl.createDiv({ cls: 'claudian-provider-model-picker-selected-row' });
+        const rowEl = rowsEl.createDiv({ cls: 'aidian-provider-model-picker-selected-row' });
         if (enriched && !enriched.isAvailable) {
-          rowEl.classList.add('claudian-provider-model-picker-selected-row--unavailable');
+          rowEl.classList.add('aidian-provider-model-picker-selected-row--unavailable');
         }
 
-        const infoEl = rowEl.createDiv({ cls: 'claudian-provider-model-picker-selected-info' });
-        const titleEl = infoEl.createDiv({ cls: 'claudian-provider-model-picker-selected-title' });
+        const infoEl = rowEl.createDiv({ cls: 'aidian-provider-model-picker-selected-info' });
+        const titleEl = infoEl.createDiv({ cls: 'aidian-provider-model-picker-selected-title' });
         if (enriched) {
           titleEl.createEl('span', {
-            cls: 'claudian-provider-model-picker-selected-badge',
+            cls: 'aidian-provider-model-picker-selected-badge',
             text: enriched.providerLabel,
           });
           titleEl.createEl('span', {
-            cls: 'claudian-provider-model-picker-selected-name',
+            cls: 'aidian-provider-model-picker-selected-name',
             text: enriched.modelLabel,
           });
         } else {
           titleEl.createEl('span', {
-            cls: 'claudian-provider-model-picker-selected-name',
+            cls: 'aidian-provider-model-picker-selected-name',
             text: encodedId,
           });
         }
 
         if (enriched && !enriched.isAvailable) {
           infoEl.createEl('div', {
-            cls: 'claudian-provider-model-picker-selected-unavailable',
+            cls: 'aidian-provider-model-picker-selected-unavailable',
             text: 'Not currently reported by Pi',
           });
         }
 
         infoEl.createEl('div', {
-          cls: 'claudian-provider-model-picker-selected-id',
+          cls: 'aidian-provider-model-picker-selected-id',
           text: encodedId,
         });
 
-        const rowControlsEl = rowEl.createDiv({ cls: 'claudian-provider-model-picker-selected-controls' });
+        const rowControlsEl = rowEl.createDiv({ cls: 'aidian-provider-model-picker-selected-controls' });
         const aliasInput = rowControlsEl.createEl('input', {
-          cls: 'claudian-provider-model-picker-selected-alias',
+          cls: 'aidian-provider-model-picker-selected-alias',
           type: 'text',
         });
         aliasInput.placeholder = defaultLabel;
@@ -360,7 +360,7 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
         });
 
         const removeBtn = rowControlsEl.createEl('button', {
-          cls: 'claudian-provider-model-picker-selected-remove',
+          cls: 'aidian-provider-model-picker-selected-remove',
           text: '×',
         });
         removeBtn.setAttribute('aria-label', `Remove ${defaultLabel}`);
@@ -411,7 +411,7 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
       const filtered = filterModels(enriched);
 
       if (filtered.length === 0) {
-        const emptyEl = listEl.createDiv({ cls: 'claudian-provider-model-picker-empty' });
+        const emptyEl = listEl.createDiv({ cls: 'aidian-provider-model-picker-empty' });
         let emptyText = 'No models match your filter.';
         if (loadingModelCatalog) {
           emptyText = 'Loading Pi model catalog...';
@@ -425,10 +425,10 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
       }
 
       for (const model of filtered) {
-        const rowEl = listEl.createEl('label', { cls: 'claudian-provider-model-picker-row' });
+        const rowEl = listEl.createEl('label', { cls: 'aidian-provider-model-picker-row' });
         const isSelected = selectedIds.has(model.encodedId);
         if (isSelected) {
-          rowEl.classList.add('claudian-provider-model-picker-row--selected');
+          rowEl.classList.add('aidian-provider-model-picker-row--selected');
         }
         rowEl.title = model.encodedId;
 
@@ -442,31 +442,31 @@ export const piSettingsTabRenderer: ProviderSettingsTabRenderer = {
           void persistVisibleModels(next);
         });
 
-        const textEl = rowEl.createDiv({ cls: 'claudian-provider-model-picker-row-text' });
+        const textEl = rowEl.createDiv({ cls: 'aidian-provider-model-picker-row-text' });
 
-        const headerEl = textEl.createDiv({ cls: 'claudian-provider-model-picker-row-header' });
+        const headerEl = textEl.createDiv({ cls: 'aidian-provider-model-picker-row-header' });
         headerEl.createEl('span', {
-          cls: 'claudian-provider-model-picker-row-name',
+          cls: 'aidian-provider-model-picker-row-name',
           text: model.modelLabel,
         });
         const badgeEl = headerEl.createEl('span', {
-          cls: 'claudian-provider-model-picker-row-badge',
+          cls: 'aidian-provider-model-picker-row-badge',
           text: model.providerLabel,
         });
         if (!model.isAvailable) {
-          badgeEl.classList.add('claudian-provider-model-picker-row-badge--unavailable');
+          badgeEl.classList.add('aidian-provider-model-picker-row-badge--unavailable');
           badgeEl.setText('Unavailable');
           badgeEl.title = 'Configured model not currently reported by Pi';
         }
 
         textEl.createDiv({
-          cls: 'claudian-provider-model-picker-row-meta',
+          cls: 'aidian-provider-model-picker-row-meta',
           text: model.encodedId,
         });
 
         if (model.description) {
           textEl.createDiv({
-            cls: 'claudian-provider-model-picker-row-desc',
+            cls: 'aidian-provider-model-picker-row-desc',
             text: model.description,
           });
         }

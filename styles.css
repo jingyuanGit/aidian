@@ -1,4 +1,4 @@
-/* Claudian Plugin Styles */
+/* Aidian Plugin Styles */
 /* Built from src/style/ modules */
 
 
@@ -6,57 +6,57 @@
    base/variables.css
    ============================================ */
 /* Brand & semantic color tokens */
-.claudian-container {
-  --claudian-brand: #D97757;
-  --claudian-brand-rgb: 217, 119, 87;
-  --claudian-brand-claude: #D97757;
-  --claudian-brand-claude-rgb: 217, 119, 87;
-  --claudian-brand-codex: #d0d0d0;
-  --claudian-brand-codex-rgb: 208, 208, 208;
-  --claudian-brand-opencode: #B8B8B8;
-  --claudian-brand-opencode-rgb: 184, 184, 184;
-  --claudian-brand-pi: #ffffff;
-  --claudian-brand-pi-rgb: 255, 255, 255;
-  --claudian-error: #dc3545;
-  --claudian-error-rgb: 220, 53, 69;
-  --claudian-compact: #5bc0de;
+.aidian-container {
+  --aidian-brand: #D97757;
+  --aidian-brand-rgb: 217, 119, 87;
+  --aidian-brand-claude: #D97757;
+  --aidian-brand-claude-rgb: 217, 119, 87;
+  --aidian-brand-codex: #d0d0d0;
+  --aidian-brand-codex-rgb: 208, 208, 208;
+  --aidian-brand-opencode: #B8B8B8;
+  --aidian-brand-opencode-rgb: 184, 184, 184;
+  --aidian-brand-pi: #ffffff;
+  --aidian-brand-pi-rgb: 255, 255, 255;
+  --aidian-error: #dc3545;
+  --aidian-error-rgb: 220, 53, 69;
+  --aidian-compact: #5bc0de;
 }
 
-body.theme-light .claudian-container {
-  --claudian-brand-codex: #000000;
-  --claudian-brand-codex-rgb: 0, 0, 0;
-  --claudian-brand-opencode: #707070;
-  --claudian-brand-opencode-rgb: 112, 112, 112;
-  --claudian-brand-pi: #000000;
-  --claudian-brand-pi-rgb: 0, 0, 0;
+body.theme-light .aidian-container {
+  --aidian-brand-codex: #000000;
+  --aidian-brand-codex-rgb: 0, 0, 0;
+  --aidian-brand-opencode: #707070;
+  --aidian-brand-opencode-rgb: 112, 112, 112;
+  --aidian-brand-pi: #000000;
+  --aidian-brand-pi-rgb: 0, 0, 0;
 }
 
 /* Active-provider alias for single-provider surfaces. */
-.claudian-container[data-provider="claude"] {
-  --claudian-brand: var(--claudian-brand-claude);
-  --claudian-brand-rgb: var(--claudian-brand-claude-rgb);
+.aidian-container[data-provider="claude"] {
+  --aidian-brand: var(--aidian-brand-claude);
+  --aidian-brand-rgb: var(--aidian-brand-claude-rgb);
 }
 
-.claudian-container[data-provider="codex"] {
-  --claudian-brand: var(--claudian-brand-codex);
-  --claudian-brand-rgb: var(--claudian-brand-codex-rgb);
+.aidian-container[data-provider="codex"] {
+  --aidian-brand: var(--aidian-brand-codex);
+  --aidian-brand-rgb: var(--aidian-brand-codex-rgb);
 }
 
-.claudian-container[data-provider="opencode"] {
-  --claudian-brand: var(--claudian-brand-opencode);
-  --claudian-brand-rgb: var(--claudian-brand-opencode-rgb);
+.aidian-container[data-provider="opencode"] {
+  --aidian-brand: var(--aidian-brand-opencode);
+  --aidian-brand-rgb: var(--aidian-brand-opencode-rgb);
 }
 
-.claudian-container[data-provider="pi"] {
-  --claudian-brand: var(--claudian-brand-pi);
-  --claudian-brand-rgb: var(--claudian-brand-pi-rgb);
+.aidian-container[data-provider="pi"] {
+  --aidian-brand: var(--aidian-brand-pi);
+  --aidian-brand-rgb: var(--aidian-brand-pi-rgb);
 }
 
 
 /* ============================================
    base/container.css
    ============================================ */
-.claudian-container {
+.aidian-container {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -65,15 +65,15 @@ body.theme-light .claudian-container {
   font-family: var(--font-text);
 }
 
-.claudian-provider-icon-variant--dark {
+.aidian-provider-icon-variant--dark {
   display: none;
 }
 
-body.theme-dark .claudian-provider-icon-variant--light {
+body.theme-dark .aidian-provider-icon-variant--light {
   display: none;
 }
 
-body.theme-dark .claudian-provider-icon-variant--dark {
+body.theme-dark .aidian-provider-icon-variant--dark {
   display: inline;
 }
 
@@ -101,11 +101,11 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 @keyframes external-context-glow {
   0%,
   100% {
-    filter: drop-shadow(0 0 2px rgba(var(--claudian-brand-rgb), 0.4));
+    filter: drop-shadow(0 0 2px rgba(var(--aidian-brand-rgb), 0.4));
   }
 
   50% {
-    filter: drop-shadow(0 0 6px rgba(var(--claudian-brand-rgb), 0.8));
+    filter: drop-shadow(0 0 6px rgba(var(--aidian-brand-rgb), 0.8));
   }
 }
 
@@ -120,7 +120,7 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   }
 }
 
-@keyframes claudian-spin {
+@keyframes aidian-spin {
   to {
     transform: rotate(360deg);
   }
@@ -131,7 +131,7 @@ body.theme-dark .claudian-provider-icon-variant--dark {
    components/header.css
    ============================================ */
 /* Header - logo, title/tabs slot, and actions */
-.claudian-header {
+.aidian-header {
   position: relative;
   display: flex;
   align-items: center;
@@ -139,7 +139,7 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 }
 
 /* Title slot: contains logo + title (or tabs in header mode) */
-.claudian-title-slot {
+.aidian-title-slot {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -148,27 +148,27 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 }
 
 /* Legacy class for backwards compatibility */
-.claudian-title {
+.aidian-title {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
 }
 
-.claudian-title-text {
+.aidian-title-text {
   margin: 0;
   font-size: 14px;
   font-weight: 600;
 }
 
-.claudian-logo {
+.aidian-logo {
   display: flex;
   align-items: center;
-  color: var(--claudian-brand);
+  color: var(--aidian-brand);
 }
 
 /* Header actions (end side - always stays at end via margin-inline-start: auto) */
-.claudian-header-actions {
+.aidian-header-actions {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -176,16 +176,16 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   margin-inline-start: auto;
 }
 
-.claudian-header-actions-slot {
-  /* No margin-inline-start: auto here; it's set by the base .claudian-header-actions */
+.aidian-header-actions-slot {
+  /* No margin-inline-start: auto here; it's set by the base .aidian-header-actions */
 }
 
-.claudian-header .claudian-tab-bar-container {
+.aidian-header .aidian-tab-bar-container {
   display: flex;
   gap: 4px;
 }
 
-.claudian-header-btn {
+.aidian-header-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -194,16 +194,16 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   transition: color 0.15s ease;
 }
 
-.claudian-header-btn:hover {
+.aidian-header-btn:hover {
   color: var(--text-normal);
 }
 
-.claudian-header-btn svg {
+.aidian-header-btn svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-new-tab-btn svg {
+.aidian-new-tab-btn svg {
   width: 16.8px;
   height: 16.8px;
 }
@@ -211,19 +211,19 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 /* ============================================
    components/tabs.css
    ============================================ */
-.claudian-tab-bar-container {
+.aidian-tab-bar-container {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.claudian-tab-badges {
+.aidian-tab-badges {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.claudian-tab-badge {
+.aidian-tab-badge {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -239,45 +239,45 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 
-.claudian-tab-badge:hover {
+.aidian-tab-badge:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.claudian-tab-badge-active {
+.aidian-tab-badge-active {
   border-color: var(--interactive-accent);
   color: var(--text-normal);
 }
 
-.claudian-tab-badge-streaming {
-  border-color: var(--claudian-brand, #da7756);
+.aidian-tab-badge-streaming {
+  border-color: var(--aidian-brand, #da7756);
 }
 
-.claudian-tab-badge-streaming[data-provider="claude"] {
-  border-color: var(--claudian-brand-claude, #D97757);
+.aidian-tab-badge-streaming[data-provider="claude"] {
+  border-color: var(--aidian-brand-claude, #D97757);
 }
 
-.claudian-tab-badge-streaming[data-provider="codex"] {
-  border-color: var(--claudian-brand-codex, #d0d0d0);
+.aidian-tab-badge-streaming[data-provider="codex"] {
+  border-color: var(--aidian-brand-codex, #d0d0d0);
 }
 
-.claudian-tab-badge-streaming[data-provider="opencode"] {
-  border-color: var(--claudian-brand-opencode, #C8C8C8);
+.aidian-tab-badge-streaming[data-provider="opencode"] {
+  border-color: var(--aidian-brand-opencode, #C8C8C8);
 }
 
-.claudian-tab-badge-streaming[data-provider="pi"] {
-  border-color: var(--claudian-brand-pi, #ffffff);
+.aidian-tab-badge-streaming[data-provider="pi"] {
+  border-color: var(--aidian-brand-pi, #ffffff);
 }
 
-.claudian-tab-badge-attention {
+.aidian-tab-badge-attention {
   border-color: var(--text-error);
 }
 
-.claudian-tab-badge-idle {
+.aidian-tab-badge-idle {
   border-color: var(--background-modifier-border);
 }
 
-.claudian-tab-content-container {
+.aidian-tab-content-container {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -285,7 +285,7 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   overflow: hidden;
 }
 
-.claudian-tab-content {
+.aidian-tab-content {
   position: relative; /* For scroll-to-bottom button positioning */
   display: flex;
   flex-direction: column;
@@ -298,12 +298,12 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 /* ============================================
    components/history.css
    ============================================ */
-.claudian-history-container {
+.aidian-history-container {
   position: static;
 }
 
 /* History dropup menu (opens upward since it's at bottom of view) */
-.claudian-history-menu {
+.aidian-history-menu {
   display: none;
   position: absolute;
   bottom: 100%;
@@ -321,12 +321,12 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   inset-inline-end: 0;
 }
 
-.claudian-history-menu.visible {
+.aidian-history-menu.visible {
   display: block;
 }
 
 /* Header mode: dropdown instead of dropup */
-.claudian-container--header-mode .claudian-history-menu {
+.aidian-container--header-mode .aidian-history-menu {
   bottom: auto;
   top: 100%;
   margin-bottom: 0;
@@ -334,7 +334,7 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
-.claudian-history-header {
+.aidian-history-header {
   padding: 8px 12px;
   font-size: 12px;
   font-weight: 600;
@@ -344,19 +344,19 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.claudian-history-list {
+.aidian-history-list {
   max-height: 350px;
   overflow-y: auto;
 }
 
-.claudian-history-empty {
+.aidian-history-empty {
   padding: 16px;
   text-align: center;
   color: var(--text-muted);
   font-size: 13px;
 }
 
-.claudian-history-item {
+.aidian-history-item {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -365,51 +365,51 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   transition: background 0.15s ease;
 }
 
-.claudian-history-item-icon {
+.aidian-history-item-icon {
   display: flex;
   align-items: center;
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.claudian-history-item-icon svg {
+.aidian-history-item-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-history-item:last-child {
+.aidian-history-item:last-child {
   border-bottom: none;
 }
 
-.claudian-history-item:hover {
+.aidian-history-item:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-history-item.active {
+.aidian-history-item.active {
   background: var(--background-secondary);
   border-inline-start: 2px solid var(--interactive-accent);
   padding-inline-start: 10px;
 }
 
-.claudian-history-item.active .claudian-history-item-icon {
+.aidian-history-item.active .aidian-history-item-icon {
   color: var(--interactive-accent);
 }
 
-.claudian-history-item.active .claudian-history-item-content {
+.aidian-history-item.active .aidian-history-item-content {
   cursor: default;
 }
 
-.claudian-history-item.active .claudian-history-item-date {
+.aidian-history-item.active .aidian-history-item-date {
   color: var(--text-faint);
 }
 
-.claudian-history-item-content {
+.aidian-history-item-content {
   flex: 1;
   min-width: 0;
   cursor: pointer;
 }
 
-.claudian-history-item-title {
+.aidian-history-item-title {
   font-size: 13px;
   font-weight: 500;
   color: var(--text-normal);
@@ -418,13 +418,13 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   text-overflow: ellipsis;
 }
 
-.claudian-history-item-date {
+.aidian-history-item-date {
   font-size: 11px;
   color: var(--text-faint);
   margin-top: 2px;
 }
 
-.claudian-history-item-actions {
+.aidian-history-item-actions {
   display: flex;
   gap: 4px;
   margin-inline-start: 8px;
@@ -432,11 +432,11 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   transition: opacity 0.15s ease;
 }
 
-.claudian-history-item:hover .claudian-history-item-actions {
+.aidian-history-item:hover .aidian-history-item-actions {
   opacity: 1;
 }
 
-.claudian-action-btn {
+.aidian-action-btn {
   background: transparent;
   border: none;
   cursor: pointer;
@@ -446,21 +446,21 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.claudian-action-btn:hover {
+.aidian-action-btn:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.claudian-action-btn svg {
+.aidian-action-btn svg {
   width: 14px;
   height: 14px;
 }
 
-.claudian-delete-btn:hover {
+.aidian-delete-btn:hover {
   color: var(--color-red);
 }
 
-.claudian-rename-input {
+.aidian-rename-input {
   width: 100%;
   padding: 2px 4px;
   font-size: 13px;
@@ -471,13 +471,13 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   color: var(--text-normal);
 }
 
-.claudian-rename-input:focus {
+.aidian-rename-input:focus {
   outline: none;
   box-shadow: 0 0 0 2px var(--interactive-accent-hover);
 }
 
 /* Loading indicator for title generation */
-.claudian-action-loading {
+.aidian-action-loading {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -491,7 +491,7 @@ body.theme-dark .claudian-provider-icon-variant--dark {
    components/messages.css
    ============================================ */
 /* Messages wrapper (for scroll-to-bottom button positioning) */
-.claudian-messages-wrapper {
+.aidian-messages-wrapper {
   position: relative;
   flex: 1;
   min-height: 0;
@@ -500,7 +500,7 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   overflow: hidden;
 }
 
-.claudian-messages {
+.aidian-messages {
   flex: 1;
   overflow-y: auto;
   padding: 12px 0;
@@ -510,12 +510,12 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 }
 
 /* Focusable messages panel for vim-style navigation */
-.claudian-messages-focusable:focus {
+.aidian-messages-focusable:focus {
   outline: none;
 }
 
 /* Welcome message - claude.ai style */
-.claudian-welcome {
+.aidian-welcome {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -526,7 +526,7 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   min-height: 200px;
 }
 
-.claudian-welcome-greeting {
+.aidian-welcome-greeting {
   font-family: 'Copernicus', 'Tiempos Headline', 'Tiempos', Georgia, 'Times New Roman', serif;
   font-size: 28px;
   font-weight: 300;
@@ -534,14 +534,14 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   letter-spacing: -0.01em;
 }
 
-.claudian-message {
+.aidian-message {
   padding: 10px 14px;
   border-radius: 8px;
   max-width: 95%;
   word-wrap: break-word;
 }
 
-.claudian-message-user {
+.aidian-message-user {
   position: relative;
   background: rgba(0, 0, 0, 0.3);
   align-self: flex-end;
@@ -549,12 +549,12 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 }
 
 /* Text selection in user messages - visible highlight */
-.claudian-message-user ::selection {
+.aidian-message-user ::selection {
   background: rgba(255, 255, 255, 0.35);
   color: inherit;
 }
 
-.claudian-message-assistant {
+.aidian-message-assistant {
   background: transparent;
   align-self: stretch;
   width: 100%;
@@ -563,27 +563,27 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   text-align: start;
 }
 
-.claudian-message-content {
+.aidian-message-content {
   line-height: 1.5;
   user-select: text;
   -webkit-user-select: text;
   unicode-bidi: plaintext; /* Proper BiDi text handling for mixed RTL/LTR */
 }
 
-.claudian-interrupted {
+.aidian-interrupted {
   color: #d45d5d;
 }
 
-.claudian-interrupted-hint {
+.aidian-interrupted-hint {
   color: var(--text-muted);
 }
 
-.claudian-text-block {
+.aidian-text-block {
   position: relative;
   margin: 0;
 }
 
-.claudian-text-copy-btn {
+.aidian-text-copy-btn {
   position: absolute;
   bottom: 0;
   inset-inline-end: 0;
@@ -598,93 +598,93 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   gap: 4px;
 }
 
-.claudian-text-copy-btn svg {
+.aidian-text-copy-btn svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-text-block:hover .claudian-text-copy-btn {
+.aidian-text-block:hover .aidian-text-copy-btn {
   opacity: 1;
 }
 
-.claudian-text-copy-btn:hover {
+.aidian-text-copy-btn:hover {
   color: var(--text-normal);
 }
 
-.claudian-text-copy-btn.copied {
+.aidian-text-copy-btn.copied {
   color: var(--text-accent);
   font-size: 11px;
   font-family: var(--font-monospace);
 }
 
-.claudian-text-block+.claudian-tool-call {
+.aidian-text-block+.aidian-tool-call {
   margin-top: 8px;
 }
 
-.claudian-tool-call+.claudian-text-block {
+.aidian-tool-call+.aidian-text-block {
   margin-top: 8px;
 }
 
-.claudian-message-content p {
+.aidian-message-content p {
   margin: 0 0 8px 0;
 }
 
-.claudian-message-content p:last-child {
+.aidian-message-content p:last-child {
   margin-bottom: 0;
 }
 
-.claudian-message-content ul,
-.claudian-message-content ol {
+.aidian-message-content ul,
+.aidian-message-content ol {
   margin: 8px 0;
   padding-inline-start: 20px;
 }
 
 /* Full-width tables */
-.claudian-message-content table {
+.aidian-message-content table {
   width: 100%;
   border-collapse: collapse;
   margin: 8px 0;
 }
 
-.claudian-message-content th,
-.claudian-message-content td {
+.aidian-message-content th,
+.aidian-message-content td {
   border: 1px solid var(--background-modifier-border);
   padding: 6px 10px;
   text-align: start;
 }
 
-.claudian-message-content th {
+.aidian-message-content th {
   background: var(--background-secondary);
   font-weight: 600;
 }
 
-.claudian-message-content tr:hover {
+.aidian-message-content tr:hover {
   background: var(--background-secondary-alt);
 }
 
-.claudian-messages::-webkit-scrollbar {
+.aidian-messages::-webkit-scrollbar {
   width: 6px;
 }
 
-.claudian-messages::-webkit-scrollbar-track {
+.aidian-messages::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.claudian-messages::-webkit-scrollbar-thumb {
+.aidian-messages::-webkit-scrollbar-thumb {
   background: var(--background-modifier-border);
   border-radius: 3px;
 }
 
-.claudian-messages::-webkit-scrollbar-thumb:hover {
+.aidian-messages::-webkit-scrollbar-thumb:hover {
   background: var(--background-modifier-border-hover);
 }
 
 /* Response duration footer - styled as another line of content */
-.claudian-response-footer {
+.aidian-response-footer {
   margin-top: 8px;
 }
 
-.claudian-baked-duration {
+.aidian-baked-duration {
   color: var(--text-muted);
   font-size: 12px;
   font-weight: 500;
@@ -692,7 +692,7 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 }
 
 /* Action buttons toolbar below user messages */
-.claudian-user-msg-actions {
+.aidian-user-msg-actions {
   position: absolute;
   bottom: -20px;
   right: 0;
@@ -703,11 +703,11 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   z-index: 1;
 }
 
-.claudian-message-user:hover .claudian-user-msg-actions {
+.aidian-message-user:hover .aidian-user-msg-actions {
   opacity: 1;
 }
 
-.claudian-user-msg-actions span {
+.aidian-user-msg-actions span {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -716,38 +716,38 @@ body.theme-dark .claudian-provider-icon-variant--dark {
   transition: color 0.15s;
 }
 
-.claudian-user-msg-actions span svg {
+.aidian-user-msg-actions span svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-user-msg-actions span:hover {
+.aidian-user-msg-actions span:hover {
   color: var(--text-normal);
 }
 
-.claudian-user-msg-actions span.copied {
+.aidian-user-msg-actions span.copied {
   color: var(--text-accent);
   font-size: 11px;
   font-family: var(--font-monospace);
 }
 
 /* Compact boundary indicator */
-.claudian-compact-boundary {
+.aidian-compact-boundary {
   display: flex;
   align-items: center;
   gap: 10px;
   margin: 12px 0;
 }
 
-.claudian-compact-boundary::before,
-.claudian-compact-boundary::after {
+.aidian-compact-boundary::before,
+.aidian-compact-boundary::after {
   content: '';
   flex: 1;
   height: 1px;
   background: var(--background-modifier-border);
 }
 
-.claudian-compact-boundary-label {
+.aidian-compact-boundary-label {
   color: var(--text-muted);
   font-size: 11px;
   white-space: nowrap;
@@ -758,7 +758,7 @@ body.theme-dark .claudian-provider-icon-variant--dark {
    components/nav-sidebar.css
    ============================================ */
 /* Navigation Sidebar */
-.claudian-nav-sidebar {
+.aidian-nav-sidebar {
     position: absolute;
     right: 2px;
     top: 50%;
@@ -772,16 +772,16 @@ body.theme-dark .claudian-provider-icon-variant--dark {
     transition: opacity 0.2s ease;
 }
 
-.claudian-nav-sidebar.visible {
+.aidian-nav-sidebar.visible {
     opacity: 0.15;
     pointer-events: auto;
 }
 
-.claudian-nav-sidebar.visible:hover {
+.aidian-nav-sidebar.visible:hover {
     opacity: 1;
 }
 
-.claudian-nav-btn {
+.aidian-nav-btn {
     width: 32px;
     height: 32px;
     border-radius: 16px;
@@ -796,23 +796,23 @@ body.theme-dark .claudian-provider-icon-variant--dark {
     transition: all 0.2s ease;
 }
 
-.claudian-nav-btn:hover {
+.aidian-nav-btn:hover {
     background: var(--background-secondary);
     color: var(--text-normal);
     transform: scale(1.05);
 }
 
-.claudian-nav-btn svg {
+.aidian-nav-btn svg {
     width: 18px;
     height: 18px;
 }
 
 /* Specific button spacing/grouping if needed */
-.claudian-nav-btn-top {
+.aidian-nav-btn-top {
     margin-bottom: 4px;
 }
 
-.claudian-nav-btn-bottom {
+.aidian-nav-btn-bottom {
     margin-top: 4px;
 }
 
@@ -821,14 +821,14 @@ body.theme-dark .claudian-provider-icon-variant--dark {
    components/code.css
    ============================================ */
 /* Code block wrapper - contains pre + button outside scroll area */
-.claudian-code-wrapper {
+.aidian-code-wrapper {
   position: relative;
   margin: 8px 0;
 }
 
 /* Code blocks in chat messages */
-.claudian-code-wrapper pre,
-.claudian-message-content pre {
+.aidian-code-wrapper pre,
+.aidian-message-content pre {
   background: rgba(0, 0, 0, 0.2);
   padding: 8px 12px;
   border-radius: 6px;
@@ -837,30 +837,30 @@ body.theme-dark .claudian-provider-icon-variant--dark {
 }
 
 /* Light mode: use a lighter background so hljs comment colors stay readable */
-body.theme-light .claudian-code-wrapper pre,
-body.theme-light .claudian-message-content pre {
+body.theme-light .aidian-code-wrapper pre,
+body.theme-light .aidian-message-content pre {
   background: rgba(0, 0, 0, 0.08);
 }
 
 /* Code blocks without language - wrap content */
-.claudian-code-wrapper:not(.has-language) pre {
+.aidian-code-wrapper:not(.has-language) pre {
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-x: hidden;
 }
 
 /* Unwrapped pre still needs margin */
-.claudian-message-content>pre {
+.aidian-message-content>pre {
   margin: 8px 0;
 }
 
-.claudian-message-content code {
+.aidian-message-content code {
   font-family: var(--font-monospace);
   font-size: 13px;
 }
 
 /* Clickable language label - positioned outside scroll area */
-.claudian-code-wrapper .claudian-code-lang-label {
+.aidian-code-wrapper .aidian-code-lang-label {
   position: absolute;
   top: 6px;
   inset-inline-end: 6px;
@@ -875,18 +875,18 @@ body.theme-light .claudian-message-content pre {
   transition: color 0.15s ease, background 0.15s ease;
 }
 
-.claudian-code-wrapper .claudian-code-lang-label:hover {
+.aidian-code-wrapper .aidian-code-lang-label:hover {
   color: var(--text-normal);
   background: var(--background-modifier-hover);
 }
 
 /* Hide default copy button when language label exists */
-.claudian-code-wrapper.has-language .copy-code-button {
+.aidian-code-wrapper.has-language .copy-code-button {
   display: none;
 }
 
 /* Copy button - positioned outside scroll area */
-.claudian-code-wrapper .copy-code-button {
+.aidian-code-wrapper .copy-code-button {
   position: absolute;
   top: 6px;
   inset-inline-end: 6px;
@@ -903,17 +903,17 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* If copy button uses an icon (svg) */
-.claudian-code-wrapper .copy-code-button svg {
+.aidian-code-wrapper .copy-code-button svg {
   width: 14px;
   height: 14px;
 }
 
 /* Show copy button on hover */
-.claudian-code-wrapper:not(.has-language):hover .copy-code-button {
+.aidian-code-wrapper:not(.has-language):hover .copy-code-button {
   opacity: 1;
 }
 
-.claudian-code-wrapper .copy-code-button:hover {
+.aidian-code-wrapper .copy-code-button:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
@@ -921,45 +921,45 @@ body.theme-light .claudian-message-content pre {
 /* ============================================
    components/thinking.css
    ============================================ */
-.claudian-thinking {
-  color: var(--claudian-brand);
+.aidian-thinking {
+  color: var(--aidian-brand);
   font-style: italic;
   padding: 4px 0;
   text-align: start;
   animation: thinking-pulse 1.5s ease-in-out infinite;
 }
 
-.claudian-thinking.claudian-thinking--compact {
-  color: var(--claudian-compact);
+.aidian-thinking.aidian-thinking--compact {
+  color: var(--aidian-compact);
 }
 
-.claudian-thinking-hint {
+.aidian-thinking-hint {
   color: var(--text-muted);
   font-style: normal;
   font-variant-numeric: tabular-nums;
 }
 
-.claudian-thinking-block {
+.aidian-thinking-block {
   margin: 8px 0;
 }
 
-.claudian-text-block+.claudian-thinking-block {
+.aidian-text-block+.aidian-thinking-block {
   margin-top: 8px;
 }
 
-.claudian-thinking-block+.claudian-text-block {
+.aidian-thinking-block+.aidian-text-block {
   margin-top: 8px;
 }
 
-.claudian-thinking-block+.claudian-tool-call {
+.aidian-thinking-block+.aidian-tool-call {
   margin-top: 8px;
 }
 
-.claudian-tool-call+.claudian-thinking-block {
+.aidian-tool-call+.aidian-thinking-block {
   margin-top: 8px;
 }
 
-.claudian-thinking-header {
+.aidian-thinking-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -968,15 +968,15 @@ body.theme-light .claudian-message-content pre {
   overflow: hidden;
 }
 
-.claudian-thinking-label {
+.aidian-thinking-label {
   flex: 1;
   font-size: 13px;
   font-weight: 500;
-  color: var(--claudian-brand);
+  color: var(--aidian-brand);
 }
 
 /* Thinking block content - tree-branch style */
-.claudian-thinking-content {
+.aidian-thinking-content {
   padding: 4px 0;
   padding-inline-start: 24px;
   font-size: 13px;
@@ -988,24 +988,24 @@ body.theme-light .claudian-message-content pre {
   margin-inline-start: 7px;
 }
 
-.claudian-thinking-content p {
+.aidian-thinking-content p {
   margin: 0 0 8px 0;
 }
 
-.claudian-thinking-content p:last-child {
+.aidian-thinking-content p:last-child {
   margin-bottom: 0;
 }
 
-.claudian-thinking-content .claudian-code-wrapper {
+.aidian-thinking-content .aidian-code-wrapper {
   margin: 8px 0;
 }
 
-.claudian-thinking-content .claudian-code-wrapper pre {
+.aidian-thinking-content .aidian-code-wrapper pre {
   padding: 8px 10px;
   border-radius: 4px;
 }
 
-.claudian-thinking-content code {
+.aidian-thinking-content code {
   font-family: var(--font-monospace);
   font-size: 12px;
 }
@@ -1014,11 +1014,11 @@ body.theme-light .claudian-message-content pre {
 /* ============================================
    components/toolcalls.css
    ============================================ */
-.claudian-tool-call {
+.aidian-tool-call {
   margin: 8px 0;
 }
 
-.claudian-tool-header {
+.aidian-tool-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1027,23 +1027,23 @@ body.theme-light .claudian-message-content pre {
   overflow: hidden;
 }
 
-.claudian-tool-header:hover {
+.aidian-tool-header:hover {
   opacity: 0.85;
 }
 
-.claudian-tool-icon {
+.aidian-tool-icon {
   display: flex;
   align-items: center;
   color: var(--text-accent);
   flex-shrink: 0;
 }
 
-.claudian-tool-icon svg {
+.aidian-tool-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-tool-name {
+.aidian-tool-name {
   font-family: var(--font-monospace);
   font-size: 13px;
   font-weight: 400;
@@ -1052,7 +1052,7 @@ body.theme-light .claudian-message-content pre {
   flex-shrink: 0;
 }
 
-.claudian-tool-summary {
+.aidian-tool-summary {
   font-family: var(--font-monospace);
   font-size: 13px;
   color: var(--text-muted);
@@ -1063,15 +1063,15 @@ body.theme-light .claudian-message-content pre {
   min-width: 0;
 }
 
-.claudian-tool-summary:empty {
+.aidian-tool-summary:empty {
   display: none;
 }
 
-.claudian-tool-call-bash.expanded .claudian-tool-summary {
+.aidian-tool-call-bash.expanded .aidian-tool-summary {
   display: none;
 }
 
-.claudian-tool-bash-command {
+.aidian-tool-bash-command {
   font-family: var(--font-monospace);
   font-size: 12px;
   line-height: 1.4;
@@ -1081,8 +1081,8 @@ body.theme-light .claudian-message-content pre {
   padding: 2px 0 4px;
 }
 
-/* Legacy: StatusPanel bash entries still use claudian-tool-label */
-.claudian-tool-label {
+/* Legacy: StatusPanel bash entries still use aidian-tool-label */
+.aidian-tool-label {
   font-family: var(--font-monospace);
   font-size: 13px;
   font-weight: 400;
@@ -1092,47 +1092,47 @@ body.theme-light .claudian-message-content pre {
   text-overflow: ellipsis;
 }
 
-.claudian-tool-current {
+.aidian-tool-current {
   font-family: var(--font-monospace);
   font-size: 13px;
   color: var(--text-muted);
   white-space: nowrap;
 }
 
-.claudian-tool-current:empty {
+.aidian-tool-current:empty {
   display: none;
 }
 
-.claudian-tool-status {
+.aidian-tool-status {
   display: flex;
   align-items: center;
   flex-shrink: 0;
   margin-left: auto;
 }
 
-.claudian-tool-status svg {
+.aidian-tool-status svg {
   width: 14px;
   height: 14px;
 }
 
-.claudian-tool-status.status-running {
+.aidian-tool-status.status-running {
   color: var(--text-accent);
 }
 
-.claudian-tool-status.status-completed {
+.aidian-tool-status.status-completed {
   color: var(--color-green);
 }
 
-.claudian-tool-status.status-error {
+.aidian-tool-status.status-error {
   color: var(--color-red);
 }
 
-.claudian-tool-status.status-blocked {
+.aidian-tool-status.status-blocked {
   color: var(--color-orange);
 }
 
 /* Tool call content - border style (like thinking block) */
-.claudian-tool-content {
+.aidian-tool-content {
   padding: 4px 0;
   padding-inline-start: 16px;
   margin-inline-start: 7px;
@@ -1140,39 +1140,39 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* Tool content variants that render inline widgets instead of bordered results */
-.claudian-tool-content-todo,
-.claudian-tool-content-ask {
+.aidian-tool-content-todo,
+.aidian-tool-content-ask {
   border-inline-start: none;
   margin-inline-start: 0;
   padding-inline-start: 0;
 }
 
 /* Expanded content: per-line rendering */
-.claudian-tool-lines {
+.aidian-tool-lines {
   font-family: var(--font-monospace);
   font-size: 12px;
   line-height: 1.4;
   overflow-x: auto;
 }
 
-.claudian-tool-line {
+.aidian-tool-line {
   padding: 1px 0;
   color: var(--text-muted);
   white-space: pre;
 }
 
-.claudian-tool-line-wrap {
+.aidian-tool-line-wrap {
   white-space: pre-wrap;
   word-break: break-word;
 }
 
 /* Hover highlight for file search results */
-.claudian-tool-line.hoverable:hover {
+.aidian-tool-line.hoverable:hover {
   background: var(--background-modifier-hover);
 }
 
 /* Truncation indicator: "... N more lines" */
-.claudian-tool-truncated {
+.aidian-tool-truncated {
   color: var(--text-faint);
   font-style: italic;
   padding: 4px 0;
@@ -1181,7 +1181,7 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* ToolSearch expanded: icon + tool name rows */
-.claudian-tool-search-item {
+.aidian-tool-search-item {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -1191,7 +1191,7 @@ body.theme-light .claudian-message-content pre {
   color: var(--text-muted);
 }
 
-.claudian-tool-search-icon {
+.aidian-tool-search-icon {
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -1200,13 +1200,13 @@ body.theme-light .claudian-message-content pre {
   color: var(--text-faint);
 }
 
-.claudian-tool-search-icon svg {
+.aidian-tool-search-icon svg {
   width: 14px;
   height: 14px;
 }
 
 /* Web search links */
-.claudian-tool-link {
+.aidian-tool-link {
   display: flex;
   align-items: flex-start;
   gap: 6px;
@@ -1219,11 +1219,11 @@ body.theme-light .claudian-message-content pre {
   line-height: 1.4;
 }
 
-.claudian-tool-link:hover {
+.aidian-tool-link:hover {
   color: var(--text-accent);
 }
 
-.claudian-tool-link-icon {
+.aidian-tool-link-icon {
   flex-shrink: 0;
   width: 12px;
   height: 12px;
@@ -1231,19 +1231,19 @@ body.theme-light .claudian-message-content pre {
   color: var(--text-faint);
 }
 
-.claudian-tool-link-icon svg {
+.aidian-tool-link-icon svg {
   width: 12px;
   height: 12px;
 }
 
-.claudian-tool-link-title {
+.aidian-tool-link-title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 /* Web search summary section */
-.claudian-tool-web-summary {
+.aidian-tool-web-summary {
   font-family: var(--font-monospace);
   font-size: 12px;
   color: var(--text-muted);
@@ -1257,7 +1257,7 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* Empty state for file search */
-.claudian-tool-empty {
+.aidian-tool-empty {
   color: var(--text-faint);
   font-style: italic;
   font-family: var(--font-monospace);
@@ -1265,12 +1265,12 @@ body.theme-light .claudian-message-content pre {
   padding: 4px 0;
 }
 
-.claudian-tool-result-row {
+.aidian-tool-result-row {
   display: flex;
   align-items: flex-start;
 }
 
-.claudian-tool-result-text {
+.aidian-tool-result-text {
   font-family: var(--font-monospace);
   font-size: 12px;
   color: var(--text-muted);
@@ -1280,16 +1280,16 @@ body.theme-light .claudian-message-content pre {
   flex: 1;
 }
 
-.claudian-tool-result-item {
+.aidian-tool-result-item {
   display: block;
   margin-bottom: 2px;
 }
 
-.claudian-tool-patch-section + .claudian-tool-patch-section {
+.aidian-tool-patch-section + .aidian-tool-patch-section {
   margin-top: 10px;
 }
 
-.claudian-tool-result-item:last-child {
+.aidian-tool-result-item:last-child {
   margin-bottom: 0;
 }
 
@@ -1299,22 +1299,22 @@ body.theme-light .claudian-message-content pre {
    ============================================ */
 /* Status Panel - persistent bottom panel for todos and command output */
 
-.claudian-status-panel-container {
+.aidian-status-panel-container {
   flex-shrink: 0;
   padding: 0 14px;
 }
 
-.claudian-status-panel {
+.aidian-status-panel {
   padding-top: 12px;
 }
 
 /* Todo Section */
 
-.claudian-status-panel-todos {
+.aidian-status-panel-todos {
   margin-top: 4px;
 }
 
-.claudian-status-panel-header {
+.aidian-status-panel-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1325,35 +1325,35 @@ body.theme-light .claudian-message-content pre {
   overflow: hidden;
 }
 
-.claudian-status-panel-header:hover {
+.aidian-status-panel-header:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-status-panel-header:focus-visible {
+.aidian-status-panel-header:focus-visible {
   outline: 2px solid var(--interactive-accent);
   outline-offset: 2px;
 }
 
-.claudian-status-panel-icon {
+.aidian-status-panel-icon {
   display: flex;
   align-items: center;
   color: var(--text-accent);
   flex-shrink: 0;
 }
 
-.claudian-status-panel-icon svg {
+.aidian-status-panel-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-status-panel-label {
+.aidian-status-panel-label {
   font-family: var(--font-monospace);
   font-size: 13px;
   font-weight: 500;
   color: var(--text-normal);
 }
 
-.claudian-status-panel-current {
+.aidian-status-panel-current {
   flex: 1;
   font-family: var(--font-monospace);
   font-size: 13px;
@@ -1363,44 +1363,44 @@ body.theme-light .claudian-message-content pre {
   white-space: nowrap;
 }
 
-.claudian-status-panel-status {
+.aidian-status-panel-status {
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
 
-.claudian-status-panel-status svg {
+.aidian-status-panel-status svg {
   width: 14px;
   height: 14px;
 }
 
-.claudian-status-panel-status.status-completed {
+.aidian-status-panel-status.status-completed {
   color: var(--color-green);
 }
 
-.claudian-status-panel-content {
+.aidian-status-panel-content {
   padding: 2px 0;
 }
 
-/* Individual todo item - shared by status panel and inline tool via .claudian-todo-list-container */
-.claudian-todo-list-container .claudian-todo-item {
+/* Individual todo item - shared by status panel and inline tool via .aidian-todo-list-container */
+.aidian-todo-list-container .aidian-todo-item {
   display: flex;
   align-items: flex-start;
   padding: 1px 0;
 }
 
-.claudian-todo-list-container .claudian-todo-status-icon {
+.aidian-todo-list-container .aidian-todo-status-icon {
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
 
-.claudian-todo-list-container .claudian-todo-status-icon svg {
+.aidian-todo-list-container .aidian-todo-status-icon svg {
   width: 12px;
   height: 12px;
 }
 
-.claudian-todo-list-container .claudian-todo-text {
+.aidian-todo-list-container .aidian-todo-text {
   font-family: var(--font-monospace);
   font-size: 12px;
   line-height: 1.4;
@@ -1408,55 +1408,55 @@ body.theme-light .claudian-message-content pre {
   padding-left: 12px;
 }
 
-.claudian-todo-list-container .claudian-todo-pending .claudian-todo-status-icon {
+.aidian-todo-list-container .aidian-todo-pending .aidian-todo-status-icon {
   color: var(--text-normal);
 }
 
-.claudian-todo-list-container .claudian-todo-pending .claudian-todo-status-icon svg {
+.aidian-todo-list-container .aidian-todo-pending .aidian-todo-status-icon svg {
   transform: scale(2);
 }
 
-.claudian-todo-list-container .claudian-todo-pending .claudian-todo-text {
+.aidian-todo-list-container .aidian-todo-pending .aidian-todo-text {
   color: var(--text-normal);
 }
 
-.claudian-todo-list-container .claudian-todo-in_progress .claudian-todo-status-icon {
+.aidian-todo-list-container .aidian-todo-in_progress .aidian-todo-status-icon {
   color: var(--interactive-accent);
 }
 
-.claudian-todo-list-container .claudian-todo-in_progress .claudian-todo-status-icon svg {
+.aidian-todo-list-container .aidian-todo-in_progress .aidian-todo-status-icon svg {
   transform: scale(2);
 }
 
-.claudian-todo-list-container .claudian-todo-in_progress .claudian-todo-text {
+.aidian-todo-list-container .aidian-todo-in_progress .aidian-todo-text {
   color: var(--text-normal);
 }
 
-.claudian-todo-list-container .claudian-todo-completed .claudian-todo-status-icon {
+.aidian-todo-list-container .aidian-todo-completed .aidian-todo-status-icon {
   color: var(--color-green);
 }
 
-.claudian-todo-list-container .claudian-todo-completed .claudian-todo-text {
+.aidian-todo-list-container .aidian-todo-completed .aidian-todo-text {
   color: var(--text-muted);
 }
 
 /* Bash Output Section */
 
-.claudian-status-panel-bash {
+.aidian-status-panel-bash {
   margin-bottom: 4px;
 }
 
-.claudian-status-panel-bash-header {
+.aidian-status-panel-bash-header {
   padding: 4px 0;
 }
 
-.claudian-status-panel-bash-actions {
+.aidian-status-panel-bash-actions {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.claudian-status-panel-bash-action {
+.aidian-status-panel-bash-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1466,35 +1466,35 @@ body.theme-light .claudian-message-content pre {
   color: var(--text-muted);
 }
 
-.claudian-status-panel-bash-action:hover {
+.aidian-status-panel-bash-action:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.claudian-status-panel-bash-content {
+.aidian-status-panel-bash-content {
   padding-top: 2px;
   max-height: min(40vh, 320px);
   overflow-y: auto;
   overscroll-behavior: contain;
 }
 
-.claudian-status-panel-bash-entry {
+.aidian-status-panel-bash-entry {
   margin: 4px 0;
 }
 
-.claudian-status-panel-bash-entry .claudian-tool-icon svg {
+.aidian-status-panel-bash-entry .aidian-tool-icon svg {
   width: 14px;
   height: 14px;
   position: relative;
   top: -1px;
 }
 
-.claudian-status-panel-bash-entry .claudian-tool-call {
+.aidian-status-panel-bash-entry .aidian-tool-call {
   margin: 0;
 }
 
 /* Keep bash output blocks from growing without bound */
-.claudian-status-panel-bash-entry .claudian-tool-result-text {
+.aidian-status-panel-bash-entry .aidian-tool-result-text {
   max-height: 200px;
   overflow-y: auto;
   word-break: break-word;
@@ -1504,27 +1504,27 @@ body.theme-light .claudian-message-content pre {
 /* ============================================
    components/subagent.css
    ============================================ */
-.claudian-subagent-list {
+.aidian-subagent-list {
   margin: 8px 0;
 }
 
-.claudian-text-block+.claudian-subagent-list {
+.aidian-text-block+.aidian-subagent-list {
   margin-top: 8px;
 }
 
-.claudian-subagent-list+.claudian-text-block {
+.aidian-subagent-list+.aidian-text-block {
   margin-top: 8px;
 }
 
-.claudian-tool-call+.claudian-subagent-list {
+.aidian-tool-call+.aidian-subagent-list {
   margin-top: 8px;
 }
 
-.claudian-subagent-list+.claudian-tool-call {
+.aidian-subagent-list+.aidian-tool-call {
   margin-top: 8px;
 }
 
-.claudian-subagent-header {
+.aidian-subagent-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1533,19 +1533,19 @@ body.theme-light .claudian-message-content pre {
   overflow: hidden;
 }
 
-.claudian-subagent-icon {
+.aidian-subagent-icon {
   display: flex;
   align-items: center;
   color: var(--interactive-accent);
   flex-shrink: 0;
 }
 
-.claudian-subagent-icon svg {
+.aidian-subagent-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-subagent-label {
+.aidian-subagent-label {
   flex: 1;
   font-family: var(--font-monospace);
   font-size: 13px;
@@ -1553,41 +1553,41 @@ body.theme-light .claudian-message-content pre {
   color: var(--text-normal);
 }
 
-.claudian-subagent-status {
+.aidian-subagent-status {
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
 
-.claudian-subagent-status svg {
+.aidian-subagent-status svg {
   width: 14px;
   height: 14px;
 }
 
-.claudian-subagent-status.status-running {
+.aidian-subagent-status.status-running {
   color: var(--text-accent);
 }
 
-.claudian-subagent-status.status-completed {
+.aidian-subagent-status.status-completed {
   color: var(--color-green);
 }
 
-.claudian-subagent-status.status-error {
+.aidian-subagent-status.status-error {
   color: var(--color-red);
 }
 
-.claudian-subagent-content {
+.aidian-subagent-content {
   padding: 4px 0;
   padding-inline-start: 16px;
   margin-inline-start: 7px;
   border-inline-start: 2px solid var(--background-modifier-border);
 }
 
-.claudian-subagent-section {
+.aidian-subagent-section {
   margin: 2px 0 6px;
 }
 
-.claudian-subagent-section-header {
+.aidian-subagent-section-header {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1599,21 +1599,21 @@ body.theme-light .claudian-message-content pre {
   padding: 2px 0;
 }
 
-.claudian-subagent-section-header:hover {
+.aidian-subagent-section-header:hover {
   color: var(--text-normal);
 }
 
-.claudian-subagent-section-title {
+.aidian-subagent-section-title {
   flex: 1;
   min-width: 0;
 }
 
-.claudian-subagent-section-body {
+.aidian-subagent-section-body {
   padding-inline-start: 6px;
 }
 
-.claudian-subagent-prompt-text,
-.claudian-subagent-result-output {
+.aidian-subagent-prompt-text,
+.aidian-subagent-result-output {
   font-family: var(--font-monospace);
   font-size: 12px;
   line-height: 1.4;
@@ -1622,22 +1622,22 @@ body.theme-light .claudian-message-content pre {
   word-break: break-word;
 }
 
-.claudian-subagent-result-output {
+.aidian-subagent-result-output {
   max-height: 220px;
   overflow-y: auto;
 }
 
-.claudian-subagent-tools {
+.aidian-subagent-tools {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.claudian-subagent-tool-item {
+.aidian-subagent-tool-item {
   display: block;
 }
 
-.claudian-subagent-tool-header {
+.aidian-subagent-tool-header {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1646,23 +1646,23 @@ body.theme-light .claudian-message-content pre {
   padding: 2px 0;
 }
 
-.claudian-subagent-tool-header:hover {
+.aidian-subagent-tool-header:hover {
   opacity: 0.85;
 }
 
-.claudian-subagent-tool-icon {
+.aidian-subagent-tool-icon {
   display: flex;
   align-items: center;
   color: var(--text-accent);
   flex-shrink: 0;
 }
 
-.claudian-subagent-tool-icon svg {
+.aidian-subagent-tool-icon svg {
   width: 13px;
   height: 13px;
 }
 
-.claudian-subagent-tool-name {
+.aidian-subagent-tool-name {
   font-family: var(--font-monospace);
   font-size: 12px;
   color: var(--text-normal);
@@ -1670,7 +1670,7 @@ body.theme-light .claudian-message-content pre {
   flex-shrink: 0;
 }
 
-.claudian-subagent-tool-summary {
+.aidian-subagent-tool-summary {
   font-family: var(--font-monospace);
   font-size: 12px;
   color: var(--text-muted);
@@ -1681,35 +1681,35 @@ body.theme-light .claudian-message-content pre {
   min-width: 0;
 }
 
-.claudian-subagent-tool-status {
+.aidian-subagent-tool-status {
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
 
-.claudian-subagent-tool-status svg {
+.aidian-subagent-tool-status svg {
   width: 12px;
   height: 12px;
 }
 
-.claudian-subagent-tool-status.status-running {
+.aidian-subagent-tool-status.status-running {
   color: var(--text-accent);
 }
 
-.claudian-subagent-tool-status.status-completed {
+.aidian-subagent-tool-status.status-completed {
   color: var(--color-green);
 }
 
-.claudian-subagent-tool-status.status-error,
-.claudian-subagent-tool-status.status-blocked {
+.aidian-subagent-tool-status.status-error,
+.aidian-subagent-tool-status.status-blocked {
   color: var(--color-red);
 }
 
-.claudian-subagent-tool-content {
+.aidian-subagent-tool-content {
   padding: 2px 0 2px 16px;
 }
 
-.claudian-subagent-tool-empty {
+.aidian-subagent-tool-empty {
   color: var(--text-faint);
   font-style: italic;
   font-family: var(--font-monospace);
@@ -1717,7 +1717,7 @@ body.theme-light .claudian-message-content pre {
   padding: 2px 0;
 }
 
-.claudian-subagent-status-text {
+.aidian-subagent-status-text {
   font-size: 11px;
   font-family: var(--font-monospace);
   color: var(--text-muted);
@@ -1725,31 +1725,31 @@ body.theme-light .claudian-message-content pre {
   padding-inline-start: 8px;
 }
 
-.claudian-subagent-list.async .claudian-subagent-icon {
+.aidian-subagent-list.async .aidian-subagent-icon {
   color: var(--interactive-accent);
 }
 
-.claudian-subagent-list.async.pending .claudian-subagent-status-text {
+.aidian-subagent-list.async.pending .aidian-subagent-status-text {
   color: var(--text-muted);
 }
 
-.claudian-subagent-list.async.running .claudian-subagent-status-text {
+.aidian-subagent-list.async.running .aidian-subagent-status-text {
   color: var(--text-accent);
 }
 
-.claudian-subagent-list.async.awaiting .claudian-subagent-status-text {
+.aidian-subagent-list.async.awaiting .aidian-subagent-status-text {
   color: var(--color-yellow);
 }
 
-.claudian-subagent-list.async.completed .claudian-subagent-status-text {
+.aidian-subagent-list.async.completed .aidian-subagent-status-text {
   color: var(--color-green);
 }
 
-.claudian-subagent-list.async.error .claudian-subagent-status-text {
+.aidian-subagent-list.async.error .aidian-subagent-status-text {
   color: var(--color-red);
 }
 
-.claudian-subagent-list.async.orphaned .claudian-subagent-status-text {
+.aidian-subagent-list.async.orphaned .aidian-subagent-status-text {
   color: var(--color-orange);
 }
 
@@ -1758,29 +1758,29 @@ body.theme-light .claudian-message-content pre {
    components/input.css
    ============================================ */
 /* Input area */
-.claudian-input-container {
+.aidian-input-container {
   position: relative;
   padding: 12px 0 0 0;
 }
 
 /* Input wrapper (border container) - flex column so textarea expands when no chips */
 /* Height calculation: context row (36px) + textarea min (60px) + toolbar (38px) + border (2px) = 136px */
-.claudian-input-wrapper {
-  --claudian-input-wrapper-border-color: var(--background-modifier-border);
-  --claudian-input-wrapper-box-shadow: none;
+.aidian-input-wrapper {
+  --aidian-input-wrapper-border-color: var(--background-modifier-border);
+  --aidian-input-wrapper-box-shadow: none;
   position: relative;
   display: flex;
   flex-direction: column;
   min-height: 140px;
-  border: 1px solid var(--claudian-input-wrapper-border-color);
+  border: 1px solid var(--aidian-input-wrapper-border-color);
   border-radius: 6px;
   background: var(--background-primary);
-  box-shadow: var(--claudian-input-wrapper-box-shadow);
+  box-shadow: var(--aidian-input-wrapper-box-shadow);
 }
 
 /* Context row (file chip start, selection indicator end) - inside input wrapper at top */
 /* Collapsed by default; expanded via .has-content class; textarea fills remaining space */
-.claudian-context-row {
+.aidian-context-row {
   display: none;
   align-items: flex-start;
   justify-content: flex-start;
@@ -1790,12 +1790,12 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* Show context row when it has visible content */
-.claudian-context-row.has-content {
+.aidian-context-row.has-content {
   display: flex;
 }
 
 /* Nav row (tab badges start, header icons end) - above input wrapper */
-.claudian-input-nav-row {
+.aidian-input-nav-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1803,7 +1803,7 @@ body.theme-light .claudian-message-content pre {
   min-height: 0;
 }
 
-.claudian-input-nav-content {
+.aidian-input-nav-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1812,16 +1812,16 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* Header mode: hide nav row above input (content moved to header) */
-.claudian-container--header-mode .claudian-input-nav-row {
+.aidian-container--header-mode .aidian-input-nav-row {
   display: none;
 }
 
 /* Selection indicator (shown when text is selected in editor) */
 /* Match file chip height (24px): chip has 16px remove button + 6px padding + 2px border */
 /* Indicator: 12px text + 10px padding (5+5) + 2px border = 24px */
-.claudian-selection-indicator,
-.claudian-browser-selection-indicator,
-.claudian-canvas-indicator {
+.aidian-selection-indicator,
+.aidian-browser-selection-indicator,
+.aidian-canvas-indicator {
   color: #7abaff;
   font-size: 12px;
   line-height: 1;
@@ -1839,11 +1839,11 @@ body.theme-light .claudian-message-content pre {
   text-overflow: ellipsis;
 }
 
-.claudian-input-wrapper textarea.claudian-input {
+.aidian-input-wrapper textarea.aidian-input {
   width: 100%;
   flex: 1 1 0;
-  min-height: var(--claudian-textarea-min-height, 60px);
-  max-height: var(--claudian-textarea-max-height, none);
+  min-height: var(--aidian-textarea-min-height, 60px);
+  max-height: var(--aidian-textarea-max-height, none);
   resize: none;
   padding: 8px 10px 10px 10px;
   border: none;
@@ -1858,20 +1858,20 @@ body.theme-light .claudian-message-content pre {
   unicode-bidi: plaintext; /* Proper BiDi text handling for mixed RTL/LTR */
 }
 
-.claudian-input-wrapper textarea.claudian-input:hover,
-.claudian-input-wrapper textarea.claudian-input:focus {
+.aidian-input-wrapper textarea.aidian-input:hover,
+.aidian-input-wrapper textarea.aidian-input:focus {
   outline: none;
   border: none;
   background: transparent;
   box-shadow: none;
 }
 
-.claudian-input-wrapper textarea.claudian-input::placeholder {
+.aidian-input-wrapper textarea.aidian-input::placeholder {
   color: var(--text-muted);
 }
 
 /* Input toolbar */
-.claudian-input-toolbar {
+.aidian-input-toolbar {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -1880,13 +1880,13 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* File indicator (attached files) */
-.claudian-file-indicator {
+.aidian-file-indicator {
   display: none;
   flex-wrap: wrap;
   gap: 6px;
 }
 
-.claudian-file-chip {
+.aidian-file-chip {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -1900,26 +1900,26 @@ body.theme-light .claudian-message-content pre {
   cursor: pointer;
 }
 
-.claudian-file-chip-icon {
+.aidian-file-chip-icon {
   display: flex;
   align-items: center;
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.claudian-file-chip-icon svg {
+.aidian-file-chip-icon svg {
   width: 12px;
   height: 12px;
 }
 
-.claudian-file-chip-name {
+.aidian-file-chip-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: var(--text-normal);
 }
 
-.claudian-file-chip-remove {
+.aidian-file-chip-remove {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1933,17 +1933,17 @@ body.theme-light .claudian-message-content pre {
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.claudian-file-chip-remove:hover {
+.aidian-file-chip-remove:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.claudian-file-chip:hover {
+.aidian-file-chip:hover {
   background: var(--background-modifier-hover);
 }
 
 /* Composer queue status row (queued follow-up preview + steer action) */
-.claudian-input-queue-row {
+.aidian-input-queue-row {
   display: none;
   font-size: 12px;
   color: var(--text-muted);
@@ -1953,7 +1953,7 @@ body.theme-light .claudian-message-content pre {
   padding: 0 2px 8px 2px;
 }
 
-.claudian-queue-indicator-text {
+.aidian-queue-indicator-text {
   min-width: 0;
   flex: 1 1 auto;
   white-space: nowrap;
@@ -1961,14 +1961,14 @@ body.theme-light .claudian-message-content pre {
   text-overflow: ellipsis;
 }
 
-.claudian-queue-indicator-actions {
+.aidian-queue-indicator-actions {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.claudian-queue-indicator-action {
+.aidian-queue-indicator-action {
   flex: 0 0 auto;
   padding: 1px 8px;
   border: 0;
@@ -1978,17 +1978,17 @@ body.theme-light .claudian-message-content pre {
   cursor: pointer;
 }
 
-.claudian-queue-indicator-action:hover {
+.aidian-queue-indicator-action:hover {
   text-decoration: underline;
 }
 
-.claudian-queue-indicator-action[disabled] {
+.aidian-queue-indicator-action[disabled] {
   color: var(--text-faint);
   cursor: default;
   text-decoration: none;
 }
 
-.claudian-queue-indicator-icon-action {
+.aidian-queue-indicator-icon-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2003,30 +2003,30 @@ body.theme-light .claudian-message-content pre {
   cursor: pointer;
 }
 
-.claudian-queue-indicator-icon-action:hover {
+.aidian-queue-indicator-icon-action:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.claudian-queue-indicator-icon-action svg {
+.aidian-queue-indicator-icon-action svg {
   width: 14px;
   height: 14px;
 }
 
 /* Light blue border when instruction mode is active */
-.claudian-input-wrapper.claudian-input-instruction-mode {
-  --claudian-input-wrapper-border-color: #60a5fa;
-  --claudian-input-wrapper-box-shadow: 0 0 0 1px #60a5fa;
+.aidian-input-wrapper.aidian-input-instruction-mode {
+  --aidian-input-wrapper-border-color: #60a5fa;
+  --aidian-input-wrapper-box-shadow: 0 0 0 1px #60a5fa;
 }
 
 /* Pink border when bash mode is active */
-.claudian-input-wrapper.claudian-input-bang-bash-mode {
-  --claudian-input-wrapper-border-color: #f472b6;
-  --claudian-input-wrapper-box-shadow: 0 0 0 1px #f472b6;
+.aidian-input-wrapper.aidian-input-bang-bash-mode {
+  --aidian-input-wrapper-border-color: #f472b6;
+  --aidian-input-wrapper-box-shadow: 0 0 0 1px #f472b6;
 }
 
 /* Monospace input while in bash mode */
-.claudian-input-wrapper.claudian-input-bang-bash-mode .claudian-input {
+.aidian-input-wrapper.aidian-input-bang-bash-mode .aidian-input {
   font-family: var(--font-monospace);
 }
 
@@ -2036,7 +2036,7 @@ body.theme-light .claudian-message-content pre {
    ============================================ */
 /* Context usage meter (inline in toolbar) */
 
-.claudian-context-meter {
+.aidian-context-meter {
   position: relative;
   display: flex;
   align-items: center;
@@ -2046,7 +2046,7 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* Custom tooltip */
-.claudian-context-meter::after {
+.aidian-context-meter::after {
   content: attr(data-tooltip);
   position: absolute;
   bottom: 100%;
@@ -2067,12 +2067,12 @@ body.theme-light .claudian-message-content pre {
   z-index: 100;
 }
 
-.claudian-context-meter:hover::after {
+.aidian-context-meter:hover::after {
   opacity: 1;
   visibility: visible;
 }
 
-.claudian-context-meter-gauge {
+.aidian-context-meter-gauge {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2080,34 +2080,34 @@ body.theme-light .claudian-message-content pre {
   height: 24px;
 }
 
-.claudian-context-meter-gauge svg {
+.aidian-context-meter-gauge svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-meter-bg {
+.aidian-meter-bg {
   stroke: var(--background-modifier-border);
 }
 
-.claudian-meter-fill {
-  stroke: var(--claudian-brand);
+.aidian-meter-fill {
+  stroke: var(--aidian-brand);
   transition: stroke-dashoffset 0.3s ease, stroke 0.3s ease;
 }
 
-.claudian-context-meter-percent {
+.aidian-context-meter-percent {
   font-size: 11px;
-  color: var(--claudian-brand);
+  color: var(--aidian-brand);
   min-width: 24px;
   text-align: end;
   transition: color 0.3s ease;
 }
 
 /* Warning state (> 80%) - pale red */
-.claudian-context-meter.warning .claudian-meter-fill {
+.aidian-context-meter.warning .aidian-meter-fill {
   stroke: #E57373;
 }
 
-.claudian-context-meter.warning .claudian-context-meter-percent {
+.aidian-context-meter.warning .aidian-context-meter-percent {
   color: #E57373;
 }
 
@@ -2116,36 +2116,36 @@ body.theme-light .claudian-message-content pre {
    toolbar/model-selector.css
    ============================================ */
 /* Model selector */
-.claudian-model-selector {
+.aidian-model-selector {
   position: relative;
 }
 
-.claudian-model-btn {
+.aidian-model-btn {
   display: flex;
   align-items: center;
   gap: 4px;
   padding: 4px 8px;
   border-radius: 4px;
   cursor: pointer;
-  color: var(--claudian-brand);
+  color: var(--aidian-brand);
   font-size: 12px;
 }
 
-.claudian-model-label {
+.aidian-model-label {
   font-weight: 500;
 }
 
-.claudian-model-chevron {
+.aidian-model-chevron {
   display: flex;
   align-items: center;
 }
 
-.claudian-model-chevron svg {
+.aidian-model-chevron svg {
   width: 12px;
   height: 12px;
 }
 
-.claudian-model-dropdown {
+.aidian-model-dropdown {
   position: absolute;
   bottom: 100%;
   left: 0;
@@ -2165,12 +2165,12 @@ body.theme-light .claudian-message-content pre {
   transition: opacity 0.15s ease, visibility 0.15s ease;
 }
 
-.claudian-model-selector:hover .claudian-model-dropdown {
+.aidian-model-selector:hover .aidian-model-dropdown {
   opacity: 1;
   visibility: visible;
 }
 
-.claudian-model-group {
+.aidian-model-group {
   padding: 3px 8px;
   font-size: 8px;
   font-weight: 600;
@@ -2180,18 +2180,18 @@ body.theme-light .claudian-message-content pre {
   pointer-events: none;
 }
 
-.claudian-model-group:not(:first-child) {
+.aidian-model-group:not(:first-child) {
   margin-top: 4px;
   border-top: 1px solid var(--background-modifier-border);
   padding-top: 6px;
 }
 
-.claudian-model-provider-icon {
+.aidian-model-provider-icon {
   flex-shrink: 0;
   opacity: 0.7;
 }
 
-.claudian-model-option {
+.aidian-model-option {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -2204,14 +2204,14 @@ body.theme-light .claudian-message-content pre {
   white-space: nowrap;
 }
 
-.claudian-model-option:hover {
+.aidian-model-option:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.claudian-model-option.selected {
-  background: rgba(var(--claudian-brand-rgb), 0.15);
-  color: var(--claudian-brand);
+.aidian-model-option.selected {
+  background: rgba(var(--aidian-brand-rgb), 0.15);
+  color: var(--aidian-brand);
   font-weight: 500;
 }
 
@@ -2219,7 +2219,7 @@ body.theme-light .claudian-message-content pre {
 /* ============================================
    toolbar/mode-selector.css
    ============================================ */
-.claudian-mode-selector {
+.aidian-mode-selector {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -2228,14 +2228,14 @@ body.theme-light .claudian-message-content pre {
   padding-right: 8px;
 }
 
-.claudian-mode-label {
+.aidian-mode-label {
   font-size: 11px;
   color: var(--text-muted);
   min-width: 32px;
 }
 
-.claudian-mode-label.active {
-  color: var(--claudian-brand);
+.aidian-mode-label.active {
+  color: var(--aidian-brand);
   font-weight: 600;
 }
 
@@ -2244,26 +2244,26 @@ body.theme-light .claudian-message-content pre {
    toolbar/thinking-selector.css
    ============================================ */
 /* Thinking selector (effort for adaptive models, token budget for custom) */
-.claudian-thinking-selector {
+.aidian-thinking-selector {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
 /* Effort / budget container (shared layout) */
-.claudian-thinking-effort,
-.claudian-thinking-budget {
+.aidian-thinking-effort,
+.aidian-thinking-budget {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.claudian-thinking-label-text {
+.aidian-thinking-label-text {
   font-size: 11px;
   color: var(--text-muted);
 }
 
-.claudian-thinking-gears {
+.aidian-thinking-gears {
   position: relative;
   display: flex;
   align-items: center;
@@ -2271,10 +2271,10 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* Current selection (visible when collapsed) */
-.claudian-thinking-current {
+.aidian-thinking-current {
   padding: 3px 8px;
   font-size: 11px;
-  color: var(--claudian-brand);
+  color: var(--aidian-brand);
   font-weight: 500;
   cursor: pointer;
   border-radius: 3px;
@@ -2283,7 +2283,7 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* Options container - expands vertically upward */
-.claudian-thinking-options {
+.aidian-thinking-options {
   position: absolute;
   left: 0;
   bottom: 100%;
@@ -2301,12 +2301,12 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* Expand on hover */
-.claudian-thinking-gears:hover .claudian-thinking-options {
+.aidian-thinking-gears:hover .aidian-thinking-options {
   opacity: 1;
   visibility: visible;
 }
 
-.claudian-thinking-gear {
+.aidian-thinking-gear {
   padding: 3px 8px;
   font-size: 11px;
   color: var(--text-muted);
@@ -2316,14 +2316,14 @@ body.theme-light .claudian-message-content pre {
   white-space: nowrap;
 }
 
-.claudian-thinking-gear:hover {
+.aidian-thinking-gear:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.claudian-thinking-gear.selected {
-  background: rgba(var(--claudian-brand-rgb), 0.15);
-  color: var(--claudian-brand);
+.aidian-thinking-gear.selected {
+  background: rgba(var(--aidian-brand-rgb), 0.15);
+  color: var(--aidian-brand);
   font-weight: 500;
 }
 
@@ -2332,7 +2332,7 @@ body.theme-light .claudian-message-content pre {
    toolbar/permission-toggle.css
    ============================================ */
 /* Permission Mode Toggle */
-.claudian-permission-toggle {
+.aidian-permission-toggle {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -2341,18 +2341,18 @@ body.theme-light .claudian-message-content pre {
   padding-right: 8px;
 }
 
-.claudian-permission-label {
+.aidian-permission-label {
   font-size: 11px;
   color: var(--text-muted);
   min-width: 28px;
 }
 
-.claudian-permission-label.plan-active {
+.aidian-permission-label.plan-active {
   color: rgb(92, 148, 140);
   font-weight: 600;
 }
 
-.claudian-toggle-switch {
+.aidian-toggle-switch {
   width: 32px;
   height: 18px;
   border-radius: 9px;
@@ -2363,7 +2363,7 @@ body.theme-light .claudian-message-content pre {
   flex-shrink: 0;
 }
 
-.claudian-toggle-switch::after {
+.aidian-toggle-switch::after {
   content: '';
   position: absolute;
   width: 14px;
@@ -2375,17 +2375,17 @@ body.theme-light .claudian-message-content pre {
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.claudian-toggle-switch:hover {
+.aidian-toggle-switch:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-toggle-switch.active {
-  background: rgba(var(--claudian-brand-rgb), 0.3);
+.aidian-toggle-switch.active {
+  background: rgba(var(--aidian-brand-rgb), 0.3);
 }
 
-.claudian-toggle-switch.active::after {
+.aidian-toggle-switch.active::after {
   transform: translateX(14px);
-  background: var(--claudian-brand);
+  background: var(--aidian-brand);
 }
 
 
@@ -2393,13 +2393,13 @@ body.theme-light .claudian-message-content pre {
    toolbar/service-tier-toggle.css
    ============================================ */
 /* Codex fast-mode / service-tier toggle */
-.claudian-service-tier-toggle {
+.aidian-service-tier-toggle {
   display: flex;
   align-items: center;
   padding-left: 2px;
 }
 
-.claudian-service-tier-button {
+.aidian-service-tier-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2413,23 +2413,23 @@ body.theme-light .claudian-message-content pre {
   flex-shrink: 0;
 }
 
-.claudian-service-tier-icon {
+.aidian-service-tier-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-.claudian-service-tier-icon svg {
+.aidian-service-tier-icon svg {
   width: 14px;
   height: 14px;
 }
 
-.claudian-service-tier-button:hover {
+.aidian-service-tier-button:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-service-tier-button.active {
-  color: var(--claudian-brand);
+.aidian-service-tier-button.active {
+  color: var(--aidian-brand);
 }
 
 
@@ -2437,14 +2437,14 @@ body.theme-light .claudian-message-content pre {
    toolbar/external-context.css
    ============================================ */
 /* External Context Selector */
-.claudian-external-context-selector {
+.aidian-external-context-selector {
   position: relative;
   display: flex;
   align-items: center;
   margin-left: 8px;
 }
 
-.claudian-external-context-icon-wrapper {
+.aidian-external-context-icon-wrapper {
   position: relative;
   display: flex;
   align-items: center;
@@ -2452,7 +2452,7 @@ body.theme-light .claudian-message-content pre {
   cursor: pointer;
 }
 
-.claudian-external-context-icon {
+.aidian-external-context-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2462,37 +2462,37 @@ body.theme-light .claudian-message-content pre {
   transition: color 0.15s ease;
 }
 
-.claudian-external-context-icon-wrapper:hover .claudian-external-context-icon {
+.aidian-external-context-icon-wrapper:hover .aidian-external-context-icon {
   color: var(--text-normal);
 }
 
-.claudian-external-context-icon.active {
-  color: var(--claudian-brand);
+.aidian-external-context-icon.active {
+  color: var(--aidian-brand);
   animation: external-context-glow 2s ease-in-out infinite;
 }
 
-.claudian-external-context-icon svg {
+.aidian-external-context-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-external-context-badge {
+.aidian-external-context-badge {
   position: absolute;
   top: 0;
   right: 0;
   font-size: 9px;
   font-weight: 600;
-  color: var(--claudian-brand);
+  color: var(--aidian-brand);
   opacity: 0;
   transition: opacity 0.15s ease;
   pointer-events: none;
 }
 
-.claudian-external-context-badge.visible {
+.aidian-external-context-badge.visible {
   opacity: 1;
 }
 
-.claudian-external-context-dropdown {
+.aidian-external-context-dropdown {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -2510,12 +2510,12 @@ body.theme-light .claudian-message-content pre {
   z-index: 100;
 }
 
-.claudian-external-context-selector:hover .claudian-external-context-dropdown {
+.aidian-external-context-selector:hover .aidian-external-context-dropdown {
   opacity: 1;
   visibility: visible;
 }
 
-.claudian-external-context-header {
+.aidian-external-context-header {
   padding: 10px 12px;
   font-size: 12px;
   font-weight: 600;
@@ -2523,12 +2523,12 @@ body.theme-light .claudian-message-content pre {
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.claudian-external-context-list {
+.aidian-external-context-list {
   max-height: 200px;
   overflow-y: auto;
 }
 
-.claudian-external-context-empty {
+.aidian-external-context-empty {
   padding: 16px 12px;
   text-align: center;
   color: var(--text-muted);
@@ -2536,7 +2536,7 @@ body.theme-light .claudian-message-content pre {
   font-style: italic;
 }
 
-.claudian-external-context-item {
+.aidian-external-context-item {
   display: flex;
   align-items: center;
   padding: 8px 12px;
@@ -2544,11 +2544,11 @@ body.theme-light .claudian-message-content pre {
   border-bottom: 1px solid var(--background-modifier-border-focus);
 }
 
-.claudian-external-context-item:last-child {
+.aidian-external-context-item:last-child {
   border-bottom: none;
 }
 
-.claudian-external-context-text {
+.aidian-external-context-text {
   flex: 1;
   font-size: 12px;
   font-family: var(--font-monospace);
@@ -2558,7 +2558,7 @@ body.theme-light .claudian-message-content pre {
   white-space: nowrap;
 }
 
-.claudian-external-context-lock {
+.aidian-external-context-lock {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2571,26 +2571,26 @@ body.theme-light .claudian-message-content pre {
   transition: all 0.15s ease;
 }
 
-.claudian-external-context-lock:hover {
+.aidian-external-context-lock:hover {
   background: var(--background-modifier-hover);
   opacity: 0.8;
 }
 
-.claudian-external-context-lock.locked {
-  color: var(--claudian-brand);
+.aidian-external-context-lock.locked {
+  color: var(--aidian-brand);
   opacity: 0.9;
 }
 
-.claudian-external-context-lock.locked:hover {
+.aidian-external-context-lock.locked:hover {
   opacity: 1;
 }
 
-.claudian-external-context-lock svg {
+.aidian-external-context-lock svg {
   width: 12px;
   height: 12px;
 }
 
-.claudian-external-context-remove {
+.aidian-external-context-remove {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2603,13 +2603,13 @@ body.theme-light .claudian-message-content pre {
   transition: all 0.15s ease;
 }
 
-.claudian-external-context-remove:hover {
-  background: rgba(var(--claudian-error-rgb), 0.15);
-  color: var(--claudian-error);
+.aidian-external-context-remove:hover {
+  background: rgba(var(--aidian-error-rgb), 0.15);
+  color: var(--aidian-error);
   opacity: 1;
 }
 
-.claudian-external-context-remove svg {
+.aidian-external-context-remove svg {
   width: 14px;
   height: 14px;
 }
@@ -2619,14 +2619,14 @@ body.theme-light .claudian-message-content pre {
    toolbar/mcp-selector.css
    ============================================ */
 /* MCP Server Selector */
-.claudian-mcp-selector {
+.aidian-mcp-selector {
   position: relative;
   display: flex;
   align-items: center;
   margin-left: 8px;
 }
 
-.claudian-mcp-selector-icon-wrapper {
+.aidian-mcp-selector-icon-wrapper {
   position: relative;
   display: flex;
   align-items: center;
@@ -2634,7 +2634,7 @@ body.theme-light .claudian-message-content pre {
   cursor: pointer;
 }
 
-.claudian-mcp-selector-icon {
+.aidian-mcp-selector-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2644,37 +2644,37 @@ body.theme-light .claudian-message-content pre {
   transition: color 0.15s ease;
 }
 
-.claudian-mcp-selector-icon-wrapper:hover .claudian-mcp-selector-icon {
+.aidian-mcp-selector-icon-wrapper:hover .aidian-mcp-selector-icon {
   color: var(--text-normal);
 }
 
-.claudian-mcp-selector-icon.active {
-  color: var(--claudian-brand);
+.aidian-mcp-selector-icon.active {
+  color: var(--aidian-brand);
   animation: mcp-glow 2s ease-in-out infinite;
 }
 
-.claudian-mcp-selector-icon svg {
+.aidian-mcp-selector-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-mcp-selector-badge {
+.aidian-mcp-selector-badge {
   position: absolute;
   top: 0;
   right: 0;
   font-size: 9px;
   font-weight: 600;
-  color: var(--claudian-brand);
+  color: var(--aidian-brand);
   opacity: 0;
   transition: opacity 0.15s ease;
   pointer-events: none;
 }
 
-.claudian-mcp-selector-badge.visible {
+.aidian-mcp-selector-badge.visible {
   opacity: 1;
 }
 
-.claudian-mcp-selector-dropdown {
+.aidian-mcp-selector-dropdown {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -2693,7 +2693,7 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* Bridge the gap between icon and dropdown to prevent hover breaks */
-.claudian-mcp-selector-dropdown::after {
+.aidian-mcp-selector-dropdown::after {
   content: '';
   position: absolute;
   left: 0;
@@ -2702,13 +2702,13 @@ body.theme-light .claudian-message-content pre {
   height: 8px;
 }
 
-.claudian-mcp-selector-dropdown.visible,
-.claudian-mcp-selector:hover .claudian-mcp-selector-dropdown {
+.aidian-mcp-selector-dropdown.visible,
+.aidian-mcp-selector:hover .aidian-mcp-selector-dropdown {
   opacity: 1;
   visibility: visible;
 }
 
-.claudian-mcp-selector-header {
+.aidian-mcp-selector-header {
   padding: 10px 12px;
   font-size: 12px;
   font-weight: 600;
@@ -2716,12 +2716,12 @@ body.theme-light .claudian-message-content pre {
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.claudian-mcp-selector-list {
+.aidian-mcp-selector-list {
   max-height: 200px;
   overflow-y: auto;
 }
 
-.claudian-mcp-selector-empty {
+.aidian-mcp-selector-empty {
   padding: 16px 12px;
   text-align: center;
   color: var(--text-muted);
@@ -2729,7 +2729,7 @@ body.theme-light .claudian-message-content pre {
   font-style: italic;
 }
 
-.claudian-mcp-selector-item {
+.aidian-mcp-selector-item {
   display: flex;
   align-items: center;
   padding: 8px 12px;
@@ -2738,15 +2738,15 @@ body.theme-light .claudian-message-content pre {
   transition: background 0.15s ease;
 }
 
-.claudian-mcp-selector-item:hover {
+.aidian-mcp-selector-item:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-mcp-selector-item.enabled {
-  background: rgba(var(--claudian-brand-rgb), 0.1);
+.aidian-mcp-selector-item.enabled {
+  background: rgba(var(--aidian-brand-rgb), 0.1);
 }
 
-.claudian-mcp-selector-check {
+.aidian-mcp-selector-check {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2754,20 +2754,20 @@ body.theme-light .claudian-message-content pre {
   height: 16px;
   border: 1px solid var(--background-modifier-border);
   border-radius: 3px;
-  color: var(--claudian-brand);
+  color: var(--aidian-brand);
 }
 
-.claudian-mcp-selector-item.enabled .claudian-mcp-selector-check {
-  background: rgba(var(--claudian-brand-rgb), 0.2);
-  border-color: var(--claudian-brand);
+.aidian-mcp-selector-item.enabled .aidian-mcp-selector-check {
+  background: rgba(var(--aidian-brand-rgb), 0.2);
+  border-color: var(--aidian-brand);
 }
 
-.claudian-mcp-selector-check svg {
+.aidian-mcp-selector-check svg {
   width: 12px;
   height: 12px;
 }
 
-.claudian-mcp-selector-item-info {
+.aidian-mcp-selector-item-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2776,7 +2776,7 @@ body.theme-light .claudian-message-content pre {
   overflow: hidden;
 }
 
-.claudian-mcp-selector-item-name {
+.aidian-mcp-selector-item-name {
   font-size: 12px;
   color: var(--text-normal);
   overflow: hidden;
@@ -2784,13 +2784,13 @@ body.theme-light .claudian-message-content pre {
   white-space: nowrap;
 }
 
-.claudian-mcp-selector-cs-badge {
+.aidian-mcp-selector-cs-badge {
   font-size: 10px;
   font-weight: 600;
   padding: 1px 4px;
   border-radius: 3px;
-  background: rgba(var(--claudian-brand-rgb), 0.2);
-  color: var(--claudian-brand);
+  background: rgba(var(--aidian-brand-rgb), 0.2);
+  color: var(--aidian-brand);
   flex-shrink: 0;
   margin-left: auto;
 }
@@ -2800,7 +2800,7 @@ body.theme-light .claudian-message-content pre {
    features/file-context.css
    ============================================ */
 /* @ Mention dropdown */
-.claudian-mention-dropdown {
+.aidian-mention-dropdown {
   display: none;
   position: absolute;
   bottom: 100%;
@@ -2818,21 +2818,21 @@ body.theme-light .claudian-message-content pre {
   overflow-y: auto;
 }
 
-.claudian-mention-dropdown.visible {
+.aidian-mention-dropdown.visible {
   display: block;
 }
 
 /* Fixed positioning for inline editor */
-.claudian-mention-dropdown-fixed {
+.aidian-mention-dropdown-fixed {
   position: fixed;
-  bottom: var(--claudian-fixed-dropdown-bottom);
-  left: var(--claudian-fixed-dropdown-left);
+  bottom: var(--aidian-fixed-dropdown-bottom);
+  left: var(--aidian-fixed-dropdown-left);
   right: auto;
-  width: var(--claudian-fixed-dropdown-width);
+  width: var(--aidian-fixed-dropdown-width);
   z-index: 10001;
 }
 
-.claudian-mention-item {
+.aidian-mention-item {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2841,24 +2841,24 @@ body.theme-light .claudian-message-content pre {
   transition: background 0.1s ease;
 }
 
-.claudian-mention-item:hover,
-.claudian-mention-item.selected {
+.aidian-mention-item:hover,
+.aidian-mention-item.selected {
   background: var(--background-modifier-hover);
 }
 
-.claudian-mention-icon {
+.aidian-mention-icon {
   display: flex;
   align-items: center;
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.claudian-mention-icon svg {
+.aidian-mention-icon svg {
   width: 14px;
   height: 14px;
 }
 
-.claudian-mention-path {
+.aidian-mention-path {
   font-size: 13px;
   color: var(--text-normal);
   overflow: hidden;
@@ -2866,7 +2866,7 @@ body.theme-light .claudian-message-content pre {
   white-space: nowrap;
 }
 
-.claudian-mention-empty {
+.aidian-mention-empty {
   padding: 12px;
   text-align: center;
   color: var(--text-muted);
@@ -2874,29 +2874,29 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* Scrollbar for mention dropdown */
-.claudian-mention-dropdown::-webkit-scrollbar {
+.aidian-mention-dropdown::-webkit-scrollbar {
   width: 6px;
 }
 
-.claudian-mention-dropdown::-webkit-scrollbar-track {
+.aidian-mention-dropdown::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.claudian-mention-dropdown::-webkit-scrollbar-thumb {
+.aidian-mention-dropdown::-webkit-scrollbar-thumb {
   background: var(--background-modifier-border);
   border-radius: 3px;
 }
 
 /* MCP items in @-mention dropdown */
-.claudian-mention-item.mcp-server .claudian-mention-icon {
+.aidian-mention-item.mcp-server .aidian-mention-icon {
   color: var(--interactive-accent);
 }
 
-.claudian-mention-item.vault-folder .claudian-mention-icon {
+.aidian-mention-item.vault-folder .aidian-mention-icon {
   color: var(--text-muted);
 }
 
-.claudian-mention-text {
+.aidian-mention-text {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -2904,13 +2904,13 @@ body.theme-light .claudian-message-content pre {
   flex: 1;
 }
 
-.claudian-mention-name {
+.aidian-mention-name {
   font-size: 13px;
   font-weight: 500;
   color: var(--interactive-accent);
 }
 
-.claudian-mention-desc {
+.aidian-mention-desc {
   font-size: 11px;
   color: var(--text-muted);
   overflow: hidden;
@@ -2919,17 +2919,17 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* Context file items in @-mention dropdown */
-.claudian-mention-item.context-file .claudian-mention-icon {
-  color: var(--claudian-brand);
+.aidian-mention-item.context-file .aidian-mention-icon {
+  color: var(--aidian-brand);
 }
 
-.claudian-mention-item.context-file .claudian-mention-text {
+.aidian-mention-item.context-file .aidian-mention-text {
   flex-direction: row;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.claudian-mention-item.context-file .claudian-mention-name-context {
+.aidian-mention-item.context-file .aidian-mention-name-context {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -2937,35 +2937,35 @@ body.theme-light .claudian-message-content pre {
 }
 
 /* Context folder filter items in @-mention dropdown */
-.claudian-mention-item.context-folder .claudian-mention-icon {
+.aidian-mention-item.context-folder .aidian-mention-icon {
   color: var(--text-muted);
 }
 
-.claudian-mention-name-folder {
+.aidian-mention-name-folder {
   color: var(--text-normal);
   font-weight: 500;
 }
 
-.claudian-mention-name-context {
+.aidian-mention-name-context {
   color: var(--text-normal);
 }
 
 /* Agent folder items in @-mention dropdown */
-.claudian-mention-item.agent-folder .claudian-mention-icon {
+.aidian-mention-item.agent-folder .aidian-mention-icon {
   color: var(--link-color);
 }
 
-.claudian-mention-name-agent-folder {
+.aidian-mention-name-agent-folder {
   color: var(--link-color);
   font-weight: 600;
 }
 
 /* Agent items in @-mention dropdown (inside @Agents/) */
-.claudian-mention-item.agent .claudian-mention-icon {
+.aidian-mention-item.agent .aidian-mention-icon {
   color: var(--link-color);
 }
 
-.claudian-mention-item.agent .claudian-mention-text {
+.aidian-mention-item.agent .aidian-mention-text {
   flex-direction: row;
   align-items: baseline;
   gap: 6px;
@@ -2973,13 +2973,13 @@ body.theme-light .claudian-message-content pre {
   white-space: nowrap;
 }
 
-.claudian-mention-item.agent .claudian-mention-name-agent {
+.aidian-mention-item.agent .aidian-mention-name-agent {
   color: var(--text-normal);
   font-size: 13px;
   flex-shrink: 0;
 }
 
-.claudian-mention-item.agent .claudian-mention-agent-desc {
+.aidian-mention-item.agent .aidian-mention-agent-desc {
   font-size: 11px;
   color: var(--text-muted);
   overflow: hidden;
@@ -2993,7 +2993,7 @@ body.theme-light .claudian-message-content pre {
    features/file-link.css
    ============================================ */
 /* Clickable file links that open files in Obsidian */
-.claudian-file-link {
+.aidian-file-link {
   color: var(--text-accent);
   text-decoration: none;
   cursor: pointer;
@@ -3001,17 +3001,17 @@ body.theme-light .claudian-message-content pre {
   transition: color 0.15s ease;
 }
 
-.claudian-file-link:hover {
+.aidian-file-link:hover {
   color: var(--text-accent-hover);
   text-decoration: underline;
 }
 
 /* File link inside inline code */
-code .claudian-file-link {
+code .aidian-file-link {
   color: var(--text-accent);
 }
 
-code .claudian-file-link:hover {
+code .aidian-file-link:hover {
   color: var(--text-accent-hover);
 }
 
@@ -3022,7 +3022,7 @@ code .claudian-file-link:hover {
 /* Image Context - Preview & Attachments */
 
 /* Image preview container (in input area) */
-.claudian-image-preview {
+.aidian-image-preview {
   display: none;
   flex-wrap: wrap;
   gap: 8px;
@@ -3031,7 +3031,7 @@ code .claudian-file-link:hover {
 }
 
 /* Individual image preview chip */
-.claudian-image-chip {
+.aidian-image-chip {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -3042,12 +3042,12 @@ code .claudian-file-link:hover {
   max-width: 200px;
 }
 
-.claudian-image-chip:hover {
+.aidian-image-chip:hover {
   border-color: var(--interactive-accent);
 }
 
 /* Image thumbnail */
-.claudian-image-thumb {
+.aidian-image-thumb {
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -3056,21 +3056,21 @@ code .claudian-file-link:hover {
   cursor: pointer;
 }
 
-.claudian-image-thumb img {
+.aidian-image-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 /* Image info */
-.claudian-image-info {
+.aidian-image-info {
   display: flex;
   flex-direction: column;
   min-width: 0;
   flex: 1;
 }
 
-.claudian-image-name {
+.aidian-image-name {
   font-size: 12px;
   color: var(--text-normal);
   overflow: hidden;
@@ -3078,13 +3078,13 @@ code .claudian-file-link:hover {
   white-space: nowrap;
 }
 
-.claudian-image-size {
+.aidian-image-size {
   font-size: 10px;
   color: var(--text-muted);
 }
 
 /* Remove button */
-.claudian-image-remove {
+.aidian-image-remove {
   position: relative;
   width: 20px;
   height: 20px;
@@ -3095,8 +3095,8 @@ code .claudian-file-link:hover {
   font-size: 0; /* Hide text character */
 }
 
-.claudian-image-remove::before,
-.claudian-image-remove::after {
+.aidian-image-remove::before,
+.aidian-image-remove::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -3108,32 +3108,32 @@ code .claudian-file-link:hover {
   transition: background 0.15s ease;
 }
 
-.claudian-image-remove::before {
+.aidian-image-remove::before {
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.claudian-image-remove::after {
+.aidian-image-remove::after {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.claudian-image-remove:hover {
+.aidian-image-remove:hover {
   background: var(--background-modifier-error);
 }
 
-.claudian-image-remove:hover::before,
-.claudian-image-remove:hover::after {
+.aidian-image-remove:hover::before,
+.aidian-image-remove:hover::after {
   background: var(--text-on-accent);
 }
 
 /* Drop overlay - inside input wrapper */
-.claudian-drop-overlay {
+.aidian-drop-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(var(--claudian-brand-rgb), 0.08);
-  border: 2px dashed var(--claudian-brand);
+  background: rgba(var(--aidian-brand-rgb), 0.08);
+  border: 2px dashed var(--aidian-brand);
   border-radius: 6px;
   display: none;
   align-items: center;
@@ -3142,23 +3142,23 @@ code .claudian-file-link:hover {
   pointer-events: none;
 }
 
-.claudian-drop-overlay.visible {
+.aidian-drop-overlay.visible {
   display: flex;
 }
 
-.claudian-drop-content {
+.aidian-drop-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  color: var(--claudian-brand);
+  color: var(--aidian-brand);
 }
 
-.claudian-drop-content svg {
+.aidian-drop-content svg {
   opacity: 0.7;
 }
 
-.claudian-drop-content span {
+.aidian-drop-content span {
   font-size: 12px;
   font-weight: 500;
 }
@@ -3166,7 +3166,7 @@ code .claudian-file-link:hover {
 /* Images in Messages (displayed above user bubble) */
 
 /* Images container - right-aligned above user message */
-.claudian-message-images {
+.aidian-message-images {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -3176,7 +3176,7 @@ code .claudian-file-link:hover {
 }
 
 /* Individual image in message - standardized size */
-.claudian-message-image {
+.aidian-message-image {
   width: 120px;
   height: 120px;
   border-radius: 8px;
@@ -3187,12 +3187,12 @@ code .claudian-file-link:hover {
   border: 1px solid var(--background-modifier-border);
 }
 
-.claudian-message-image:hover {
+.aidian-message-image:hover {
   transform: scale(1.03);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.claudian-message-image img {
+.aidian-message-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -3205,14 +3205,14 @@ code .claudian-file-link:hover {
    ============================================ */
 /* Image embed styles - displays ![[image.png]] wikilinks as actual images */
 
-.claudian-embedded-image {
+.aidian-embedded-image {
   display: inline-block;
   max-width: 100%;
   margin: 0.5em 0;
   vertical-align: middle;
 }
 
-.claudian-embedded-image img {
+.aidian-embedded-image img {
   max-width: 100%;
   height: auto;
   border-radius: var(--radius-s);
@@ -3220,23 +3220,23 @@ code .claudian-file-link:hover {
   transition: opacity 0.2s ease;
 }
 
-.claudian-embedded-image img:hover {
+.aidian-embedded-image img:hover {
   opacity: 0.9;
 }
 
 /* When image is inline with text */
-.claudian-text-block p .claudian-embedded-image {
+.aidian-text-block p .aidian-embedded-image {
   margin: 0.25em 0;
 }
 
 /* Block-level image (standalone on its own line) */
-.claudian-text-block p > .claudian-embedded-image:only-child {
+.aidian-text-block p > .aidian-embedded-image:only-child {
   display: block;
   margin: 0.75em 0;
 }
 
 /* Fallback when image file not found */
-.claudian-embedded-image-fallback {
+.aidian-embedded-image-fallback {
   color: var(--text-muted);
   font-style: italic;
   background: var(--background-modifier-hover);
@@ -3249,7 +3249,7 @@ code .claudian-file-link:hover {
    features/image-modal.css
    ============================================ */
 /* Full-size Image Modal */
-.claudian-image-modal-overlay {
+.aidian-image-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -3263,14 +3263,14 @@ code .claudian-file-link:hover {
   cursor: pointer;
 }
 
-.claudian-image-modal {
+.aidian-image-modal {
   position: relative;
   max-width: 90vw;
   max-height: 90vh;
   cursor: default;
 }
 
-.claudian-image-modal img {
+.aidian-image-modal img {
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
@@ -3278,7 +3278,7 @@ code .claudian-file-link:hover {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
-.claudian-image-modal-close {
+.aidian-image-modal-close {
   position: absolute;
   top: -12px;
   right: -12px;
@@ -3296,7 +3296,7 @@ code .claudian-file-link:hover {
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.claudian-image-modal-close:hover {
+.aidian-image-modal-close:hover {
   background: var(--background-modifier-error);
   color: var(--text-on-accent);
 }
@@ -3308,8 +3308,8 @@ code .claudian-file-link:hover {
 /* Inline Edit (CM6 decorations) */
 
 /* Selection highlight (shared by inline edit and chat) */
-.cm-line .claudian-selection-highlight,
-.claudian-selection-highlight.claudian-selection-highlight {
+.cm-line .aidian-selection-highlight,
+.aidian-selection-highlight.aidian-selection-highlight {
   background: var(--text-selection);
   border-radius: 2px;
   padding: 3px 0;
@@ -3317,18 +3317,18 @@ code .claudian-file-link:hover {
 }
 
 /* Preview mode selection highlight via CSS Custom Highlight API */
-::highlight(claudian-selection) {
+::highlight(aidian-selection) {
   background: var(--text-selection);
 }
 
 /* CM6 widget container - ensure transparent background */
 .markdown-source-view.mod-cm6 .cm-widgetBuffer,
-.markdown-source-view.mod-cm6 .cm-line.claudian-inline-input-line {
+.markdown-source-view.mod-cm6 .cm-line.aidian-inline-input-line {
   background: transparent;
 }
 
 /* Input container - fully transparent */
-.claudian-inline-input-container {
+.aidian-inline-input-container {
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -3337,7 +3337,7 @@ code .claudian-file-link:hover {
 }
 
 /* Input wrapper - contains input and spinner */
-.claudian-inline-input-wrap {
+.aidian-inline-input-wrap {
   flex: 1;
   position: relative;
   background: transparent;
@@ -3345,7 +3345,7 @@ code .claudian-file-link:hover {
 }
 
 /* Input - fully transparent */
-.claudian-inline-input-wrap input.claudian-inline-input {
+.aidian-inline-input-wrap input.aidian-inline-input {
   width: 100%;
   padding: 4px 8px;
   padding-inline-end: 30px;
@@ -3359,22 +3359,22 @@ code .claudian-file-link:hover {
   font-size: var(--font-ui-small, 13px);
 }
 
-.claudian-inline-input-wrap input.claudian-inline-input:focus,
-.claudian-inline-input-wrap input.claudian-inline-input:focus-visible {
+.aidian-inline-input-wrap input.aidian-inline-input:focus,
+.aidian-inline-input-wrap input.aidian-inline-input:focus-visible {
   outline: none;
   box-shadow: none;
 }
 
-.claudian-inline-input-wrap input.claudian-inline-input::placeholder {
+.aidian-inline-input-wrap input.aidian-inline-input::placeholder {
   color: var(--text-faint);
 }
 
-.claudian-inline-input-wrap input.claudian-inline-input:disabled {
+.aidian-inline-input-wrap input.aidian-inline-input:disabled {
   opacity: 0.6;
 }
 
 /* Spinner - inside input box on end side */
-.claudian-inline-spinner {
+.aidian-inline-spinner {
   position: absolute;
   inset-inline-end: 8px;
   top: 50%;
@@ -3382,14 +3382,14 @@ code .claudian-file-link:hover {
   height: 14px;
   margin-top: -7px;
   border: 2px solid var(--background-modifier-border);
-  border-top-color: var(--claudian-brand);
+  border-top-color: var(--aidian-brand);
   border-radius: 50%;
   box-sizing: border-box;
-  animation: claudian-spin 0.8s linear infinite;
+  animation: aidian-spin 0.8s linear infinite;
 }
 
 /* Agent reply - shown when agent asks clarifying question */
-.claudian-inline-agent-reply {
+.aidian-inline-agent-reply {
   padding: 8px;
   margin-bottom: 4px;
   background: transparent;
@@ -3405,17 +3405,17 @@ code .claudian-file-link:hover {
   word-wrap: break-word;
 }
 
-.claudian-inline-agent-reply > :first-child,
-.claudian-inline-diff-preview-body > :first-child {
+.aidian-inline-agent-reply > :first-child,
+.aidian-inline-diff-preview-body > :first-child {
   margin-top: 0;
 }
 
-.claudian-inline-agent-reply > :last-child,
-.claudian-inline-diff-preview-body > :last-child {
+.aidian-inline-agent-reply > :last-child,
+.aidian-inline-diff-preview-body > :last-child {
   margin-bottom: 0;
 }
 
-.claudian-inline-diff-preview {
+.aidian-inline-diff-preview {
   margin: 4px 0 6px;
   padding: 8px 10px;
   border: 1px solid var(--background-modifier-border);
@@ -3425,7 +3425,7 @@ code .claudian-file-link:hover {
   overflow: hidden;
 }
 
-.claudian-inline-diff-preview-body {
+.aidian-inline-diff-preview-body {
   font-family: var(--font-text);
   font-size: var(--font-text-size);
   line-height: var(--line-height-normal);
@@ -3434,116 +3434,116 @@ code .claudian-file-link:hover {
   --heading-spacing: 0.5rem;
 }
 
-.claudian-inline-diff-preview img {
+.aidian-inline-diff-preview img {
   max-width: 100%;
   height: auto;
 }
 
-.claudian-inline-diff-preview .markdown-rendered p {
+.aidian-inline-diff-preview .markdown-rendered p {
   margin: 0 0 6px;
 }
 
-.claudian-inline-diff-preview .markdown-rendered p:last-child {
+.aidian-inline-diff-preview .markdown-rendered p:last-child {
   margin-bottom: 0;
 }
 
-.claudian-inline-diff-preview .markdown-rendered h1,
-.claudian-inline-diff-preview .markdown-rendered h2,
-.claudian-inline-diff-preview .markdown-rendered h3,
-.claudian-inline-diff-preview .markdown-rendered h4,
-.claudian-inline-diff-preview .markdown-rendered h5,
-.claudian-inline-diff-preview .markdown-rendered h6 {
+.aidian-inline-diff-preview .markdown-rendered h1,
+.aidian-inline-diff-preview .markdown-rendered h2,
+.aidian-inline-diff-preview .markdown-rendered h3,
+.aidian-inline-diff-preview .markdown-rendered h4,
+.aidian-inline-diff-preview .markdown-rendered h5,
+.aidian-inline-diff-preview .markdown-rendered h6 {
   margin: 0 0 6px;
   line-height: 1.25;
 }
 
-.claudian-inline-diff-preview .markdown-rendered h1:first-child,
-.claudian-inline-diff-preview .markdown-rendered h2:first-child,
-.claudian-inline-diff-preview .markdown-rendered h3:first-child,
-.claudian-inline-diff-preview .markdown-rendered h4:first-child,
-.claudian-inline-diff-preview .markdown-rendered h5:first-child,
-.claudian-inline-diff-preview .markdown-rendered h6:first-child {
+.aidian-inline-diff-preview .markdown-rendered h1:first-child,
+.aidian-inline-diff-preview .markdown-rendered h2:first-child,
+.aidian-inline-diff-preview .markdown-rendered h3:first-child,
+.aidian-inline-diff-preview .markdown-rendered h4:first-child,
+.aidian-inline-diff-preview .markdown-rendered h5:first-child,
+.aidian-inline-diff-preview .markdown-rendered h6:first-child {
   margin-top: 0;
 }
 
-.claudian-inline-diff-preview .markdown-rendered ul,
-.claudian-inline-diff-preview .markdown-rendered ol {
+.aidian-inline-diff-preview .markdown-rendered ul,
+.aidian-inline-diff-preview .markdown-rendered ol {
   margin: 2px 0 8px;
   padding-inline-start: 1.5em;
 }
 
-.claudian-inline-diff-preview .markdown-rendered li {
+.aidian-inline-diff-preview .markdown-rendered li {
   margin: 2px 0;
 }
 
-.claudian-inline-diff-preview .markdown-rendered li > p {
+.aidian-inline-diff-preview .markdown-rendered li > p {
   margin: 0;
 }
 
-.claudian-inline-diff-preview .markdown-rendered pre,
-.claudian-inline-diff-preview .markdown-rendered table,
-.claudian-inline-diff-preview .markdown-rendered blockquote {
+.aidian-inline-diff-preview .markdown-rendered pre,
+.aidian-inline-diff-preview .markdown-rendered table,
+.aidian-inline-diff-preview .markdown-rendered blockquote {
   margin: 2px 0 8px;
 }
 
-.claudian-inline-diff-preview .markdown-rendered .el-h1,
-.claudian-inline-diff-preview .markdown-rendered .el-h2,
-.claudian-inline-diff-preview .markdown-rendered .el-h3,
-.claudian-inline-diff-preview .markdown-rendered .el-h4,
-.claudian-inline-diff-preview .markdown-rendered .el-h5,
-.claudian-inline-diff-preview .markdown-rendered .el-h6,
-.claudian-inline-diff-preview .markdown-rendered .el-p,
-.claudian-inline-diff-preview .markdown-rendered .el-ul,
-.claudian-inline-diff-preview .markdown-rendered .el-ol,
-.claudian-inline-diff-preview .markdown-rendered .el-pre,
-.claudian-inline-diff-preview .markdown-rendered .el-table,
-.claudian-inline-diff-preview .markdown-rendered .el-blockquote {
+.aidian-inline-diff-preview .markdown-rendered .el-h1,
+.aidian-inline-diff-preview .markdown-rendered .el-h2,
+.aidian-inline-diff-preview .markdown-rendered .el-h3,
+.aidian-inline-diff-preview .markdown-rendered .el-h4,
+.aidian-inline-diff-preview .markdown-rendered .el-h5,
+.aidian-inline-diff-preview .markdown-rendered .el-h6,
+.aidian-inline-diff-preview .markdown-rendered .el-p,
+.aidian-inline-diff-preview .markdown-rendered .el-ul,
+.aidian-inline-diff-preview .markdown-rendered .el-ol,
+.aidian-inline-diff-preview .markdown-rendered .el-pre,
+.aidian-inline-diff-preview .markdown-rendered .el-table,
+.aidian-inline-diff-preview .markdown-rendered .el-blockquote {
   margin-block-start: 0;
   margin-block-end: 6px;
 }
 
-.claudian-inline-markdown-fallback {
+.aidian-inline-markdown-fallback {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 
-.claudian-diff-block {
+.aidian-diff-block {
   border-radius: 4px;
   padding: 2px 4px;
 }
 
-.claudian-diff-block + .claudian-diff-block {
+.aidian-diff-block + .aidian-diff-block {
   margin-top: 2px;
 }
 
-.claudian-diff-block > :first-child {
+.aidian-diff-block > :first-child {
   margin-top: 0;
 }
 
-.claudian-diff-block > :last-child {
+.aidian-diff-block > :last-child {
   margin-bottom: 0;
 }
 
-.claudian-diff-del:not(.claudian-diff-block) {
+.aidian-diff-del:not(.aidian-diff-block) {
   background: rgba(255, 80, 80, 0.2);
   text-decoration: line-through;
   color: var(--text-muted);
 }
 
-.claudian-diff-ins:not(.claudian-diff-block) {
+.aidian-diff-ins:not(.aidian-diff-block) {
   background: rgba(80, 200, 80, 0.2);
 }
 
-.claudian-diff-block.claudian-diff-del {
+.aidian-diff-block.aidian-diff-del {
   background: rgba(255, 80, 80, 0.14);
   color: var(--text-muted);
 }
 
-.claudian-diff-block.claudian-diff-ins {
+.aidian-diff-block.aidian-diff-ins {
   background: rgba(80, 200, 80, 0.14);
 }
 
-.claudian-inline-preview-actions {
+.aidian-inline-preview-actions {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
@@ -3552,7 +3552,7 @@ code .claudian-file-link:hover {
   border-top: 1px solid var(--background-modifier-border);
 }
 
-.claudian-inline-preview-actions button.claudian-inline-preview-action {
+.aidian-inline-preview-actions button.aidian-inline-preview-action {
   min-height: 28px;
   padding: 4px 10px;
   border: 1px solid var(--background-modifier-border);
@@ -3566,21 +3566,21 @@ code .claudian-file-link:hover {
   cursor: pointer;
 }
 
-.claudian-inline-preview-actions button.claudian-inline-preview-action:hover {
+.aidian-inline-preview-actions button.aidian-inline-preview-action:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-inline-preview-actions button.claudian-inline-preview-action.reject {
+.aidian-inline-preview-actions button.aidian-inline-preview-action.reject {
   color: var(--color-red);
 }
 
-.claudian-inline-preview-actions button.claudian-inline-preview-action.accept {
+.aidian-inline-preview-actions button.aidian-inline-preview-action.accept {
   border-color: var(--interactive-accent);
   background: var(--interactive-accent);
   color: var(--text-on-accent);
 }
 
-.claudian-inline-preview-actions button.claudian-inline-preview-action.accept:hover {
+.aidian-inline-preview-actions button.aidian-inline-preview-action.accept:hover {
   background: var(--interactive-accent-hover);
 }
 
@@ -3589,21 +3589,21 @@ code .claudian-file-link:hover {
    features/diff.css
    ============================================ */
 /* Write/Edit Diff Block - Subagent style */
-.claudian-write-edit-block {
+.aidian-write-edit-block {
   margin: 4px 0;
   background: transparent;
   overflow: hidden;
 }
 
-.claudian-text-block+.claudian-write-edit-block {
+.aidian-text-block+.aidian-write-edit-block {
   margin-top: 8px;
 }
 
-.claudian-write-edit-block+.claudian-text-block {
+.aidian-write-edit-block+.aidian-text-block {
   margin-top: 8px;
 }
 
-.claudian-write-edit-header {
+.aidian-write-edit-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -3614,20 +3614,20 @@ code .claudian-file-link:hover {
   overflow: hidden;
 }
 
-.claudian-write-edit-icon {
+.aidian-write-edit-icon {
   width: 16px;
   height: 16px;
   color: var(--text-accent);
   flex-shrink: 0;
 }
 
-.claudian-write-edit-icon svg {
+.aidian-write-edit-icon svg {
   width: 16px;
   height: 16px;
 }
 
 /* Two-part header: name (fixed) + summary (flexible) */
-.claudian-write-edit-name {
+.aidian-write-edit-name {
   font-family: var(--font-monospace);
   font-size: 13px;
   font-weight: 400;
@@ -3636,7 +3636,7 @@ code .claudian-file-link:hover {
   flex-shrink: 0;
 }
 
-.claudian-write-edit-summary {
+.aidian-write-edit-summary {
   font-family: var(--font-monospace);
   font-size: 13px;
   color: var(--text-muted);
@@ -3647,57 +3647,57 @@ code .claudian-file-link:hover {
   min-width: 0;
 }
 
-.claudian-write-edit-stats {
+.aidian-write-edit-stats {
   font-family: var(--font-monospace);
   font-size: 11px;
   flex-shrink: 0;
 }
 
-.claudian-write-edit-stats .added {
+.aidian-write-edit-stats .added {
   color: var(--color-green);
 }
 
-.claudian-write-edit-stats .removed {
+.aidian-write-edit-stats .removed {
   color: var(--color-red);
   margin-left: 4px;
 }
 
-.claudian-write-edit-status {
+.aidian-write-edit-status {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
 /* Hide empty status on successful completion so stats align to right edge */
-.claudian-write-edit-block.done .claudian-write-edit-status:empty {
+.aidian-write-edit-block.done .aidian-write-edit-status:empty {
   display: none;
 }
 
-.claudian-write-edit-status svg {
+.aidian-write-edit-status svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-write-edit-status.status-completed {
+.aidian-write-edit-status.status-completed {
   color: var(--color-green);
 }
 
-.claudian-write-edit-status.status-error,
-.claudian-write-edit-status.status-blocked {
+.aidian-write-edit-status.status-error,
+.aidian-write-edit-status.status-blocked {
   color: var(--color-red);
 }
 
-.claudian-write-edit-content {
+.aidian-write-edit-content {
   padding: 0;
   background: transparent;
   overflow: hidden;
 }
 
-.claudian-write-edit-diff-row {
+.aidian-write-edit-diff-row {
   display: flex;
 }
 
-.claudian-write-edit-diff {
+.aidian-write-edit-diff {
   flex: 1;
   font-family: var(--font-monospace);
   font-size: 12px;
@@ -3708,31 +3708,31 @@ code .claudian-file-link:hover {
   overflow-x: auto;
 }
 
-.claudian-write-edit-loading,
-.claudian-write-edit-binary,
-.claudian-write-edit-error,
-.claudian-write-edit-done-text {
+.aidian-write-edit-loading,
+.aidian-write-edit-binary,
+.aidian-write-edit-error,
+.aidian-write-edit-done-text {
   font-family: var(--font-monospace);
   font-size: 12px;
   color: var(--text-muted);
 }
 
-.claudian-write-edit-error {
+.aidian-write-edit-error {
   color: var(--color-red);
 }
 
 /* Diff line styling */
-.claudian-diff-hunk {
+.aidian-diff-hunk {
   margin-bottom: 4px;
 }
 
-.claudian-diff-line {
+.aidian-diff-line {
   display: flex;
   white-space: pre-wrap;
   word-break: break-all;
 }
 
-.claudian-diff-prefix {
+.aidian-diff-prefix {
   flex-shrink: 0;
   width: 16px;
   text-align: center;
@@ -3740,36 +3740,36 @@ code .claudian-file-link:hover {
   user-select: none;
 }
 
-.claudian-diff-text {
+.aidian-diff-text {
   flex: 1;
   min-width: 0;
 }
 
 /* Diff colors - NO strikethrough for Write/Edit blocks */
-.claudian-diff-equal {
+.aidian-diff-equal {
   color: var(--text-muted);
 }
 
-.claudian-diff-delete {
+.aidian-diff-delete {
   background: rgba(255, 80, 80, 0.25);
   color: var(--text-normal);
 }
 
-.claudian-diff-delete .claudian-diff-prefix {
+.aidian-diff-delete .aidian-diff-prefix {
   color: var(--color-red);
 }
 
-.claudian-diff-insert {
+.aidian-diff-insert {
   background: rgba(80, 200, 80, 0.25);
   color: var(--text-normal);
 }
 
-.claudian-diff-insert .claudian-diff-prefix {
+.aidian-diff-insert .aidian-diff-prefix {
   color: var(--color-green);
 }
 
 /* Hunk separator */
-.claudian-diff-separator {
+.aidian-diff-separator {
   color: var(--text-muted);
   text-align: center;
   padding: 4px 0;
@@ -3780,7 +3780,7 @@ code .claudian-file-link:hover {
   font-size: 11px;
 }
 
-.claudian-diff-no-changes {
+.aidian-diff-no-changes {
   color: var(--text-muted);
   font-style: italic;
   padding: 8px;
@@ -3791,7 +3791,7 @@ code .claudian-file-link:hover {
    features/slash-commands.css
    ============================================ */
 /* Slash Command Dropdown */
-.claudian-slash-dropdown {
+.aidian-slash-dropdown {
   display: none;
   position: absolute;
   bottom: 100%;
@@ -3809,50 +3809,50 @@ code .claudian-file-link:hover {
   overflow-y: auto;
 }
 
-.claudian-slash-dropdown.visible {
+.aidian-slash-dropdown.visible {
   display: block;
 }
 
 /* Fixed positioning for inline editor */
-.claudian-slash-dropdown-fixed {
+.aidian-slash-dropdown-fixed {
   position: fixed;
-  bottom: var(--claudian-fixed-dropdown-bottom);
-  left: var(--claudian-fixed-dropdown-left);
+  bottom: var(--aidian-fixed-dropdown-bottom);
+  left: var(--aidian-fixed-dropdown-left);
   right: auto;
-  width: var(--claudian-fixed-dropdown-width);
+  width: var(--aidian-fixed-dropdown-width);
   z-index: 10001;
 }
 
-.claudian-slash-item {
+.aidian-slash-item {
   padding: 8px 12px;
   cursor: pointer;
   transition: background 0.1s ease;
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.claudian-slash-item:last-child {
+.aidian-slash-item:last-child {
   border-bottom: none;
 }
 
-.claudian-slash-item:hover,
-.claudian-slash-item.selected {
+.aidian-slash-item:hover,
+.aidian-slash-item.selected {
   background: var(--background-modifier-hover);
 }
 
-.claudian-slash-name {
+.aidian-slash-name {
   font-size: 12px;
   font-weight: 500;
   color: var(--text-normal);
   font-family: var(--font-monospace);
 }
 
-.claudian-slash-hint {
+.aidian-slash-hint {
   font-size: 12px;
   color: var(--text-muted);
   margin-left: 8px;
 }
 
-.claudian-slash-desc {
+.aidian-slash-desc {
   font-size: 11px;
   color: var(--text-muted);
   margin-top: 2px;
@@ -3861,7 +3861,7 @@ code .claudian-file-link:hover {
   white-space: nowrap;
 }
 
-.claudian-slash-empty {
+.aidian-slash-empty {
   padding: 16px;
   text-align: center;
   color: var(--text-muted);
@@ -3869,15 +3869,15 @@ code .claudian-file-link:hover {
 }
 
 /* Scrollbar */
-.claudian-slash-dropdown::-webkit-scrollbar {
+.aidian-slash-dropdown::-webkit-scrollbar {
   width: 6px;
 }
 
-.claudian-slash-dropdown::-webkit-scrollbar-track {
+.aidian-slash-dropdown::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.claudian-slash-dropdown::-webkit-scrollbar-thumb {
+.aidian-slash-dropdown::-webkit-scrollbar-thumb {
   background: var(--background-modifier-border);
   border-radius: 3px;
 }
@@ -3887,7 +3887,7 @@ code .claudian-file-link:hover {
    features/resume-session.css
    ============================================ */
 /* Resume Session Dropdown */
-.claudian-resume-dropdown {
+.aidian-resume-dropdown {
   display: none;
   position: absolute;
   bottom: 100%;
@@ -3905,11 +3905,11 @@ code .claudian-file-link:hover {
   overflow: hidden;
 }
 
-.claudian-resume-dropdown.visible {
+.aidian-resume-dropdown.visible {
   display: block;
 }
 
-.claudian-resume-header {
+.aidian-resume-header {
   padding: 8px 12px;
   font-size: 12px;
   font-weight: 600;
@@ -3919,19 +3919,19 @@ code .claudian-file-link:hover {
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.claudian-resume-list {
+.aidian-resume-list {
   max-height: 350px;
   overflow-y: auto;
 }
 
-.claudian-resume-empty {
+.aidian-resume-empty {
   padding: 16px;
   text-align: center;
   color: var(--text-muted);
   font-size: 13px;
 }
 
-.claudian-resume-item {
+.aidian-resume-item {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -3941,43 +3941,43 @@ code .claudian-file-link:hover {
   transition: background 0.1s ease;
 }
 
-.claudian-resume-item:last-child {
+.aidian-resume-item:last-child {
   border-bottom: none;
 }
 
-.claudian-resume-item:hover,
-.claudian-resume-item.selected {
+.aidian-resume-item:hover,
+.aidian-resume-item.selected {
   background: var(--background-modifier-hover);
 }
 
-.claudian-resume-item.current {
+.aidian-resume-item.current {
   background: var(--background-secondary);
   border-inline-start: 2px solid var(--interactive-accent);
   padding-inline-start: 10px;
 }
 
-.claudian-resume-item-icon {
+.aidian-resume-item-icon {
   display: flex;
   align-items: center;
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.claudian-resume-item-icon svg {
+.aidian-resume-item-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-resume-item.current .claudian-resume-item-icon {
+.aidian-resume-item.current .aidian-resume-item-icon {
   color: var(--interactive-accent);
 }
 
-.claudian-resume-item-content {
+.aidian-resume-item-content {
   flex: 1;
   min-width: 0;
 }
 
-.claudian-resume-item-title {
+.aidian-resume-item-title {
   font-size: 13px;
   font-weight: 500;
   color: var(--text-normal);
@@ -3986,22 +3986,22 @@ code .claudian-file-link:hover {
   text-overflow: ellipsis;
 }
 
-.claudian-resume-item-date {
+.aidian-resume-item-date {
   font-size: 11px;
   color: var(--text-faint);
   margin-top: 2px;
 }
 
 /* Scrollbar */
-.claudian-resume-list::-webkit-scrollbar {
+.aidian-resume-list::-webkit-scrollbar {
   width: 6px;
 }
 
-.claudian-resume-list::-webkit-scrollbar-track {
+.aidian-resume-list::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.claudian-resume-list::-webkit-scrollbar-thumb {
+.aidian-resume-list::-webkit-scrollbar-thumb {
   background: var(--background-modifier-border);
   border-radius: 3px;
 }
@@ -4012,13 +4012,13 @@ code .claudian-file-link:hover {
    ============================================ */
 /* AskUserQuestion - inline widget rendered in chat panel */
 
-.claudian-ask-question-inline {
+.aidian-ask-question-inline {
   font-family: var(--font-monospace);
   font-size: 12px;
   outline: none;
 }
 
-.claudian-ask-inline-title {
+.aidian-ask-inline-title {
   font-weight: 700;
   color: var(--text-muted);
   padding: 6px 10px 0;
@@ -4026,7 +4026,7 @@ code .claudian-file-link:hover {
 
 /* ── Tab bar ─────────────────────────────────── */
 
-.claudian-ask-tab-bar {
+.aidian-ask-tab-bar {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -4035,7 +4035,7 @@ code .claudian-file-link:hover {
   line-height: 1.4;
 }
 
-.claudian-ask-tab {
+.aidian-ask-tab {
   display: inline-flex;
   align-items: center;
   padding: 2px 10px;
@@ -4048,16 +4048,16 @@ code .claudian-file-link:hover {
     color 0.15s ease;
 }
 
-.claudian-ask-tab:hover {
+.aidian-ask-tab:hover {
   color: var(--text-normal);
 }
 
-.claudian-ask-tab.is-active {
+.aidian-ask-tab.is-active {
   background: hsla(55, 30%, 50%, 0.18);
   color: var(--text-normal);
 }
 
-.claudian-ask-tab-label {
+.aidian-ask-tab-label {
   font-weight: 600;
   max-width: 14ch;
   overflow: hidden;
@@ -4065,23 +4065,23 @@ code .claudian-file-link:hover {
   white-space: nowrap;
 }
 
-.claudian-ask-tab-tick {
+.aidian-ask-tab-tick {
   color: var(--color-green);
   font-weight: 700;
 }
 
-.claudian-ask-tab-submit-check {
+.aidian-ask-tab-submit-check {
   color: var(--color-green);
   white-space: pre;
 }
 
 /* ── Content area ────────────────────────────── */
 
-.claudian-ask-content {
+.aidian-ask-content {
   padding: 8px 10px;
 }
 
-.claudian-ask-question-text {
+.aidian-ask-question-text {
   font-weight: 700;
   color: var(--text-normal);
   margin-bottom: 8px;
@@ -4090,14 +4090,14 @@ code .claudian-file-link:hover {
 
 /* ── Item list ───────────────────────────────── */
 
-.claudian-ask-list {
+.aidian-ask-list {
   display: flex;
   flex-direction: column;
   gap: 2px;
   margin-bottom: 8px;
 }
 
-.claudian-ask-item {
+.aidian-ask-item {
   display: flex;
   align-items: flex-start;
   padding: 3px 4px;
@@ -4107,11 +4107,11 @@ code .claudian-file-link:hover {
   border-radius: 3px;
 }
 
-.claudian-ask-item:hover {
+.aidian-ask-item:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-ask-cursor {
+.aidian-ask-cursor {
   display: inline-block;
   width: 2ch;
   flex-shrink: 0;
@@ -4119,28 +4119,28 @@ code .claudian-file-link:hover {
   font-weight: 700;
 }
 
-.claudian-ask-item-num {
+.aidian-ask-item-num {
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.claudian-ask-item-content {
+.aidian-ask-item-content {
   display: flex;
   flex-direction: column;
   flex: 1;
   min-width: 0;
 }
 
-.claudian-ask-label-row {
+.aidian-ask-label-row {
   display: flex;
   align-items: baseline;
 }
 
-.claudian-ask-item-label {
+.aidian-ask-item-label {
   font-weight: 600;
 }
 
-.claudian-ask-item-desc {
+.aidian-ask-item-desc {
   color: var(--text-muted);
   font-weight: 400;
   line-height: 1.4;
@@ -4148,39 +4148,39 @@ code .claudian-file-link:hover {
 }
 
 /* Selected items: green text */
-.claudian-ask-item.is-selected .claudian-ask-item-label {
+.aidian-ask-item.is-selected .aidian-ask-item-label {
   color: var(--color-green);
 }
 
 /* Disabled items: muted text */
-.claudian-ask-item.is-disabled .claudian-ask-item-label {
+.aidian-ask-item.is-disabled .aidian-ask-item-label {
   color: var(--text-faint);
 }
 
 /* ── Multi-select brackets ───────────────────── */
 
-.claudian-ask-check {
+.aidian-ask-check {
   color: var(--text-faint);
   flex-shrink: 0;
   white-space: pre;
 }
 
-.claudian-ask-check.is-checked {
+.aidian-ask-check.is-checked {
   color: var(--color-green);
 }
 
 /* ── Single-select check mark ────────────────── */
 
-.claudian-ask-check-mark {
+.aidian-ask-check-mark {
   color: var(--color-green);
   font-weight: 700;
 }
 
 /* ── Custom input ────────────────────────────── */
 
-.claudian-ask-item input.claudian-ask-custom-text,
-.claudian-ask-item input.claudian-ask-custom-text:hover,
-.claudian-ask-item input.claudian-ask-custom-text:focus {
+.aidian-ask-item input.aidian-ask-custom-text,
+.aidian-ask-item input.aidian-ask-custom-text:hover,
+.aidian-ask-item input.aidian-ask-custom-text:focus {
   border: none;
   border-radius: 0;
   background: transparent;
@@ -4198,71 +4198,71 @@ code .claudian-file-link:hover {
   min-width: 0;
 }
 
-.claudian-ask-custom-text::placeholder {
+.aidian-ask-custom-text::placeholder {
   color: var(--text-faint);
 }
 
 /* ── Submit review tab ───────────────────────── */
 
-.claudian-ask-review-title {
+.aidian-ask-review-title {
   font-weight: 700;
   color: var(--text-normal);
   margin-bottom: 6px;
 }
 
-.claudian-ask-review {
+.aidian-ask-review {
   font-family: var(--font-monospace);
   margin-bottom: 16px;
 }
 
-.claudian-tool-content .claudian-ask-review {
+.aidian-tool-content .aidian-ask-review {
   font-size: 12px;
 }
 
-.claudian-ask-review:last-child {
+.aidian-ask-review:last-child {
   margin-bottom: 0;
 }
 
-.claudian-ask-review-pair {
+.aidian-ask-review-pair {
   display: flex;
   gap: 6px;
   margin-bottom: 4px;
 }
 
-.claudian-ask-review-pair:last-child {
+.aidian-ask-review-pair:last-child {
   margin-bottom: 0;
 }
 
-.claudian-ask-review-num {
+.aidian-ask-review-num {
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.claudian-ask-review-body {
+.aidian-ask-review-body {
   min-width: 0;
 }
 
-.claudian-ask-review-q-text {
+.aidian-ask-review-q-text {
   color: var(--text-muted);
 }
 
-.claudian-ask-review-a-text {
+.aidian-ask-review-a-text {
   color: var(--text-normal);
 }
 
-.claudian-ask-review-empty {
+.aidian-ask-review-empty {
   color: var(--text-faint);
   font-style: italic;
 }
 
-.claudian-ask-review-prompt {
+.aidian-ask-review-prompt {
   color: var(--text-muted);
   margin-bottom: 6px;
 }
 
 /* ── Hints ───────────────────────────────────── */
 
-.claudian-ask-hints {
+.aidian-ask-hints {
   color: var(--text-faint);
   padding-top: 6px;
   border-top: 1px solid var(--background-modifier-border);
@@ -4270,11 +4270,11 @@ code .claudian-file-link:hover {
 
 /* ── Approval header (inline permission request) ── */
 
-.claudian-ask-approval-info {
+.aidian-ask-approval-info {
   padding: 8px 10px;
 }
 
-.claudian-ask-approval-tool {
+.aidian-ask-approval-tool {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -4284,22 +4284,22 @@ code .claudian-file-link:hover {
   margin-bottom: 8px;
 }
 
-.claudian-ask-approval-icon {
-  color: var(--claudian-brand);
+.aidian-ask-approval-icon {
+  color: var(--aidian-brand);
 }
 
-.claudian-ask-approval-tool-name {
+.aidian-ask-approval-tool-name {
   font-weight: 600;
   color: var(--text-normal);
 }
 
-.claudian-ask-approval-reason {
+.aidian-ask-approval-reason {
   color: var(--text-muted);
   font-size: 12px;
   margin-bottom: 6px;
 }
 
-.claudian-ask-approval-blocked-path {
+.aidian-ask-approval-blocked-path {
   font-family: var(--font-monospace);
   font-size: 11px;
   color: var(--text-muted);
@@ -4310,13 +4310,13 @@ code .claudian-file-link:hover {
   word-break: break-all;
 }
 
-.claudian-ask-approval-agent {
+.aidian-ask-approval-agent {
   color: var(--text-muted);
   font-size: 12px;
   margin-bottom: 6px;
 }
 
-.claudian-ask-approval-desc {
+.aidian-ask-approval-desc {
   padding: 8px 10px;
   background: var(--background-primary-alt);
   border-radius: 6px;
@@ -4332,13 +4332,13 @@ code .claudian-file-link:hover {
    ============================================ */
 /* Plan Mode - inline cards for EnterPlanMode / ExitPlanMode */
 
-.claudian-plan-approval-inline {
+.aidian-plan-approval-inline {
   font-family: var(--font-monospace);
   font-size: 12px;
   outline: none;
 }
 
-.claudian-plan-inline-title {
+.aidian-plan-inline-title {
   font-weight: 700;
   color: var(--text-muted);
   padding: 6px 10px 0;
@@ -4346,7 +4346,7 @@ code .claudian-file-link:hover {
 
 /* ── Plan content preview ────────────────────────── */
 
-.claudian-plan-content-preview {
+.aidian-plan-content-preview {
   max-height: 300px;
   overflow-y: auto;
   margin: 6px 10px 8px;
@@ -4359,46 +4359,46 @@ code .claudian-file-link:hover {
   color: var(--text-normal);
 }
 
-.claudian-plan-content-preview::-webkit-scrollbar {
+.aidian-plan-content-preview::-webkit-scrollbar {
   width: 4px;
 }
 
-.claudian-plan-content-preview::-webkit-scrollbar-thumb {
+.aidian-plan-content-preview::-webkit-scrollbar-thumb {
   background: var(--background-modifier-border);
   border-radius: 2px;
 }
 
-.claudian-plan-content-preview p {
+.aidian-plan-content-preview p {
   margin: 0 0 6px;
 }
 
-.claudian-plan-content-preview p:last-child {
+.aidian-plan-content-preview p:last-child {
   margin-bottom: 0;
 }
 
-.claudian-plan-content-preview h1,
-.claudian-plan-content-preview h2,
-.claudian-plan-content-preview h3,
-.claudian-plan-content-preview h4 {
+.aidian-plan-content-preview h1,
+.aidian-plan-content-preview h2,
+.aidian-plan-content-preview h3,
+.aidian-plan-content-preview h4 {
   margin: 8px 0 4px;
   font-size: 13px;
 }
 
-.claudian-plan-content-preview ul,
-.claudian-plan-content-preview ol {
+.aidian-plan-content-preview ul,
+.aidian-plan-content-preview ol {
   margin: 2px 0 6px;
   padding-left: 18px;
 }
 
-.claudian-plan-content-preview li {
+.aidian-plan-content-preview li {
   margin: 0;
 }
 
-.claudian-plan-content-preview code {
+.aidian-plan-content-preview code {
   font-size: 11px;
 }
 
-.claudian-plan-content-text {
+.aidian-plan-content-text {
   white-space: pre-wrap;
   word-break: break-word;
   font-family: var(--font-monospace);
@@ -4406,32 +4406,32 @@ code .claudian-file-link:hover {
 
 /* ── Permissions list ──────────────────────────── */
 
-.claudian-plan-permissions {
+.aidian-plan-permissions {
   padding: 4px 10px 8px;
 }
 
-.claudian-plan-permissions-label {
+.aidian-plan-permissions-label {
   color: var(--text-muted);
   font-weight: 600;
   margin-bottom: 4px;
 }
 
-.claudian-plan-permissions-list {
+.aidian-plan-permissions-list {
   margin: 0;
   padding-left: 18px;
   color: var(--text-normal);
   line-height: 1.5;
 }
 
-.claudian-plan-permissions-list li {
+.aidian-plan-permissions-list li {
   margin: 0;
 }
 
 /* ── Plan mode input border ──────────────────────── */
 
-.claudian-input-wrapper.claudian-input-plan-mode {
-  --claudian-input-wrapper-border-color: rgb(92, 148, 140);
-  --claudian-input-wrapper-box-shadow: 0 0 0 1px rgb(92, 148, 140);
+.aidian-input-wrapper.aidian-input-plan-mode {
+  --aidian-input-wrapper-border-color: rgb(92, 148, 140);
+  --aidian-input-wrapper-box-shadow: 0 0 0 1px rgb(92, 148, 140);
 }
 
 
@@ -4441,22 +4441,22 @@ code .claudian-file-link:hover {
 /* Instruction Mode */
 
 /* Instruction Confirm Modal */
-.claudian-instruction-modal {
+.aidian-instruction-modal {
   max-width: 500px;
 }
 
-.claudian-instruction-section {
+.aidian-instruction-section {
   margin-bottom: 16px;
 }
 
-.claudian-instruction-label {
+.aidian-instruction-label {
   font-size: 12px;
   font-weight: 500;
   color: var(--text-muted);
   margin-bottom: 6px;
 }
 
-.claudian-instruction-original {
+.aidian-instruction-original {
   padding: 10px 12px;
   background: var(--background-secondary);
   border-radius: 6px;
@@ -4466,7 +4466,7 @@ code .claudian-file-link:hover {
   white-space: pre-wrap;
 }
 
-.claudian-instruction-refined {
+.aidian-instruction-refined {
   padding: 12px;
   background: var(--background-primary-alt);
   border: 1px solid var(--background-modifier-border);
@@ -4477,7 +4477,7 @@ code .claudian-file-link:hover {
   white-space: pre-wrap;
 }
 
-.claudian-instruction-clarification {
+.aidian-instruction-clarification {
   padding: 12px;
   background: var(--background-primary-alt);
   border: 1px solid var(--background-modifier-border);
@@ -4488,11 +4488,11 @@ code .claudian-file-link:hover {
   white-space: pre-wrap;
 }
 
-.claudian-instruction-edit-container {
+.aidian-instruction-edit-container {
   margin-top: 6px;
 }
 
-.claudian-instruction-edit-textarea {
+.aidian-instruction-edit-textarea {
   width: 100%;
   padding: 10px 12px;
   font-size: 14px;
@@ -4505,12 +4505,12 @@ code .claudian-file-link:hover {
   min-height: 80px;
 }
 
-.claudian-instruction-edit-textarea:focus {
+.aidian-instruction-edit-textarea:focus {
   outline: none;
   border-color: var(--interactive-accent);
 }
 
-.claudian-instruction-response-textarea {
+.aidian-instruction-response-textarea {
   width: 100%;
   padding: 10px 12px;
   font-size: 14px;
@@ -4523,19 +4523,19 @@ code .claudian-file-link:hover {
   min-height: 60px;
 }
 
-.claudian-instruction-response-textarea:focus {
+.aidian-instruction-response-textarea:focus {
   outline: none;
   border-color: var(--interactive-accent);
 }
 
-.claudian-instruction-buttons {
+.aidian-instruction-buttons {
   display: flex;
   gap: 8px;
   justify-content: flex-end;
   margin-top: 16px;
 }
 
-.claudian-instruction-btn {
+.aidian-instruction-btn {
   padding: 8px 16px;
   font-size: 13px;
   border: none;
@@ -4544,35 +4544,35 @@ code .claudian-file-link:hover {
   font-weight: 500;
 }
 
-.claudian-instruction-reject-btn {
+.aidian-instruction-reject-btn {
   background: var(--background-modifier-border);
   color: var(--text-normal);
 }
 
-.claudian-instruction-reject-btn:hover {
+.aidian-instruction-reject-btn:hover {
   background: var(--background-modifier-border-hover);
 }
 
-.claudian-instruction-edit-btn {
+.aidian-instruction-edit-btn {
   background: var(--background-modifier-border);
   color: var(--text-normal);
 }
 
-.claudian-instruction-edit-btn:hover {
+.aidian-instruction-edit-btn:hover {
   background: var(--background-modifier-border-hover);
 }
 
-.claudian-instruction-accept-btn {
+.aidian-instruction-accept-btn {
   background: var(--interactive-accent);
   color: var(--text-on-accent);
 }
 
-.claudian-instruction-accept-btn:hover {
+.aidian-instruction-accept-btn:hover {
   opacity: 0.9;
 }
 
 /* Instruction loading state */
-.claudian-instruction-loading {
+.aidian-instruction-loading {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4581,22 +4581,22 @@ code .claudian-file-link:hover {
   color: var(--text-muted);
 }
 
-.claudian-instruction-spinner {
+.aidian-instruction-spinner {
   width: 18px;
   height: 18px;
   border: 2px solid var(--background-modifier-border);
   border-top-color: var(--interactive-accent);
   border-radius: 50%;
-  animation: claudian-spin 0.8s linear infinite;
+  animation: aidian-spin 0.8s linear infinite;
 }
 
 /* Instruction modal content sections */
-.claudian-instruction-content-section {
+.aidian-instruction-content-section {
   margin: 8px 0;
 }
 
-.claudian-instruction-clarification-section,
-.claudian-instruction-confirmation-section {
+.aidian-instruction-clarification-section,
+.aidian-instruction-confirmation-section {
   margin-top: 8px;
 }
 
@@ -4605,41 +4605,41 @@ code .claudian-file-link:hover {
    modals/mcp-modal.css
    ============================================ */
 /* MCP Server Modal */
-.claudian-mcp-modal .modal-content {
+.aidian-mcp-modal .modal-content {
   width: 480px;
   max-width: 90vw;
 }
 
-.claudian-mcp-type-fields {
+.aidian-mcp-type-fields {
   margin: 12px 0;
   padding: 12px;
   background: var(--background-secondary);
   border-radius: 6px;
 }
 
-.claudian-mcp-type-fields .setting-item {
+.aidian-mcp-type-fields .setting-item {
   padding: 8px 0;
   border-top: none;
 }
 
-.claudian-mcp-type-fields .setting-item:first-child {
+.aidian-mcp-type-fields .setting-item:first-child {
   padding-top: 0;
 }
 
-.claudian-mcp-cmd-setting,
-.claudian-mcp-env-setting {
+.aidian-mcp-cmd-setting,
+.aidian-mcp-env-setting {
   flex-direction: column;
   align-items: flex-start;
 }
 
-.claudian-mcp-cmd-setting .setting-item-control,
-.claudian-mcp-env-setting .setting-item-control {
+.aidian-mcp-cmd-setting .setting-item-control,
+.aidian-mcp-env-setting .setting-item-control {
   width: 100%;
   margin-top: 8px;
 }
 
-.claudian-mcp-cmd-textarea,
-.claudian-mcp-env-textarea {
+.aidian-mcp-cmd-textarea,
+.aidian-mcp-env-textarea {
   width: 100%;
   min-height: 50px;
   resize: vertical;
@@ -4651,13 +4651,13 @@ code .claudian-file-link:hover {
   background: var(--background-primary);
 }
 
-.claudian-mcp-cmd-textarea:focus,
-.claudian-mcp-env-textarea:focus {
+.aidian-mcp-cmd-textarea:focus,
+.aidian-mcp-env-textarea:focus {
   border-color: var(--interactive-accent);
   outline: none;
 }
 
-.claudian-mcp-buttons {
+.aidian-mcp-buttons {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
@@ -4665,21 +4665,21 @@ code .claudian-file-link:hover {
 }
 
 /* MCP Test Modal */
-.claudian-mcp-test-modal {
+.aidian-mcp-test-modal {
   width: 500px;
   max-width: 90vw;
 }
 
-.claudian-mcp-test-modal .modal-content {
+.aidian-mcp-test-modal .modal-content {
   padding: 0 20px 20px 20px;
 }
 
-.claudian-mcp-test-modal .modal-title {
+.aidian-mcp-test-modal .modal-title {
   padding: 20px 20px 12px 20px;
   margin: 0 -20px;
 }
 
-.claudian-mcp-test-loading {
+.aidian-mcp-test-loading {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4688,18 +4688,18 @@ code .claudian-file-link:hover {
   color: var(--text-muted);
 }
 
-.claudian-mcp-test-spinner {
+.aidian-mcp-test-spinner {
   width: 20px;
   height: 20px;
-  animation: claudian-spin 1s linear infinite;
+  animation: aidian-spin 1s linear infinite;
 }
 
-.claudian-mcp-test-spinner svg {
+.aidian-mcp-test-spinner svg {
   width: 100%;
   height: 100%;
 }
 
-.claudian-mcp-test-status {
+.aidian-mcp-test-status {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -4709,29 +4709,29 @@ code .claudian-file-link:hover {
   margin-bottom: 12px;
 }
 
-.claudian-mcp-test-icon {
+.aidian-mcp-test-icon {
   display: flex;
   align-items: center;
 }
 
-.claudian-mcp-test-icon svg {
+.aidian-mcp-test-icon svg {
   width: 20px;
   height: 20px;
 }
 
-.claudian-mcp-test-icon.success {
+.aidian-mcp-test-icon.success {
   color: var(--color-green);
 }
 
-.claudian-mcp-test-icon.error {
+.aidian-mcp-test-icon.error {
   color: var(--text-error);
 }
 
-.claudian-mcp-test-text {
+.aidian-mcp-test-text {
   font-weight: 500;
 }
 
-.claudian-mcp-test-error {
+.aidian-mcp-test-error {
   padding: 10px 12px;
   background: rgba(var(--color-red-rgb), 0.1);
   border: 1px solid var(--text-error);
@@ -4741,18 +4741,18 @@ code .claudian-file-link:hover {
   margin-bottom: 12px;
 }
 
-.claudian-mcp-test-tools {
+.aidian-mcp-test-tools {
   margin-bottom: 16px;
 }
 
-.claudian-mcp-test-tools-header {
+.aidian-mcp-test-tools-header {
   font-weight: 600;
   font-size: 13px;
   margin-bottom: 8px;
   color: var(--text-muted);
 }
 
-.claudian-mcp-test-tools-list {
+.aidian-mcp-test-tools-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -4760,67 +4760,67 @@ code .claudian-file-link:hover {
   overflow-y: auto;
 }
 
-.claudian-mcp-test-tool {
+.aidian-mcp-test-tool {
   padding: 10px 12px;
   background: var(--background-secondary);
   border-radius: 6px;
 }
 
-.claudian-mcp-test-tool-header {
+.aidian-mcp-test-tool-header {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.claudian-mcp-test-tool-icon {
+.aidian-mcp-test-tool-icon {
   display: flex;
   align-items: center;
   color: var(--text-muted);
 }
 
-.claudian-mcp-test-tool-icon svg {
+.aidian-mcp-test-tool-icon svg {
   width: 14px;
   height: 14px;
 }
 
-.claudian-mcp-test-tool-name {
+.aidian-mcp-test-tool-name {
   font-weight: 500;
   font-size: 13px;
 }
 
-.claudian-mcp-test-tool-toggle {
+.aidian-mcp-test-tool-toggle {
   margin-left: auto;
 }
 
-.claudian-mcp-test-tool-toggle .checkbox-container {
+.aidian-mcp-test-tool-toggle .checkbox-container {
   display: flex;
   align-items: center;
 }
 
-.claudian-mcp-test-tool-disabled {
+.aidian-mcp-test-tool-disabled {
   opacity: 0.75;
 }
 
-.claudian-mcp-test-tool-disabled .claudian-mcp-test-tool-name {
+.aidian-mcp-test-tool-disabled .aidian-mcp-test-tool-name {
   text-decoration: line-through;
   color: var(--text-muted);
 }
 
-.claudian-mcp-toggle-all-btn {
+.aidian-mcp-toggle-all-btn {
   margin-right: 8px;
 }
 
-.claudian-mcp-toggle-all-btn.is-destructive {
+.aidian-mcp-toggle-all-btn.is-destructive {
   background: rgba(var(--color-red-rgb), 0.1);
   border-color: rgba(var(--color-red-rgb), 0.3);
   color: var(--text-error);
 }
 
-.claudian-mcp-toggle-all-btn.is-destructive:hover {
+.aidian-mcp-toggle-all-btn.is-destructive:hover {
   background: rgba(var(--color-red-rgb), 0.2);
 }
 
-.claudian-mcp-test-tool-desc {
+.aidian-mcp-test-tool-desc {
   font-size: 12px;
   color: var(--text-muted);
   margin-top: 4px;
@@ -4830,7 +4830,7 @@ code .claudian-file-link:hover {
   overflow: hidden;
 }
 
-.claudian-mcp-test-no-tools {
+.aidian-mcp-test-no-tools {
   padding: 16px;
   text-align: center;
   color: var(--text-muted);
@@ -4840,7 +4840,7 @@ code .claudian-file-link:hover {
   margin-bottom: 16px;
 }
 
-.claudian-mcp-test-buttons {
+.aidian-mcp-test-buttons {
   display: flex;
   justify-content: center;
   margin-top: 16px;
@@ -4851,16 +4851,16 @@ code .claudian-file-link:hover {
    modals/fork-target.css
    ============================================ */
 /* Fork Target Modal */
-.claudian-fork-target-modal {
+.aidian-fork-target-modal {
   max-width: 340px;
 }
 
-.claudian-fork-target-list {
+.aidian-fork-target-list {
   display: flex;
   flex-direction: column;
 }
 
-.claudian-fork-target-option {
+.aidian-fork-target-option {
   padding: 10px 12px;
   border-radius: 6px;
   cursor: pointer;
@@ -4868,7 +4868,7 @@ code .claudian-file-link:hover {
   font-size: 14px;
 }
 
-.claudian-fork-target-option:hover {
+.aidian-fork-target-option:hover {
   background: var(--background-modifier-hover);
 }
 
@@ -4878,14 +4878,14 @@ code .claudian-file-link:hover {
    ============================================ */
 /* ── Settings tab navigation ── */
 
-.claudian-settings-tabs {
+.aidian-settings-tabs {
   display: flex;
   gap: 2px;
   border-bottom: 1px solid var(--background-modifier-border);
   margin-bottom: 16px;
 }
 
-.claudian-settings-tab {
+.aidian-settings-tab {
   padding: 8px 16px;
   border: none;
   background: transparent;
@@ -4898,25 +4898,25 @@ code .claudian-file-link:hover {
   margin-bottom: -1px;
 }
 
-.claudian-settings-tab:hover {
+.aidian-settings-tab:hover {
   color: var(--text-normal);
 }
 
-.claudian-settings-tab--active {
+.aidian-settings-tab--active {
   color: var(--text-normal);
   border-bottom-color: var(--interactive-accent);
 }
 
-.claudian-settings-tab-content {
+.aidian-settings-tab-content {
   display: none;
 }
 
-.claudian-settings-tab-content--active {
+.aidian-settings-tab-content--active {
   display: block;
 }
 
 /* Codex placeholder */
-.claudian-settings-codex-placeholder {
+.aidian-settings-codex-placeholder {
   padding: 40px 20px;
   text-align: center;
   color: var(--text-muted);
@@ -4924,39 +4924,39 @@ code .claudian-file-link:hover {
 }
 
 /* Settings page - remove separator lines from setting items */
-.claudian-settings .setting-item {
+.aidian-settings .setting-item {
   border-top: none;
 }
 
 /* Settings section headings (via setHeading()) */
-.claudian-settings .setting-item-heading {
+.aidian-settings .setting-item-heading {
   padding-top: 18px;
   margin-top: 12px;
   border-top: 1px solid var(--background-modifier-border);
 }
 
-.claudian-settings .setting-item-heading:first-child {
+.aidian-settings .setting-item-heading:first-child {
   padding-top: 0;
   margin-top: 0;
   border-top: none;
 }
 
-.claudian-settings .setting-item-heading .setting-item-name {
+.aidian-settings .setting-item-heading .setting-item-name {
   font-size: var(--font-ui-medium);
   font-weight: var(--font-semibold);
   color: var(--text-normal);
 }
 
 /* Custom section descriptions - align with items */
-.claudian-sp-settings-desc,
-.claudian-mcp-settings-desc,
-.claudian-plugin-settings-desc,
-.claudian-approved-desc {
+.aidian-sp-settings-desc,
+.aidian-mcp-settings-desc,
+.aidian-plugin-settings-desc,
+.aidian-approved-desc {
   padding: 0 12px;
 }
 
 /* Unified icon action buttons for settings */
-.claudian-settings-action-btn {
+.aidian-settings-action-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4971,51 +4971,51 @@ code .claudian-file-link:hover {
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.claudian-settings-action-btn:hover {
+.aidian-settings-action-btn:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.claudian-settings-action-btn svg {
+.aidian-settings-action-btn svg {
   width: 14px;
   height: 14px;
 }
 
-.claudian-settings-delete-btn:hover {
+.aidian-settings-delete-btn:hover {
   color: var(--text-error);
 }
 
-.claudian-setting-validation {
+.aidian-setting-validation {
   font-size: var(--font-ui-smaller);
   margin-top: -0.5em;
   margin-bottom: 0.5em;
 }
 
-.claudian-setting-validation-error {
+.aidian-setting-validation-error {
   color: var(--text-error);
 }
 
-.claudian-setting-validation-warning {
+.aidian-setting-validation-warning {
   color: var(--text-warning);
 }
 
-.claudian-settings-cli-path-input {
+.aidian-settings-cli-path-input {
   width: 100%;
 }
 
-.claudian-settings-cli-path-input.claudian-input-error {
+.aidian-settings-cli-path-input.aidian-input-error {
   border-color: var(--text-error);
 }
 
 /* Hotkey grid - 3 columns */
-.claudian-hotkey-grid {
+.aidian-hotkey-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 4px 12px;
   padding: 4px 0;
 }
 
-.claudian-hotkey-item {
+.aidian-hotkey-item {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -5024,17 +5024,17 @@ code .claudian-file-link:hover {
   border-radius: 6px;
 }
 
-.claudian-hotkey-item:hover {
+.aidian-hotkey-item:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-hotkey-name {
+.aidian-hotkey-name {
   flex: 1;
   color: var(--text-normal);
   font-size: var(--font-ui-small);
 }
 
-.claudian-hotkey-badge {
+.aidian-hotkey-badge {
   color: var(--text-muted);
   font-size: var(--font-ui-smaller);
   background: var(--background-modifier-hover);
@@ -5044,13 +5044,13 @@ code .claudian-file-link:hover {
 }
 
 /* Media folder input width */
-.claudian-settings-media-input {
+.aidian-settings-media-input {
   width: 200px;
 }
 
 /* ── Shared settings panel layout (used by slash-settings + agent-settings) ── */
 
-.claudian-sp-header {
+.aidian-sp-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -5058,18 +5058,18 @@ code .claudian-file-link:hover {
   padding: 0 12px;
 }
 
-.claudian-sp-label {
+.aidian-sp-label {
   font-size: var(--font-ui-small);
   color: var(--text-muted);
   font-weight: var(--font-medium);
 }
 
-.claudian-sp-header-actions {
+.aidian-sp-header-actions {
   display: flex;
   gap: 4px;
 }
 
-.claudian-sp-empty-state {
+.aidian-sp-empty-state {
   padding: 20px;
   text-align: center;
   color: var(--text-muted);
@@ -5078,14 +5078,14 @@ code .claudian-file-link:hover {
   margin-top: 8px;
 }
 
-.claudian-sp-list {
+.aidian-sp-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin-top: 8px;
 }
 
-.claudian-sp-item {
+.aidian-sp-item {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -5094,48 +5094,48 @@ code .claudian-file-link:hover {
   border-radius: 6px;
 }
 
-.claudian-sp-item:hover {
+.aidian-sp-item:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-sp-info {
+.aidian-sp-info {
   flex: 1;
   min-width: 0;
 }
 
-.claudian-sp-item-header {
+.aidian-sp-item-header {
   display: flex;
   align-items: baseline;
   gap: 8px;
 }
 
-.claudian-sp-item-name {
+.aidian-sp-item-name {
   font-weight: 600;
   font-family: var(--font-monospace);
   color: var(--text-normal);
 }
 
-.claudian-sp-item-desc {
+.aidian-sp-item-desc {
   font-size: 13px;
   color: var(--text-muted);
   margin-top: 2px;
 }
 
-.claudian-sp-item-actions {
+.aidian-sp-item-actions {
   display: flex;
   gap: 4px;
   margin-left: 16px;
   flex-shrink: 0;
 }
 
-.claudian-sp-advanced-section {
+.aidian-sp-advanced-section {
   border: 1px solid var(--background-modifier-border);
   border-radius: 6px;
   padding: 0 12px;
   margin: 8px 0;
 }
 
-.claudian-sp-advanced-summary {
+.aidian-sp-advanced-summary {
   cursor: pointer;
   padding: 8px 0;
   font-size: var(--font-ui-small);
@@ -5143,16 +5143,16 @@ code .claudian-file-link:hover {
   font-weight: var(--font-medium);
 }
 
-.claudian-sp-advanced-section[open] .claudian-sp-advanced-summary {
+.aidian-sp-advanced-section[open] .aidian-sp-advanced-summary {
   margin-bottom: 4px;
 }
 
-.claudian-sp-modal .modal-content {
+.aidian-sp-modal .modal-content {
   max-width: 600px;
   width: auto;
 }
 
-.claudian-sp-content-area {
+.aidian-sp-content-area {
   width: 100%;
   font-family: var(--font-monospace);
   font-size: 13px;
@@ -5165,12 +5165,12 @@ code .claudian-file-link:hover {
   margin-top: 8px;
 }
 
-.claudian-sp-content-area:focus {
+.aidian-sp-content-area:focus {
   outline: none;
   border-color: var(--interactive-accent);
 }
 
-.claudian-sp-modal-buttons {
+.aidian-sp-modal-buttons {
   display: flex;
   gap: 8px;
   margin-top: 16px;
@@ -5182,11 +5182,11 @@ code .claudian-file-link:hover {
    settings/env-snippets.css
    ============================================ */
 /* Context Limits Styles */
-.claudian-context-limits-container {
+.aidian-context-limits-container {
   margin-top: 16px;
 }
 
-.claudian-context-limits-header {
+.aidian-context-limits-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -5195,27 +5195,27 @@ code .claudian-file-link:hover {
   padding: 0 12px;
 }
 
-.claudian-context-limits-label {
+.aidian-context-limits-label {
   font-size: var(--font-ui-small);
   color: var(--text-muted);
   font-weight: var(--font-medium);
 }
 
-.claudian-context-limits-desc {
+.aidian-context-limits-desc {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
   padding: 0 12px;
   margin-bottom: 8px;
 }
 
-.claudian-context-limits-list {
+.aidian-context-limits-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin-top: 8px;
 }
 
-.claudian-context-limits-item {
+.aidian-context-limits-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -5225,11 +5225,11 @@ code .claudian-file-link:hover {
   transition: background-color 0.2s;
 }
 
-.claudian-context-limits-item:hover {
+.aidian-context-limits-item:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-context-limits-model {
+.aidian-context-limits-model {
   font-family: var(--font-monospace);
   font-size: var(--font-ui-small);
   color: var(--text-normal);
@@ -5238,7 +5238,7 @@ code .claudian-file-link:hover {
   word-break: break-all;
 }
 
-.claudian-context-limits-input-wrapper {
+.aidian-context-limits-input-wrapper {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -5246,7 +5246,7 @@ code .claudian-file-link:hover {
   flex-shrink: 0;
 }
 
-.claudian-context-alias-input {
+.aidian-context-alias-input {
   width: 180px;
   padding: 4px 8px;
   font-size: var(--font-ui-small);
@@ -5256,12 +5256,12 @@ code .claudian-file-link:hover {
   color: var(--text-normal);
 }
 
-.claudian-context-alias-input:focus {
+.aidian-context-alias-input:focus {
   border-color: var(--interactive-accent);
   outline: none;
 }
 
-.claudian-context-limits-input {
+.aidian-context-limits-input {
   width: 80px;
   padding: 4px 8px;
   font-size: var(--font-ui-small);
@@ -5271,27 +5271,27 @@ code .claudian-file-link:hover {
   color: var(--text-normal);
 }
 
-.claudian-context-limits-input:focus {
+.aidian-context-limits-input:focus {
   border-color: var(--interactive-accent);
   outline: none;
 }
 
-.claudian-context-limits-input.claudian-input-error {
+.aidian-context-limits-input.aidian-input-error {
   border-color: var(--text-error);
 }
 
-.claudian-context-limit-validation {
+.aidian-context-limit-validation {
   font-size: var(--font-ui-smaller);
   color: var(--text-error);
   margin-left: 4px;
 }
 
 /* Environment Snippets Styles */
-.claudian-env-snippets-container {
+.aidian-env-snippets-container {
   margin-top: 16px;
 }
 
-.claudian-snippet-header {
+.aidian-snippet-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -5300,13 +5300,13 @@ code .claudian-file-link:hover {
   padding: 0 12px;
 }
 
-.claudian-snippet-label {
+.aidian-snippet-label {
   font-size: var(--font-ui-small);
   color: var(--text-muted);
   font-weight: var(--font-medium);
 }
 
-.claudian-save-env-btn {
+.aidian-save-env-btn {
   padding: 6px 16px;
   font-size: 13px;
   background: var(--interactive-accent);
@@ -5317,11 +5317,11 @@ code .claudian-file-link:hover {
   transition: opacity 0.2s;
 }
 
-.claudian-save-env-btn:hover {
+.aidian-save-env-btn:hover {
   opacity: 0.9;
 }
 
-.claudian-snippet-empty {
+.aidian-snippet-empty {
   padding: 20px;
   text-align: center;
   color: var(--text-muted);
@@ -5330,14 +5330,14 @@ code .claudian-file-link:hover {
   margin-top: 8px;
 }
 
-.claudian-snippet-list {
+.aidian-snippet-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin-top: 8px;
 }
 
-.claudian-snippet-item {
+.aidian-snippet-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -5347,34 +5347,34 @@ code .claudian-file-link:hover {
   transition: background-color 0.2s;
 }
 
-.claudian-snippet-item:hover {
+.aidian-snippet-item:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-snippet-info {
+.aidian-snippet-info {
   flex: 1;
   min-width: 0;
 }
 
-.claudian-snippet-name {
+.aidian-snippet-name {
   font-weight: 600;
   margin-bottom: 4px;
   word-break: break-word;
 }
 
-.claudian-snippet-description {
+.aidian-snippet-description {
   font-size: 13px;
   color: var(--text-muted);
 }
 
-.claudian-snippet-actions {
+.aidian-snippet-actions {
   display: flex;
   gap: 4px;
   margin-left: 16px;
   flex-shrink: 0;
 }
 
-.claudian-restore-snippet-btn {
+.aidian-restore-snippet-btn {
   padding: 4px 12px;
   font-size: 12px;
   background: var(--interactive-accent);
@@ -5384,11 +5384,11 @@ code .claudian-file-link:hover {
   cursor: pointer;
 }
 
-.claudian-restore-snippet-btn:hover {
+.aidian-restore-snippet-btn:hover {
   opacity: 0.9;
 }
 
-.claudian-edit-snippet-btn {
+.aidian-edit-snippet-btn {
   padding: 4px 12px;
   font-size: 12px;
   background: var(--background-modifier-border);
@@ -5398,11 +5398,11 @@ code .claudian-file-link:hover {
   cursor: pointer;
 }
 
-.claudian-edit-snippet-btn:hover {
+.aidian-edit-snippet-btn:hover {
   background: var(--background-modifier-border-hover);
 }
 
-.claudian-delete-snippet-btn {
+.aidian-delete-snippet-btn {
   padding: 4px 12px;
   font-size: 12px;
   background: var(--background-modifier-error);
@@ -5412,46 +5412,46 @@ code .claudian-file-link:hover {
   cursor: pointer;
 }
 
-.claudian-delete-snippet-btn:hover {
+.aidian-delete-snippet-btn:hover {
   opacity: 0.9;
 }
 
 /* Env Snippet Modal */
-.claudian-env-snippet-modal .modal-content {
+.aidian-env-snippet-modal .modal-content {
   max-width: 550px;
   width: 550px;
   padding: 16px;
 }
 
-.claudian-env-snippet-modal h2 {
+.aidian-env-snippet-modal h2 {
   margin: 0 0 16px 0;
 }
 
-.claudian-env-snippet-modal .setting-item {
+.aidian-env-snippet-modal .setting-item {
   padding: 8px 0;
   margin: 0;
 }
 
-.claudian-env-snippet-modal .setting-item-info {
+.aidian-env-snippet-modal .setting-item-info {
   margin-bottom: 4px;
 }
 
 /* Full-width env vars textarea setting */
-.claudian-env-snippet-setting {
+.aidian-env-snippet-setting {
   flex-direction: column;
   align-items: flex-start;
 }
 
-.claudian-env-snippet-setting .setting-item-info {
+.aidian-env-snippet-setting .setting-item-info {
   width: 100%;
   margin-bottom: 8px;
 }
 
-.claudian-env-snippet-control {
+.aidian-env-snippet-control {
   width: 100%;
 }
 
-.claudian-env-snippet-control textarea {
+.aidian-env-snippet-control textarea {
   width: 100%;
   min-width: 100%;
   font-family: var(--font-monospace);
@@ -5459,14 +5459,14 @@ code .claudian-file-link:hover {
   resize: vertical;
 }
 
-.claudian-snippet-preview {
+.aidian-snippet-preview {
   margin: 8px 0;
   padding: 6px;
   background: var(--background-secondary);
   border-radius: 6px;
 }
 
-.claudian-env-preview {
+.aidian-env-preview {
   background: var(--background-primary);
   padding: 6px;
   border-radius: 4px;
@@ -5481,15 +5481,15 @@ code .claudian-file-link:hover {
   margin: 0;
 }
 
-.claudian-snippet-buttons {
+.aidian-snippet-buttons {
   display: flex;
   gap: 8px;
   margin-top: 16px;
   justify-content: flex-end;
 }
 
-.claudian-cancel-btn,
-.claudian-save-btn {
+.aidian-cancel-btn,
+.aidian-save-btn {
   padding: 6px 16px;
   font-size: 13px;
   border: none;
@@ -5497,54 +5497,54 @@ code .claudian-file-link:hover {
   cursor: pointer;
 }
 
-.claudian-cancel-btn {
+.aidian-cancel-btn {
   background: var(--background-modifier-border);
   color: var(--text-normal);
 }
 
-.claudian-cancel-btn:hover {
+.aidian-cancel-btn:hover {
   background: var(--background-modifier-border-hover);
 }
 
-.claudian-save-btn {
+.aidian-save-btn {
   background: var(--interactive-accent);
   color: var(--text-on-accent);
 }
 
-.claudian-save-btn:hover {
+.aidian-save-btn:hover {
   opacity: 0.9;
 }
 
 /* Context limits section in snippet modal */
-.claudian-snippet-context-limits {
+.aidian-snippet-context-limits {
   margin-top: 1em;
 }
 
-.claudian-snippet-context-limits .setting-item-description {
+.aidian-snippet-context-limits .setting-item-description {
   margin-bottom: 0.5em;
 }
 
-.claudian-snippet-limit-row {
+.aidian-snippet-limit-row {
   display: flex;
   align-items: center;
   gap: 0.5em;
   margin-bottom: 0.5em;
 }
 
-.claudian-snippet-limit-model {
+.aidian-snippet-limit-model {
   font-family: var(--font-monospace);
   font-size: var(--font-ui-small);
 }
 
-.claudian-snippet-limit-spacer {
+.aidian-snippet-limit-spacer {
   flex: 1;
 }
 
-.claudian-snippet-limit-input {
+.aidian-snippet-limit-input {
   width: 80px;
 }
 
-.claudian-snippet-alias-input {
+.aidian-snippet-alias-input {
   width: 160px;
 }
 
@@ -5552,15 +5552,15 @@ code .claudian-file-link:hover {
 /* ============================================
    settings/slash-settings.css
    ============================================ */
-/* Slash Command Settings — unique rules only (shared layout in base.css .claudian-sp-*) */
+/* Slash Command Settings — unique rules only (shared layout in base.css .aidian-sp-*) */
 
-.claudian-slash-item-hint {
+.aidian-slash-item-hint {
   font-size: 12px;
   color: var(--text-muted);
   font-style: italic;
 }
 
-.claudian-slash-item-badge {
+.aidian-slash-item-badge {
   font-size: 10px;
   padding: 2px 6px;
   background: var(--background-modifier-border);
@@ -5574,15 +5574,15 @@ code .claudian-file-link:hover {
    settings/mcp-settings.css
    ============================================ */
 /* MCP Server Settings */
-.claudian-mcp-settings-desc {
+.aidian-mcp-settings-desc {
   margin-bottom: 12px;
 }
 
-.claudian-mcp-container {
+.aidian-mcp-container {
   margin-top: 8px;
 }
 
-.claudian-mcp-header {
+.aidian-mcp-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -5590,17 +5590,17 @@ code .claudian-file-link:hover {
   padding: 0 12px;
 }
 
-.claudian-mcp-label {
+.aidian-mcp-label {
   font-size: var(--font-ui-small);
   color: var(--text-muted);
   font-weight: var(--font-medium);
 }
 
-.claudian-mcp-add-container {
+.aidian-mcp-add-container {
   position: relative;
 }
 
-.claudian-add-mcp-btn {
+.aidian-add-mcp-btn {
   padding: 4px 12px;
   border-radius: 4px;
   background: var(--interactive-accent);
@@ -5610,11 +5610,11 @@ code .claudian-file-link:hover {
   border: none;
 }
 
-.claudian-add-mcp-btn:hover {
+.aidian-add-mcp-btn:hover {
   background: var(--interactive-accent-hover);
 }
 
-.claudian-mcp-add-dropdown {
+.aidian-mcp-add-dropdown {
   display: none;
   position: absolute;
   top: 100%;
@@ -5629,11 +5629,11 @@ code .claudian-file-link:hover {
   overflow: hidden;
 }
 
-.claudian-mcp-add-dropdown.is-visible {
+.aidian-mcp-add-dropdown.is-visible {
   display: block;
 }
 
-.claudian-mcp-add-option {
+.aidian-mcp-add-option {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -5643,22 +5643,22 @@ code .claudian-file-link:hover {
   color: var(--text-normal);
 }
 
-.claudian-mcp-add-option:hover {
+.aidian-mcp-add-option:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-mcp-add-option-icon {
+.aidian-mcp-add-option-icon {
   display: flex;
   align-items: center;
   color: var(--text-muted);
 }
 
-.claudian-mcp-add-option-icon svg {
+.aidian-mcp-add-option-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-mcp-empty {
+.aidian-mcp-empty {
   padding: 16px;
   text-align: center;
   color: var(--text-muted);
@@ -5667,13 +5667,13 @@ code .claudian-file-link:hover {
   border-radius: 6px;
 }
 
-.claudian-mcp-list {
+.aidian-mcp-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.claudian-mcp-item {
+.aidian-mcp-item {
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -5683,15 +5683,15 @@ code .claudian-file-link:hover {
   transition: background 0.15s ease;
 }
 
-.claudian-mcp-item:hover {
+.aidian-mcp-item:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-mcp-item-disabled {
+.aidian-mcp-item-disabled {
   opacity: 0.6;
 }
 
-.claudian-mcp-status {
+.aidian-mcp-status {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -5699,31 +5699,31 @@ code .claudian-file-link:hover {
   flex-shrink: 0;
 }
 
-.claudian-mcp-status-enabled {
+.aidian-mcp-status-enabled {
   background: var(--color-green);
 }
 
-.claudian-mcp-status-disabled {
+.aidian-mcp-status-disabled {
   background: var(--text-muted);
 }
 
-.claudian-mcp-info {
+.aidian-mcp-info {
   flex: 1;
   min-width: 0;
 }
 
-.claudian-mcp-name-row {
+.aidian-mcp-name-row {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.claudian-mcp-name {
+.aidian-mcp-name {
   font-weight: 600;
 }
 
-.claudian-mcp-type-badge {
+.aidian-mcp-type-badge {
   font-size: 10px;
   padding: 2px 6px;
   background: var(--background-modifier-border);
@@ -5732,7 +5732,7 @@ code .claudian-file-link:hover {
   text-transform: uppercase;
 }
 
-.claudian-mcp-context-saving-badge {
+.aidian-mcp-context-saving-badge {
   font-size: 11px;
   padding: 2px 6px;
   background: var(--interactive-accent);
@@ -5741,7 +5741,7 @@ code .claudian-file-link:hover {
   font-weight: 600;
 }
 
-.claudian-mcp-preview {
+.aidian-mcp-preview {
   font-size: 12px;
   color: var(--text-muted);
   margin-top: 4px;
@@ -5750,13 +5750,13 @@ code .claudian-file-link:hover {
   white-space: nowrap;
 }
 
-.claudian-mcp-actions {
+.aidian-mcp-actions {
   display: flex;
   gap: 4px;
   flex-shrink: 0;
 }
 
-.claudian-mcp-action-btn {
+.aidian-mcp-action-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5771,17 +5771,17 @@ code .claudian-file-link:hover {
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.claudian-mcp-action-btn:hover {
+.aidian-mcp-action-btn:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.claudian-mcp-action-btn svg {
+.aidian-mcp-action-btn svg {
   width: 14px;
   height: 14px;
 }
 
-.claudian-mcp-delete-btn:hover {
+.aidian-mcp-delete-btn:hover {
   color: var(--text-error);
 }
 
@@ -5790,15 +5790,15 @@ code .claudian-file-link:hover {
    settings/plugin-settings.css
    ============================================ */
 /* Plugin Settings */
-.claudian-plugin-settings-desc {
+.aidian-plugin-settings-desc {
   margin-bottom: 12px;
 }
 
-.claudian-plugins-container {
+.aidian-plugins-container {
   margin-top: 8px;
 }
 
-.claudian-plugin-header {
+.aidian-plugin-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -5806,13 +5806,13 @@ code .claudian-file-link:hover {
   padding: 0 12px;
 }
 
-.claudian-plugin-label {
+.aidian-plugin-label {
   font-size: var(--font-ui-small);
   color: var(--text-muted);
   font-weight: var(--font-medium);
 }
 
-.claudian-plugin-empty {
+.aidian-plugin-empty {
   padding: 16px;
   text-align: center;
   color: var(--text-muted);
@@ -5821,13 +5821,13 @@ code .claudian-file-link:hover {
   border-radius: 6px;
 }
 
-.claudian-plugin-list {
+.aidian-plugin-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.claudian-plugin-section-header {
+.aidian-plugin-section-header {
   font-size: 11px;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -5835,7 +5835,7 @@ code .claudian-file-link:hover {
   font-weight: 600;
 }
 
-.claudian-plugin-item {
+.aidian-plugin-item {
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -5845,19 +5845,19 @@ code .claudian-file-link:hover {
   transition: background 0.15s ease;
 }
 
-.claudian-plugin-item:hover {
+.aidian-plugin-item:hover {
   background: var(--background-modifier-hover);
 }
 
-.claudian-plugin-item-disabled {
+.aidian-plugin-item-disabled {
   opacity: 0.6;
 }
 
-.claudian-plugin-item-error {
+.aidian-plugin-item-error {
   opacity: 0.8;
 }
 
-.claudian-plugin-status {
+.aidian-plugin-status {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -5865,35 +5865,35 @@ code .claudian-file-link:hover {
   flex-shrink: 0;
 }
 
-.claudian-plugin-status-enabled {
+.aidian-plugin-status-enabled {
   background: var(--color-green);
 }
 
-.claudian-plugin-status-disabled {
+.aidian-plugin-status-disabled {
   background: var(--text-muted);
 }
 
-.claudian-plugin-status-error {
+.aidian-plugin-status-error {
   background: var(--text-error);
 }
 
-.claudian-plugin-info {
+.aidian-plugin-info {
   flex: 1;
   min-width: 0;
 }
 
-.claudian-plugin-name-row {
+.aidian-plugin-name-row {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.claudian-plugin-name {
+.aidian-plugin-name {
   font-weight: 600;
 }
 
-.claudian-plugin-version-badge {
+.aidian-plugin-version-badge {
   font-size: 10px;
   padding: 2px 6px;
   background: var(--background-modifier-border);
@@ -5901,7 +5901,7 @@ code .claudian-file-link:hover {
   color: var(--text-muted);
 }
 
-.claudian-plugin-error-badge {
+.aidian-plugin-error-badge {
   font-size: 10px;
   padding: 2px 6px;
   background: var(--text-error);
@@ -5910,7 +5910,7 @@ code .claudian-file-link:hover {
   text-transform: uppercase;
 }
 
-.claudian-plugin-preview {
+.aidian-plugin-preview {
   font-size: 12px;
   color: var(--text-muted);
   margin-top: 4px;
@@ -5919,17 +5919,17 @@ code .claudian-file-link:hover {
   white-space: nowrap;
 }
 
-.claudian-plugin-preview-error {
+.aidian-plugin-preview-error {
   color: var(--text-error);
 }
 
-.claudian-plugin-actions {
+.aidian-plugin-actions {
   display: flex;
   gap: 4px;
   flex-shrink: 0;
 }
 
-.claudian-plugin-action-btn {
+.aidian-plugin-action-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5944,12 +5944,12 @@ code .claudian-file-link:hover {
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.claudian-plugin-action-btn:hover {
+.aidian-plugin-action-btn:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.claudian-plugin-action-btn svg {
+.aidian-plugin-action-btn svg {
   width: 14px;
   height: 14px;
 }
@@ -5958,7 +5958,7 @@ code .claudian-file-link:hover {
 /* ============================================
    settings/agent-settings.css
    ============================================ */
-/* Agent Settings — all structural rules live in base.css .claudian-sp-* */
+/* Agent Settings — all structural rules live in base.css .aidian-sp-* */
 /* This file is kept as a placeholder for future agent-specific overrides. */
 
 
@@ -5967,14 +5967,14 @@ code .claudian-file-link:hover {
    ============================================ */
 /* Provider model picker */
 
-:is(.claudian-provider-model-picker, .claudian-opencode-model-picker) {
+:is(.aidian-provider-model-picker, .aidian-opencode-model-picker) {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-top: 8px;
 }
 
-:is(.claudian-provider-model-picker-summary, .claudian-opencode-model-picker-summary) {
+:is(.aidian-provider-model-picker-summary, .aidian-opencode-model-picker-summary) {
   display: flex;
   flex-wrap: wrap;
   gap: 6px 12px;
@@ -5982,12 +5982,12 @@ code .claudian-file-link:hover {
   color: var(--text-muted);
 }
 
-:is(.claudian-provider-model-picker-summary-value, .claudian-opencode-model-picker-summary-value) {
+:is(.aidian-provider-model-picker-summary-value, .aidian-opencode-model-picker-summary-value) {
   color: var(--text-normal);
   font-weight: var(--font-medium);
 }
 
-:is(.claudian-provider-model-picker-selected, .claudian-opencode-model-picker-selected) {
+:is(.aidian-provider-model-picker-selected, .aidian-opencode-model-picker-selected) {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -5996,21 +5996,21 @@ code .claudian-file-link:hover {
   border-radius: 6px;
 }
 
-:is(.claudian-provider-model-picker-selected-header, .claudian-opencode-model-picker-selected-header) {
+:is(.aidian-provider-model-picker-selected-header, .aidian-opencode-model-picker-selected-header) {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
 }
 
-:is(.claudian-provider-model-picker-selected-label, .claudian-opencode-model-picker-selected-label) {
+:is(.aidian-provider-model-picker-selected-label, .aidian-opencode-model-picker-selected-label) {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
-:is(.claudian-provider-model-picker-selected-clear, .claudian-opencode-model-picker-selected-clear) {
+:is(.aidian-provider-model-picker-selected-clear, .aidian-opencode-model-picker-selected-clear) {
   padding: 2px 8px;
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
@@ -6020,12 +6020,12 @@ code .claudian-file-link:hover {
   cursor: pointer;
 }
 
-:is(.claudian-provider-model-picker-selected-clear, .claudian-opencode-model-picker-selected-clear):hover {
+:is(.aidian-provider-model-picker-selected-clear, .aidian-opencode-model-picker-selected-clear):hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-:is(.claudian-provider-model-picker-action, .claudian-opencode-model-picker-action) {
+:is(.aidian-provider-model-picker-action, .aidian-opencode-model-picker-action) {
   padding: 5px 10px;
   font-size: var(--font-ui-small);
   color: var(--text-muted);
@@ -6035,23 +6035,23 @@ code .claudian-file-link:hover {
   cursor: pointer;
 }
 
-:is(.claudian-provider-model-picker-action, .claudian-opencode-model-picker-action):hover:not(:disabled) {
+:is(.aidian-provider-model-picker-action, .aidian-opencode-model-picker-action):hover:not(:disabled) {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-:is(.claudian-provider-model-picker-action, .claudian-opencode-model-picker-action):disabled {
+:is(.aidian-provider-model-picker-action, .aidian-opencode-model-picker-action):disabled {
   cursor: default;
   opacity: 0.6;
 }
 
-:is(.claudian-provider-model-picker-selected-rows, .claudian-opencode-model-picker-selected-rows) {
+:is(.aidian-provider-model-picker-selected-rows, .aidian-opencode-model-picker-selected-rows) {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-:is(.claudian-provider-model-picker-selected-row, .claudian-opencode-model-picker-selected-row) {
+:is(.aidian-provider-model-picker-selected-row, .aidian-opencode-model-picker-selected-row) {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -6061,11 +6061,11 @@ code .claudian-file-link:hover {
   border-radius: 6px;
 }
 
-:is(.claudian-provider-model-picker-selected-row--unavailable, .claudian-opencode-model-picker-selected-row--unavailable) {
+:is(.aidian-provider-model-picker-selected-row--unavailable, .aidian-opencode-model-picker-selected-row--unavailable) {
   border-style: dashed;
 }
 
-:is(.claudian-provider-model-picker-selected-info, .claudian-opencode-model-picker-selected-info) {
+:is(.aidian-provider-model-picker-selected-info, .aidian-opencode-model-picker-selected-info) {
   flex: 1;
   min-width: 0;
   display: flex;
@@ -6073,7 +6073,7 @@ code .claudian-file-link:hover {
   gap: 2px;
 }
 
-:is(.claudian-provider-model-picker-selected-title, .claudian-opencode-model-picker-selected-title) {
+:is(.aidian-provider-model-picker-selected-title, .aidian-opencode-model-picker-selected-title) {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -6081,7 +6081,7 @@ code .claudian-file-link:hover {
   min-width: 0;
 }
 
-:is(.claudian-provider-model-picker-selected-badge, .claudian-opencode-model-picker-selected-badge) {
+:is(.aidian-provider-model-picker-selected-badge, .aidian-opencode-model-picker-selected-badge) {
   font-size: var(--font-ui-smaller);
   padding: 1px 6px;
   border-radius: 999px;
@@ -6091,7 +6091,7 @@ code .claudian-file-link:hover {
   letter-spacing: 0.04em;
 }
 
-:is(.claudian-provider-model-picker-selected-name, .claudian-opencode-model-picker-selected-name) {
+:is(.aidian-provider-model-picker-selected-name, .aidian-opencode-model-picker-selected-name) {
   color: var(--text-normal);
   font-weight: var(--font-medium);
   overflow: hidden;
@@ -6099,7 +6099,7 @@ code .claudian-file-link:hover {
   white-space: nowrap;
 }
 
-:is(.claudian-provider-model-picker-selected-id, .claudian-opencode-model-picker-selected-id) {
+:is(.aidian-provider-model-picker-selected-id, .aidian-opencode-model-picker-selected-id) {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
   font-family: var(--font-monospace);
@@ -6108,20 +6108,20 @@ code .claudian-file-link:hover {
   white-space: nowrap;
 }
 
-:is(.claudian-provider-model-picker-selected-unavailable, .claudian-opencode-model-picker-selected-unavailable) {
+:is(.aidian-provider-model-picker-selected-unavailable, .aidian-opencode-model-picker-selected-unavailable) {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
   font-style: italic;
 }
 
-:is(.claudian-provider-model-picker-selected-controls, .claudian-opencode-model-picker-selected-controls) {
+:is(.aidian-provider-model-picker-selected-controls, .aidian-opencode-model-picker-selected-controls) {
   display: flex;
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
 }
 
-:is(.claudian-provider-model-picker-selected-alias, .claudian-opencode-model-picker-selected-alias) {
+:is(.aidian-provider-model-picker-selected-alias, .aidian-opencode-model-picker-selected-alias) {
   width: 180px;
   padding: 4px 8px;
   border: 1px solid var(--background-modifier-border);
@@ -6131,12 +6131,12 @@ code .claudian-file-link:hover {
   font-size: var(--font-ui-small);
 }
 
-:is(.claudian-provider-model-picker-selected-alias, .claudian-opencode-model-picker-selected-alias):focus {
+:is(.aidian-provider-model-picker-selected-alias, .aidian-opencode-model-picker-selected-alias):focus {
   outline: none;
   border-color: var(--interactive-accent);
 }
 
-:is(.claudian-provider-model-picker-selected-remove, .claudian-opencode-model-picker-selected-remove) {
+:is(.aidian-provider-model-picker-selected-remove, .aidian-opencode-model-picker-selected-remove) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -6152,12 +6152,12 @@ code .claudian-file-link:hover {
   font-size: 16px;
 }
 
-:is(.claudian-provider-model-picker-selected-remove, .claudian-opencode-model-picker-selected-remove):hover {
+:is(.aidian-provider-model-picker-selected-remove, .aidian-opencode-model-picker-selected-remove):hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-:is(.claudian-provider-model-picker-catalog, .claudian-opencode-model-picker-catalog) {
+:is(.aidian-provider-model-picker-catalog, .aidian-opencode-model-picker-catalog) {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -6166,7 +6166,7 @@ code .claudian-file-link:hover {
   border-radius: 6px;
 }
 
-:is(.claudian-provider-model-picker-catalog-summary, .claudian-opencode-model-picker-catalog-summary) {
+:is(.aidian-provider-model-picker-catalog-summary, .aidian-opencode-model-picker-catalog-summary) {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -6175,11 +6175,11 @@ code .claudian-file-link:hover {
   list-style: none;
 }
 
-:is(.claudian-provider-model-picker-catalog-summary, .claudian-opencode-model-picker-catalog-summary)::-webkit-details-marker {
+:is(.aidian-provider-model-picker-catalog-summary, .aidian-opencode-model-picker-catalog-summary)::-webkit-details-marker {
   display: none;
 }
 
-:is(.claudian-provider-model-picker-catalog-caret, .claudian-opencode-model-picker-catalog-caret) {
+:is(.aidian-provider-model-picker-catalog-caret, .aidian-opencode-model-picker-catalog-caret) {
   font-size: 16px;
   color: var(--text-muted);
   transition: transform 0.12s ease;
@@ -6189,30 +6189,30 @@ code .claudian-file-link:hover {
   line-height: 1;
 }
 
-:is(.claudian-provider-model-picker-catalog, .claudian-opencode-model-picker-catalog)[open] :is(.claudian-provider-model-picker-catalog-caret, .claudian-opencode-model-picker-catalog-caret) {
+:is(.aidian-provider-model-picker-catalog, .aidian-opencode-model-picker-catalog)[open] :is(.aidian-provider-model-picker-catalog-caret, .aidian-opencode-model-picker-catalog-caret) {
   transform: rotate(90deg);
 }
 
-:is(.claudian-provider-model-picker-catalog-title, .claudian-opencode-model-picker-catalog-title) {
+:is(.aidian-provider-model-picker-catalog-title, .aidian-opencode-model-picker-catalog-title) {
   color: var(--text-normal);
   font-weight: var(--font-medium);
   font-size: var(--font-ui-small);
 }
 
-:is(.claudian-provider-model-picker-catalog-count, .claudian-opencode-model-picker-catalog-count) {
+:is(.aidian-provider-model-picker-catalog-count, .aidian-opencode-model-picker-catalog-count) {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
   margin-left: auto;
 }
 
-:is(.claudian-provider-model-picker-controls, .claudian-opencode-model-picker-controls) {
+:is(.aidian-provider-model-picker-controls, .aidian-opencode-model-picker-controls) {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
 }
 
-:is(.claudian-provider-model-picker-search, .claudian-opencode-model-picker-search) {
+:is(.aidian-provider-model-picker-search, .aidian-opencode-model-picker-search) {
   flex: 1 1 220px;
   min-width: 180px;
   padding: 6px 10px;
@@ -6223,12 +6223,12 @@ code .claudian-file-link:hover {
   font-size: var(--font-ui-small);
 }
 
-:is(.claudian-provider-model-picker-search, .claudian-opencode-model-picker-search):focus {
+:is(.aidian-provider-model-picker-search, .aidian-opencode-model-picker-search):focus {
   outline: none;
   border-color: var(--interactive-accent);
 }
 
-:is(.claudian-provider-model-picker-provider, .claudian-opencode-model-picker-provider) {
+:is(.aidian-provider-model-picker-provider, .aidian-opencode-model-picker-provider) {
   padding: 6px 10px;
   border: 1px solid var(--background-modifier-border);
   border-radius: 6px;
@@ -6237,7 +6237,7 @@ code .claudian-file-link:hover {
   font-size: var(--font-ui-small);
 }
 
-:is(.claudian-provider-model-picker-list, .claudian-opencode-model-picker-list) {
+:is(.aidian-provider-model-picker-list, .aidian-opencode-model-picker-list) {
   display: flex;
   flex-direction: column;
   margin-top: 8px;
@@ -6248,7 +6248,7 @@ code .claudian-file-link:hover {
   overflow-y: auto;
 }
 
-:is(.claudian-provider-model-picker-row, .claudian-opencode-model-picker-row) {
+:is(.aidian-provider-model-picker-row, .aidian-opencode-model-picker-row) {
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -6257,23 +6257,23 @@ code .claudian-file-link:hover {
   cursor: pointer;
 }
 
-:is(.claudian-provider-model-picker-row, .claudian-opencode-model-picker-row):last-child {
+:is(.aidian-provider-model-picker-row, .aidian-opencode-model-picker-row):last-child {
   border-bottom: none;
 }
 
-:is(.claudian-provider-model-picker-row, .claudian-opencode-model-picker-row):hover {
+:is(.aidian-provider-model-picker-row, .aidian-opencode-model-picker-row):hover {
   background: var(--background-modifier-hover);
 }
 
-:is(.claudian-provider-model-picker-row--selected, .claudian-opencode-model-picker-row--selected) {
+:is(.aidian-provider-model-picker-row--selected, .aidian-opencode-model-picker-row--selected) {
   background: var(--background-modifier-hover);
 }
 
-:is(.claudian-provider-model-picker-row, .claudian-opencode-model-picker-row) input[type="checkbox"] {
+:is(.aidian-provider-model-picker-row, .aidian-opencode-model-picker-row) input[type="checkbox"] {
   margin-top: 3px;
 }
 
-:is(.claudian-provider-model-picker-row-text, .claudian-opencode-model-picker-row-text) {
+:is(.aidian-provider-model-picker-row-text, .aidian-opencode-model-picker-row-text) {
   flex: 1;
   min-width: 0;
   display: flex;
@@ -6281,7 +6281,7 @@ code .claudian-file-link:hover {
   gap: 2px;
 }
 
-:is(.claudian-provider-model-picker-row-header, .claudian-opencode-model-picker-row-header) {
+:is(.aidian-provider-model-picker-row-header, .aidian-opencode-model-picker-row-header) {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -6289,7 +6289,7 @@ code .claudian-file-link:hover {
   min-width: 0;
 }
 
-:is(.claudian-provider-model-picker-row-name, .claudian-opencode-model-picker-row-name) {
+:is(.aidian-provider-model-picker-row-name, .aidian-opencode-model-picker-row-name) {
   color: var(--text-normal);
   font-weight: var(--font-medium);
   overflow: hidden;
@@ -6297,7 +6297,7 @@ code .claudian-file-link:hover {
   white-space: nowrap;
 }
 
-:is(.claudian-provider-model-picker-row-badge, .claudian-opencode-model-picker-row-badge) {
+:is(.aidian-provider-model-picker-row-badge, .aidian-opencode-model-picker-row-badge) {
   font-size: var(--font-ui-smaller);
   padding: 1px 6px;
   border-radius: 999px;
@@ -6307,12 +6307,12 @@ code .claudian-file-link:hover {
   letter-spacing: 0.04em;
 }
 
-:is(.claudian-provider-model-picker-row-badge--unavailable, .claudian-opencode-model-picker-row-badge--unavailable) {
+:is(.aidian-provider-model-picker-row-badge--unavailable, .aidian-opencode-model-picker-row-badge--unavailable) {
   background: var(--background-modifier-error);
   color: var(--text-on-accent);
 }
 
-:is(.claudian-provider-model-picker-row-meta, .claudian-opencode-model-picker-row-meta) {
+:is(.aidian-provider-model-picker-row-meta, .aidian-opencode-model-picker-row-meta) {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
   font-family: var(--font-monospace);
@@ -6321,12 +6321,12 @@ code .claudian-file-link:hover {
   white-space: nowrap;
 }
 
-:is(.claudian-provider-model-picker-row-desc, .claudian-opencode-model-picker-row-desc) {
+:is(.aidian-provider-model-picker-row-desc, .aidian-opencode-model-picker-row-desc) {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
 }
 
-:is(.claudian-provider-model-picker-empty, .claudian-opencode-model-picker-empty) {
+:is(.aidian-provider-model-picker-empty, .aidian-opencode-model-picker-empty) {
   padding: 24px 16px;
   text-align: center;
   color: var(--text-muted);
@@ -6340,39 +6340,39 @@ code .claudian-file-link:hover {
 /* Accessibility - Focus Visible Styles */
 
 /* outline + offset + border-radius */
-.claudian-tool-header:focus-visible,
-.claudian-thinking-header:focus-visible,
-.claudian-subagent-header:focus-visible,
-.claudian-header-btn:focus-visible,
-.claudian-model-btn:focus-visible,
-.claudian-thinking-current:focus-visible {
+.aidian-tool-header:focus-visible,
+.aidian-thinking-header:focus-visible,
+.aidian-subagent-header:focus-visible,
+.aidian-header-btn:focus-visible,
+.aidian-model-btn:focus-visible,
+.aidian-thinking-current:focus-visible {
   outline: 2px solid var(--interactive-accent);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
 /* outline + offset only */
-.claudian-action-btn:focus-visible,
-.claudian-toggle-switch:focus-visible,
-.claudian-file-chip:focus-visible,
-.claudian-image-chip:focus-visible,
-.claudian-file-chip-remove:focus-visible,
-.claudian-image-remove:focus-visible,
-.claudian-image-modal-close:focus-visible,
-.claudian-approved-remove-btn:focus-visible,
-.claudian-save-env-btn:focus-visible,
-.claudian-restore-snippet-btn:focus-visible,
-.claudian-edit-snippet-btn:focus-visible,
-.claudian-delete-snippet-btn:focus-visible,
-.claudian-cancel-btn:focus-visible,
-.claudian-save-btn:focus-visible,
-.claudian-code-lang-label:focus-visible {
+.aidian-action-btn:focus-visible,
+.aidian-toggle-switch:focus-visible,
+.aidian-file-chip:focus-visible,
+.aidian-image-chip:focus-visible,
+.aidian-file-chip-remove:focus-visible,
+.aidian-image-remove:focus-visible,
+.aidian-image-modal-close:focus-visible,
+.aidian-approved-remove-btn:focus-visible,
+.aidian-save-env-btn:focus-visible,
+.aidian-restore-snippet-btn:focus-visible,
+.aidian-edit-snippet-btn:focus-visible,
+.aidian-delete-snippet-btn:focus-visible,
+.aidian-cancel-btn:focus-visible,
+.aidian-save-btn:focus-visible,
+.aidian-code-lang-label:focus-visible {
   outline: 2px solid var(--interactive-accent);
   outline-offset: 2px;
 }
 
 /* outline + negative offset + border-radius */
-.claudian-history-item-content:focus-visible {
+.aidian-history-item-content:focus-visible {
   outline: 2px solid var(--interactive-accent);
   outline-offset: -2px;
   border-radius: 4px;
@@ -6386,14 +6386,14 @@ code .claudian-file-link:hover {
  * Visibility utilities are imported late so they can override component display
  * defaults without importance flags.
  */
-.claudian-hidden.claudian-hidden {
+.aidian-hidden.aidian-hidden {
   display: none;
 }
 
-.claudian-visible-block.claudian-visible-block {
+.aidian-visible-block.aidian-visible-block {
   display: block;
 }
 
-.claudian-visible-flex.claudian-visible-flex {
+.aidian-visible-flex.aidian-visible-flex {
   display: flex;
 }

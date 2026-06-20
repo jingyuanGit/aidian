@@ -1,16 +1,16 @@
 import { buildRefineSystemPrompt } from '../../../core/prompt/instructionRefine';
 import type { RefineProgressCallback } from '../../../core/providers/types';
 import type { InstructionRefineResult } from '../../../core/types';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { runColdStartQuery } from '../runtime/claudeColdStartQuery';
 
 export class InstructionRefineService {
-  private plugin: ClaudianPlugin;
+  private plugin: AidianPlugin;
   private abortController: AbortController | null = null;
   private sessionId: string | null = null;
   private existingInstructions: string = '';
 
-  constructor(plugin: ClaudianPlugin) {
+  constructor(plugin: AidianPlugin) {
     this.plugin = plugin;
   }
 

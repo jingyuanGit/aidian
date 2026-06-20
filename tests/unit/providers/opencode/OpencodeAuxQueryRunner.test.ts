@@ -44,7 +44,7 @@ function createMockPlugin(settings: Record<string, unknown> = {}) {
     app: {
       vault: {
         adapter: {
-          basePath: '/tmp/claudian-test-vault',
+          basePath: '/tmp/aidian-test-vault',
         },
       },
     },
@@ -130,11 +130,11 @@ describe('OpencodeAuxQueryRunner', () => {
     MockAcpJsonRpcTransport.mockImplementation(() => mockTransport as any);
     MockAcpSubprocess.mockImplementation(() => mockProcess as any);
     mockPrepareOpencodeLaunchArtifacts.mockResolvedValue({
-      configPath: '/tmp/claudian-opencode-aux/config.json',
-      configContent: '{"default_agent":"claudian-aux-passive"}\n',
+      configPath: '/tmp/aidian-opencode-aux/config.json',
+      configContent: '{"default_agent":"aidian-aux-passive"}\n',
       databasePath: null,
       launchKey: 'launch-key',
-      systemPromptPath: '/tmp/claudian-opencode-aux/system.md',
+      systemPromptPath: '/tmp/aidian-opencode-aux/system.md',
     });
   });
 
@@ -152,20 +152,20 @@ describe('OpencodeAuxQueryRunner', () => {
 
     expect(mockPrepareOpencodeLaunchArtifacts).toHaveBeenCalledWith(expect.objectContaining({
       artifactsSubdir: 'opencode/auxiliary/title-gen',
-      defaultAgentId: 'claudian-aux-passive',
-      managedAgents: [expect.objectContaining({ id: 'claudian-aux-passive' })],
+      defaultAgentId: 'aidian-aux-passive',
+      managedAgents: [expect.objectContaining({ id: 'aidian-aux-passive' })],
       systemPromptKey: 'Use this custom system prompt.',
       systemPromptText: 'Use this custom system prompt.',
     }));
     expect(mockConnection.newSession).toHaveBeenCalledWith({
-      cwd: '/tmp/claudian-test-vault',
+      cwd: '/tmp/aidian-test-vault',
       mcpServers: [],
     });
     expect(mockConnection.setConfigOption).toHaveBeenCalledWith({
       configId: 'mode',
       sessionId: 'session-1',
       type: 'select',
-      value: 'claudian-aux-passive',
+      value: 'aidian-aux-passive',
     });
     expect(mockConnection.setConfigOption).toHaveBeenCalledWith({
       configId: 'model',
@@ -260,7 +260,7 @@ describe('OpencodeAuxQueryRunner', () => {
       configId: 'mode',
       sessionId: 'session-1',
       type: 'select',
-      value: 'claudian-aux-passive',
+      value: 'aidian-aux-passive',
     });
   });
 
@@ -343,13 +343,13 @@ describe('OpencodeAuxQueryRunner', () => {
       allowReadTextFile: true,
     });
 
-    (runner as any).sessionCwds.set('session-1', '/tmp/claudian-test-vault');
+    (runner as any).sessionCwds.set('session-1', '/tmp/aidian-test-vault');
 
     expect(() => (runner as any).resolveSessionPath('session-1', '/tmp/outside.md')).toThrow(
       'OpenCode aux read access is limited to the current workspace.',
     );
-    expect((runner as any).resolveSessionPath('session-1', '/tmp/claudian-test-vault/notes/today.md')).toBe(
-      '/tmp/claudian-test-vault/notes/today.md',
+    expect((runner as any).resolveSessionPath('session-1', '/tmp/aidian-test-vault/notes/today.md')).toBe(
+      '/tmp/aidian-test-vault/notes/today.md',
     );
   });
 });

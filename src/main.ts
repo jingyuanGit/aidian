@@ -7,7 +7,7 @@ import './providers';
 import type { Editor, WorkspaceLeaf } from 'obsidian';
 import { MarkdownView, Notice, Plugin } from 'obsidian';
 
-import { DEFAULT_CLAUDIAN_SETTINGS } from './app/settings/defaultSettings';
+import { DEFAULT_AIDIAN_SETTINGS } from './app/settings/defaultSettings';
 import { SharedStorageService } from './app/storage/SharedStorageService';
 import type { SharedAppStorage } from './core/bootstrap/storage';
 import {
@@ -22,17 +22,17 @@ import type { ProviderId } from './core/providers/types';
 import type { AppTabManagerState } from './core/providers/types';
 import { DEFAULT_CHAT_PROVIDER_ID } from './core/providers/types';
 import type {
-  ClaudianSettings,
+  AidianSettings,
   Conversation,
   ConversationMeta,
 } from './core/types';
 import {
-  VIEW_TYPE_CLAUDIAN,
+  VIEW_TYPE_AIDIAN,
 } from './core/types';
 import type { ChatViewPlacement, EnvironmentScope } from './core/types/settings';
-import { ClaudianView } from './features/chat/ClaudianView';
+import { AidianView } from './features/chat/AidianView';
 import { type InlineEditContext, InlineEditModal } from './features/inline-edit/ui/InlineEditModal';
-import { ClaudianSettingTab } from './features/settings/ClaudianSettings';
+import { AidianSettingTab } from './features/settings/AidianSettings';
 import { setLocale } from './i18n/i18n';
 import type { Locale } from './i18n/types';
 import { OPENCODE_PLAN_MODE_ID, OPENCODE_SAFE_MODE_ID } from './providers/opencode/modes';
@@ -41,14 +41,14 @@ import { buildCursorContext } from './utils/editor';
 import { revealWorkspaceLeaf } from './utils/obsidianCompat';
 import { getVaultPath } from './utils/path';
 
-function isClaudianView(value: unknown): value is ClaudianView {
+function isAidianView(value: unknown): value is AidianView {
   return !!value
     && typeof value === 'object'
     && typeof (value as { getTabManager?: unknown }).getTabManager === 'function';
 }
 
-export default class ClaudianPlugin extends Plugin {
-  settings!: ClaudianSettings;
+export default class AidianPlugin extends Plugin {
+  settings!: AidianSettings;
   storage!: SharedAppStorage;
   private conversations: Conversation[] = [];
   private lastKnownTabManagerState: AppTabManagerState | null = null;
@@ -58,11 +58,11 @@ export default class ClaudianPlugin extends Plugin {
     await ProviderWorkspaceRegistry.initializeAll(this);
 
     this.registerView(
-      VIEW_TYPE_CLAUDIAN,
-      (leaf) => new ClaudianView(leaf, this)
+      VIEW_TYPE_AIDIAN,
+      (leaf) => new AidianView(leaf, this)
     );
 
-    this.addRibbonIcon('bot', 'Open Claudian', () => {
+    this.addRibbonIcon('bot', 'Open Aidian', () => {
       void this.activateView();
     });
 
@@ -175,7 +175,7 @@ export default class ClaudianPlugin extends Plugin {
       },
     });
 
-    this.addSettingTab(new ClaudianSettingTab(this.app, this));
+    this.addSettingTab(new AidianSettingTab(this.app, this));
   }
 
   onunload(): void {
@@ -195,13 +195,13 @@ export default class ClaudianPlugin extends Plugin {
 
   async activateView() {
     const { workspace } = this.app;
-    let leaf = workspace.getLeavesOfType(VIEW_TYPE_CLAUDIAN)[0];
+    let leaf = workspace.getLeavesOfType(VIEW_TYPE_AIDIAN)[0];
 
     if (!leaf) {
       const newLeaf = this.getLeafForPlacement(this.settings.chatViewPlacement);
       if (newLeaf) {
         await newLeaf.setViewState({
-          type: VIEW_TYPE_CLAUDIAN,
+          type: VIEW_TYPE_AIDIAN,
           active: true,
         });
         leaf = newLeaf;
@@ -226,7 +226,7 @@ export default class ClaudianPlugin extends Plugin {
   }
 
   private canCreateNewTab(): boolean {
-    const hasClaudianLeaf = this.app.workspace.getLeavesOfType(VIEW_TYPE_CLAUDIAN).length > 0;
+    const hasAidianLeaf = this.app.workspace.getLeavesOfType(VIEW_TYPE_AIDIAN).length > 0;
     const view = this.getView();
     const tabManager = view?.getTabManager();
 
@@ -234,14 +234,14 @@ export default class ClaudianPlugin extends Plugin {
       return tabManager.canCreateTab();
     }
 
-    if (hasClaudianLeaf) {
+    if (hasAidianLeaf) {
       return false;
     }
 
     return this.getLastKnownOpenTabCount() < this.getMaxTabsLimit();
   }
 
-  private async ensureViewOpen(): Promise<ClaudianView | null> {
+  private async ensureViewOpen(): Promise<AidianView | null> {
     const existingView = this.getView();
     if (existingView) {
       return existingView;
@@ -275,12 +275,12 @@ export default class ClaudianPlugin extends Plugin {
 
   async loadSettings() {
     this.storage = new SharedStorageService(this);
-    const { claudian } = await this.storage.initialize();
+    const { aidian } = await this.storage.initialize();
     this.lastKnownTabManagerState = await this.storage.getTabManagerState();
 
     this.settings = {
-      ...DEFAULT_CLAUDIAN_SETTINGS,
-      ...claudian,
+      ...DEFAULT_AIDIAN_SETTINGS,
+      ...aidian,
     };
 
     // Plan mode is ephemeral — normalize back to normal on load so the app
@@ -392,7 +392,7 @@ export default class ClaudianPlugin extends Plugin {
       this.settings,
     );
 
-    await this.storage.saveClaudianSettings(this.settings);
+    await this.storage.saveAidianSettings(this.settings);
   }
 
   /** Updates and persists environment variables, restarting processes to apply changes. */
@@ -735,17 +735,17 @@ export default class ClaudianPlugin extends Plugin {
     await this.storage.setTabManagerState(state);
   }
 
-  getView(): ClaudianView | null {
-    const leaves = this.app.workspace.getLeavesOfType(VIEW_TYPE_CLAUDIAN);
-    return leaves.map(leaf => leaf.view).find(isClaudianView) ?? null;
+  getView(): AidianView | null {
+    const leaves = this.app.workspace.getLeavesOfType(VIEW_TYPE_AIDIAN);
+    return leaves.map(leaf => leaf.view).find(isAidianView) ?? null;
   }
 
-  getAllViews(): ClaudianView[] {
-    const leaves = this.app.workspace.getLeavesOfType(VIEW_TYPE_CLAUDIAN);
-    return leaves.map(leaf => leaf.view).filter(isClaudianView);
+  getAllViews(): AidianView[] {
+    const leaves = this.app.workspace.getLeavesOfType(VIEW_TYPE_AIDIAN);
+    return leaves.map(leaf => leaf.view).filter(isAidianView);
   }
 
-  findConversationAcrossViews(conversationId: string): { view: ClaudianView; tabId: string } | null {
+  findConversationAcrossViews(conversationId: string): { view: AidianView; tabId: string } | null {
     for (const view of this.getAllViews()) {
       const tabManager = view.getTabManager();
       if (!tabManager) continue;

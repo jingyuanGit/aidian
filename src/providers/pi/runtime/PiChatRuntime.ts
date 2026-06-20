@@ -34,7 +34,7 @@ import type {
   ToolCallInfo,
   UsageInfo,
 } from '../../../core/types';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { parseEnvironmentVariables } from '../../../utils/env';
 import { getVaultPath } from '../../../utils/path';
 import { PI_PROVIDER_CAPABILITIES } from '../capabilities';
@@ -154,7 +154,7 @@ export class PiChatRuntime implements ChatRuntime {
   private unregisterTransportClose: (() => void) | null = null;
 
   constructor(
-    private readonly plugin: ClaudianPlugin,
+    private readonly plugin: AidianPlugin,
     private readonly options: PiChatRuntimeOptions = {},
   ) {}
 

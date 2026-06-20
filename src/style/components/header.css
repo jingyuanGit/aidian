@@ -1,5 +1,5 @@
 /* Header - logo, title/tabs slot, and actions */
-.claudian-header {
+.aidian-header {
   position: relative;
   display: flex;
   align-items: center;
@@ -7,7 +7,7 @@
 }
 
 /* Title slot: contains logo + title (or tabs in header mode) */
-.claudian-title-slot {
+.aidian-title-slot {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -16,27 +16,27 @@
 }
 
 /* Legacy class for backwards compatibility */
-.claudian-title {
+.aidian-title {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
 }
 
-.claudian-title-text {
+.aidian-title-text {
   margin: 0;
   font-size: 14px;
   font-weight: 600;
 }
 
-.claudian-logo {
+.aidian-logo {
   display: flex;
   align-items: center;
-  color: var(--claudian-brand);
+  color: var(--aidian-brand);
 }
 
 /* Header actions (end side - always stays at end via margin-inline-start: auto) */
-.claudian-header-actions {
+.aidian-header-actions {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -44,16 +44,16 @@
   margin-inline-start: auto;
 }
 
-.claudian-header-actions-slot {
-  /* No margin-inline-start: auto here; it's set by the base .claudian-header-actions */
+.aidian-header-actions-slot {
+  /* No margin-inline-start: auto here; it's set by the base .aidian-header-actions */
 }
 
-.claudian-header .claudian-tab-bar-container {
+.aidian-header .aidian-tab-bar-container {
   display: flex;
   gap: 4px;
 }
 
-.claudian-header-btn {
+.aidian-header-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,16 +62,16 @@
   transition: color 0.15s ease;
 }
 
-.claudian-header-btn:hover {
+.aidian-header-btn:hover {
   color: var(--text-normal);
 }
 
-.claudian-header-btn svg {
+.aidian-header-btn svg {
   width: 16px;
   height: 16px;
 }
 
-.claudian-new-tab-btn svg {
+.aidian-new-tab-btn svg {
   width: 16.8px;
   height: 16.8px;
 }

@@ -26,7 +26,7 @@ import type {
 } from '../../../core/runtime/types';
 import { TOOL_EXIT_PLAN_MODE } from '../../../core/tools/toolNames';
 import type { ApprovalDecision, ChatMessage, ExitPlanModeDecision, StreamChunk } from '../../../core/types';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { ResumeSessionDropdown } from '../../../shared/components/ResumeSessionDropdown';
 import { InstructionModal } from '../../../shared/modals/InstructionConfirmModal';
 import type { BrowserSelectionContext } from '../../../utils/browser';
@@ -73,7 +73,7 @@ function toError(error: unknown): Error {
 }
 
 export interface InputControllerDeps {
-  plugin: ClaudianPlugin;
+  plugin: AidianPlugin;
   state: ChatState;
   renderer: MessageRenderer;
   streamController: StreamController;
@@ -280,7 +280,7 @@ export class InputController {
     // Hide welcome message when sending first message
     const welcomeEl = this.deps.getWelcomeEl();
     if (welcomeEl) {
-      welcomeEl.addClass('claudian-hidden');
+      welcomeEl.addClass('aidian-hidden');
     }
 
     fileContextManager?.startSession();
@@ -346,7 +346,7 @@ export class InputController {
 
     streamController.showThinkingIndicator(
       isCompact ? 'Compacting...' : undefined,
-      isCompact ? 'claudian-thinking--compact' : undefined,
+      isCompact ? 'aidian-thinking--compact' : undefined,
     );
     state.responseStartTime = performance.now();
 
@@ -440,7 +440,7 @@ export class InputController {
       if (!wasInvalidated && state.streamGeneration === streamGeneration) {
         const didCancelThisTurn = wasInterrupted || state.cancelRequested;
         if (didCancelThisTurn && !state.pendingNewSessionPlan) {
-          await streamController.appendText('\n\n<span class="claudian-interrupted">Interrupted</span> <span class="claudian-interrupted-hint">· What should Claudian do instead?</span>');
+          await streamController.appendText('\n\n<span class="aidian-interrupted">Interrupted</span> <span class="aidian-interrupted-hint">· What should Aidian do instead?</span>');
         }
         streamController.hideThinkingIndicator();
         state.isStreaming = false;
@@ -460,10 +460,10 @@ export class InputController {
             finalAssistantMsg.durationFlavorWord = flavorWord;
             // Add footer to live message in DOM
             if (state.currentContentEl) {
-              const footerEl = state.currentContentEl.createDiv({ cls: 'claudian-response-footer' });
+              const footerEl = state.currentContentEl.createDiv({ cls: 'aidian-response-footer' });
               footerEl.createSpan({
                 text: `* ${flavorWord} for ${formatDurationMmSs(durationSeconds)}`,
-                cls: 'claudian-baked-duration',
+                cls: 'aidian-baked-duration',
               });
             }
           }
@@ -575,16 +575,16 @@ export class InputController {
     if (visibleQueuedMessage) {
       const isPendingSteerOnly = !state.queuedMessage && !!this.pendingSteerMessage;
       indicatorEl.createSpan({
-        cls: 'claudian-queue-indicator-text',
+        cls: 'aidian-queue-indicator-text',
         text: `${isPendingSteerOnly ? '⌙ Steering: ' : '⌙ Queued: '}${this.getQueuedMessageDisplay(visibleQueuedMessage)}`,
       });
 
       if (state.queuedMessage) {
-        const actionsEl = indicatorEl.createDiv({ cls: 'claudian-queue-indicator-actions' });
+        const actionsEl = indicatorEl.createDiv({ cls: 'aidian-queue-indicator-actions' });
 
         if (this.canSteerQueuedMessage()) {
           const steerButton = actionsEl.createEl('button', {
-            cls: 'claudian-queue-indicator-action',
+            cls: 'aidian-queue-indicator-action',
             text: this.steerInFlight ? 'Steering...' : 'Steer Now',
           });
           steerButton.setAttribute('type', 'button');
@@ -619,13 +619,13 @@ export class InputController {
         });
       }
 
-      indicatorEl.addClass('claudian-visible-flex');
-      indicatorEl.removeClass('claudian-hidden');
+      indicatorEl.addClass('aidian-visible-flex');
+      indicatorEl.removeClass('aidian-hidden');
       return;
     }
 
-    indicatorEl.removeClass('claudian-visible-flex');
-    indicatorEl.addClass('claudian-hidden');
+    indicatorEl.removeClass('aidian-visible-flex');
+    indicatorEl.addClass('aidian-hidden');
   }
 
   clearQueuedMessage(): void {
@@ -784,7 +784,7 @@ export class InputController {
     label: string,
   ): HTMLElement {
     const button = parentEl.createEl('button', {
-      cls: 'claudian-queue-indicator-icon-action',
+      cls: 'aidian-queue-indicator-icon-action',
       attr: {
         'aria-label': label,
         title: label,
@@ -968,7 +968,7 @@ export class InputController {
   private activateStreamingAssistantMessage(message: ChatMessage): void {
     const { state, renderer } = this.deps;
     const msgEl = renderer.addMessage(message);
-    const contentEl = msgEl.querySelector<HTMLElement>('.claudian-message-content');
+    const contentEl = msgEl.querySelector<HTMLElement>('.aidian-message-content');
 
     if (!contentEl) {
       return;
@@ -1336,26 +1336,26 @@ export class InputController {
     }
 
     // Build header element, then detach — InlineAskUserQuestion will re-attach it
-    const headerEl = parentEl.createDiv({ cls: 'claudian-ask-approval-info' });
+    const headerEl = parentEl.createDiv({ cls: 'aidian-ask-approval-info' });
     headerEl.remove();
 
-    const toolEl = headerEl.createDiv({ cls: 'claudian-ask-approval-tool' });
-    const iconEl = toolEl.createSpan({ cls: 'claudian-ask-approval-icon' });
+    const toolEl = headerEl.createDiv({ cls: 'aidian-ask-approval-tool' });
+    const iconEl = toolEl.createSpan({ cls: 'aidian-ask-approval-icon' });
     iconEl.setAttribute('aria-hidden', 'true');
     setToolIcon(iconEl, toolName);
-    toolEl.createSpan({ text: toolName, cls: 'claudian-ask-approval-tool-name' });
+    toolEl.createSpan({ text: toolName, cls: 'aidian-ask-approval-tool-name' });
 
     if (approvalOptions?.decisionReason) {
-      headerEl.createDiv({ text: approvalOptions.decisionReason, cls: 'claudian-ask-approval-reason' });
+      headerEl.createDiv({ text: approvalOptions.decisionReason, cls: 'aidian-ask-approval-reason' });
     }
     if (approvalOptions?.blockedPath) {
-      headerEl.createDiv({ text: approvalOptions.blockedPath, cls: 'claudian-ask-approval-blocked-path' });
+      headerEl.createDiv({ text: approvalOptions.blockedPath, cls: 'aidian-ask-approval-blocked-path' });
     }
     if (approvalOptions?.agentID) {
-      headerEl.createDiv({ text: `Agent: ${approvalOptions.agentID}`, cls: 'claudian-ask-approval-agent' });
+      headerEl.createDiv({ text: `Agent: ${approvalOptions.agentID}`, cls: 'aidian-ask-approval-agent' });
     }
 
-    headerEl.createDiv({ text: description, cls: 'claudian-ask-approval-desc' });
+    headerEl.createDiv({ text: description, cls: 'aidian-ask-approval-desc' });
 
     const decisionOptions = approvalOptions?.decisionOptions ?? DEFAULT_APPROVAL_DECISION_OPTIONS;
     const optionDecisionMap = new Map<string, ApprovalDecision>();
@@ -1575,21 +1575,21 @@ export class InputController {
 
   private hideInputContainer(inputContainerEl: HTMLElement): void {
     this.inputContainerHideDepth++;
-    inputContainerEl.addClass('claudian-hidden');
+    inputContainerEl.addClass('aidian-hidden');
   }
 
   private restoreInputContainer(inputContainerEl: HTMLElement): void {
     if (this.inputContainerHideDepth <= 0) return;
     this.inputContainerHideDepth--;
     if (this.inputContainerHideDepth === 0) {
-      inputContainerEl.removeClass('claudian-hidden');
+      inputContainerEl.removeClass('aidian-hidden');
     }
   }
 
   private resetInputContainerVisibility(): void {
     if (this.inputContainerHideDepth > 0) {
       this.inputContainerHideDepth = 0;
-      this.deps.getInputContainerEl().removeClass('claudian-hidden');
+      this.deps.getInputContainerEl().removeClass('aidian-hidden');
     }
   }
 

@@ -1,46 +1,46 @@
 /* Brand & semantic color tokens */
-.claudian-container {
-  --claudian-brand: #D97757;
-  --claudian-brand-rgb: 217, 119, 87;
-  --claudian-brand-claude: #D97757;
-  --claudian-brand-claude-rgb: 217, 119, 87;
-  --claudian-brand-codex: #d0d0d0;
-  --claudian-brand-codex-rgb: 208, 208, 208;
-  --claudian-brand-opencode: #B8B8B8;
-  --claudian-brand-opencode-rgb: 184, 184, 184;
-  --claudian-brand-pi: #ffffff;
-  --claudian-brand-pi-rgb: 255, 255, 255;
-  --claudian-error: #dc3545;
-  --claudian-error-rgb: 220, 53, 69;
-  --claudian-compact: #5bc0de;
+.aidian-container {
+  --aidian-brand: #D97757;
+  --aidian-brand-rgb: 217, 119, 87;
+  --aidian-brand-claude: #D97757;
+  --aidian-brand-claude-rgb: 217, 119, 87;
+  --aidian-brand-codex: #d0d0d0;
+  --aidian-brand-codex-rgb: 208, 208, 208;
+  --aidian-brand-opencode: #B8B8B8;
+  --aidian-brand-opencode-rgb: 184, 184, 184;
+  --aidian-brand-pi: #ffffff;
+  --aidian-brand-pi-rgb: 255, 255, 255;
+  --aidian-error: #dc3545;
+  --aidian-error-rgb: 220, 53, 69;
+  --aidian-compact: #5bc0de;
 }
 
-body.theme-light .claudian-container {
-  --claudian-brand-codex: #000000;
-  --claudian-brand-codex-rgb: 0, 0, 0;
-  --claudian-brand-opencode: #707070;
-  --claudian-brand-opencode-rgb: 112, 112, 112;
-  --claudian-brand-pi: #000000;
-  --claudian-brand-pi-rgb: 0, 0, 0;
+body.theme-light .aidian-container {
+  --aidian-brand-codex: #000000;
+  --aidian-brand-codex-rgb: 0, 0, 0;
+  --aidian-brand-opencode: #707070;
+  --aidian-brand-opencode-rgb: 112, 112, 112;
+  --aidian-brand-pi: #000000;
+  --aidian-brand-pi-rgb: 0, 0, 0;
 }
 
 /* Active-provider alias for single-provider surfaces. */
-.claudian-container[data-provider="claude"] {
-  --claudian-brand: var(--claudian-brand-claude);
-  --claudian-brand-rgb: var(--claudian-brand-claude-rgb);
+.aidian-container[data-provider="claude"] {
+  --aidian-brand: var(--aidian-brand-claude);
+  --aidian-brand-rgb: var(--aidian-brand-claude-rgb);
 }
 
-.claudian-container[data-provider="codex"] {
-  --claudian-brand: var(--claudian-brand-codex);
-  --claudian-brand-rgb: var(--claudian-brand-codex-rgb);
+.aidian-container[data-provider="codex"] {
+  --aidian-brand: var(--aidian-brand-codex);
+  --aidian-brand-rgb: var(--aidian-brand-codex-rgb);
 }
 
-.claudian-container[data-provider="opencode"] {
-  --claudian-brand: var(--claudian-brand-opencode);
-  --claudian-brand-rgb: var(--claudian-brand-opencode-rgb);
+.aidian-container[data-provider="opencode"] {
+  --aidian-brand: var(--aidian-brand-opencode);
+  --aidian-brand-rgb: var(--aidian-brand-opencode-rgb);
 }
 
-.claudian-container[data-provider="pi"] {
-  --claudian-brand: var(--claudian-brand-pi);
-  --claudian-brand-rgb: var(--claudian-brand-pi-rgb);
+.aidian-container[data-provider="pi"] {
+  --aidian-brand: var(--aidian-brand-pi);
+  --aidian-brand-rgb: var(--aidian-brand-pi-rgb);
 }

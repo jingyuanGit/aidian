@@ -1,5 +1,5 @@
 import { getRuntimeEnvironmentText } from '../../../core/providers/providerEnvironment';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { parseEnvironmentVariables } from '../../../utils/env';
 import { getVaultPath } from '../../../utils/path';
 import {
@@ -17,7 +17,7 @@ export interface PiModelDiscoveryResult {
 }
 
 export class PiModelDiscoveryService {
-  constructor(private readonly plugin: ClaudianPlugin) {}
+  constructor(private readonly plugin: AidianPlugin) {}
 
   async discoverModels(): Promise<PiModelDiscoveryResult> {
     const settings = getPiProviderSettings(this.plugin.settings as unknown as Record<string, unknown>);

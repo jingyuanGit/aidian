@@ -3,16 +3,16 @@ import { Notice } from 'obsidian';
 
 import { SESSIONS_PATH, SessionStorage } from '../../core/bootstrap/SessionStorage';
 import type { SharedAppStorage } from '../../core/bootstrap/storage';
-import { CLAUDIAN_STORAGE_PATH } from '../../core/bootstrap/StoragePaths';
+import { AIDIAN_STORAGE_PATH } from '../../core/bootstrap/StoragePaths';
 import { VaultFileAdapter } from '../../core/storage/VaultFileAdapter';
-import { ClaudianSettingsStorage, type StoredClaudianSettings } from '../settings/ClaudianSettingsStorage';
+import { AidianSettingsStorage, type StoredAidianSettings } from '../settings/AidianSettingsStorage';
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === 'object' && !Array.isArray(value);
 }
 
 export class SharedStorageService implements SharedAppStorage {
-  readonly claudianSettings: ClaudianSettingsStorage;
+  readonly aidianSettings: AidianSettingsStorage;
   readonly sessions: SessionStorage;
 
   private adapter: VaultFileAdapter;
@@ -21,18 +21,18 @@ export class SharedStorageService implements SharedAppStorage {
   constructor(plugin: Plugin) {
     this.plugin = plugin;
     this.adapter = new VaultFileAdapter(plugin.app);
-    this.claudianSettings = new ClaudianSettingsStorage(this.adapter);
+    this.aidianSettings = new AidianSettingsStorage(this.adapter);
     this.sessions = new SessionStorage(this.adapter);
   }
 
-  async initialize(): Promise<{ claudian: Record<string, unknown> }> {
+  async initialize(): Promise<{ aidian: Record<string, unknown> }> {
     await this.ensureDirectories();
-    const claudian = await this.claudianSettings.load();
-    return { claudian };
+    const aidian = await this.aidianSettings.load();
+    return { aidian };
   }
 
-  async saveClaudianSettings(settings: Record<string, unknown>): Promise<void> {
-    await this.claudianSettings.save(settings as StoredClaudianSettings);
+  async saveAidianSettings(settings: Record<string, unknown>): Promise<void> {
+    await this.aidianSettings.save(settings as StoredAidianSettings);
   }
 
   async setTabManagerState(state: { openTabs: Array<{ tabId: string; conversationId: string | null; draftModel?: string | null }>; activeTabId: string | null }): Promise<void> {
@@ -64,7 +64,7 @@ export class SharedStorageService implements SharedAppStorage {
   }
 
   private async ensureDirectories(): Promise<void> {
-    await this.adapter.ensureFolder(CLAUDIAN_STORAGE_PATH);
+    await this.adapter.ensureFolder(AIDIAN_STORAGE_PATH);
     await this.adapter.ensureFolder(SESSIONS_PATH);
   }
 

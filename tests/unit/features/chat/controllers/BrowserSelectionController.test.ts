@@ -6,30 +6,30 @@ import { BrowserSelectionController } from '@/features/chat/controllers/BrowserS
 
 function createMockIndicator() {
   const indicatorEl = createMockEl();
-  indicatorEl.addClass('claudian-browser-selection-indicator');
-  indicatorEl.addClass('claudian-hidden');
+  indicatorEl.addClass('aidian-browser-selection-indicator');
+  indicatorEl.addClass('aidian-hidden');
   return indicatorEl;
 }
 
 function createMockContextRow(browserIndicator: HTMLElement) {
   const editorIndicator = createMockEl();
-  editorIndicator.addClass('claudian-selection-indicator');
-  editorIndicator.addClass('claudian-hidden');
+  editorIndicator.addClass('aidian-selection-indicator');
+  editorIndicator.addClass('aidian-hidden');
   const canvasIndicator = createMockEl();
-  canvasIndicator.addClass('claudian-canvas-indicator');
-  canvasIndicator.addClass('claudian-hidden');
+  canvasIndicator.addClass('aidian-canvas-indicator');
+  canvasIndicator.addClass('aidian-hidden');
   const fileIndicator = createMockEl();
-  fileIndicator.addClass('claudian-file-indicator');
-  fileIndicator.addClass('claudian-hidden');
+  fileIndicator.addClass('aidian-file-indicator');
+  fileIndicator.addClass('aidian-hidden');
   const imagePreview = createMockEl();
-  imagePreview.addClass('claudian-image-preview');
-  imagePreview.addClass('claudian-hidden');
+  imagePreview.addClass('aidian-image-preview');
+  imagePreview.addClass('aidian-hidden');
   const elements: Record<string, any> = {
-    '.claudian-selection-indicator': editorIndicator,
-    '.claudian-browser-selection-indicator': browserIndicator,
-    '.claudian-canvas-indicator': canvasIndicator,
-    '.claudian-file-indicator': fileIndicator,
-    '.claudian-image-preview': imagePreview,
+    '.aidian-selection-indicator': editorIndicator,
+    '.aidian-browser-selection-indicator': browserIndicator,
+    '.aidian-canvas-indicator': canvasIndicator,
+    '.aidian-file-indicator': fileIndicator,
+    '.aidian-image-preview': imagePreview,
   };
   const contextRow = createMockEl();
   const toggle = contextRow.classList.toggle;

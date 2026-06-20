@@ -1,4 +1,4 @@
-import type ClaudianPlugin from '../../main';
+import type AidianPlugin from '../../main';
 import type { CursorContext } from '../../utils/editor';
 import type { SharedAppStorage } from '../bootstrap/storage';
 import type { McpServerManager } from '../mcp/McpServerManager';
@@ -40,7 +40,7 @@ export interface ProviderCapabilities {
 export const DEFAULT_CHAT_PROVIDER_ID = 'claude' as const satisfies ProviderId;
 
 export interface CreateChatRuntimeOptions {
-  plugin: ClaudianPlugin;
+  plugin: AidianPlugin;
   providerId?: ProviderId;
 }
 
@@ -61,9 +61,9 @@ export interface ProviderRegistration {
   chatUIConfig: ProviderChatUIConfig;
   settingsReconciler: ProviderSettingsReconciler;
   createRuntime: (options: Omit<CreateChatRuntimeOptions, 'providerId'>) => ChatRuntime;
-  createTitleGenerationService: (plugin: ClaudianPlugin) => TitleGenerationService;
-  createInstructionRefineService: (plugin: ClaudianPlugin) => InstructionRefineService;
-  createInlineEditService: (plugin: ClaudianPlugin) => InlineEditService;
+  createTitleGenerationService: (plugin: AidianPlugin) => TitleGenerationService;
+  createInstructionRefineService: (plugin: AidianPlugin) => InstructionRefineService;
+  createInlineEditService: (plugin: AidianPlugin) => InlineEditService;
   historyService: ProviderConversationHistoryService;
   taskResultInterpreter: ProviderTaskResultInterpreter;
   subagentLifecycleAdapter?: ProviderSubagentLifecycleAdapter;
@@ -270,7 +270,7 @@ export interface ProviderChatUIConfig {
   prepareModelMetadata?(
     model: string,
     settings: Record<string, unknown>,
-    context: { plugin: ClaudianPlugin },
+    context: { plugin: AidianPlugin },
   ): Promise<void>;
 
   /** Optional hook when the toolbar changes a reasoning selection. */
@@ -322,7 +322,7 @@ export interface ProviderRuntimeCommandLoaderContext {
   allowSessionCreation?: boolean;
   conversation: Conversation | null;
   externalContextPaths: string[];
-  plugin: ClaudianPlugin;
+  plugin: AidianPlugin;
   runtime: ChatRuntime | null;
 }
 
@@ -340,7 +340,7 @@ export type ProviderTabWarmupLifecycleState = 'blank' | 'bound_cold' | 'bound_ac
 export interface ProviderTabWarmupContext {
   conversation: Conversation | null;
   externalContextPaths: string[];
-  plugin: ClaudianPlugin;
+  plugin: AidianPlugin;
   runtime: ChatRuntime | null;
   tab: {
     conversationId: string | null;
@@ -366,7 +366,7 @@ export interface ProviderWorkspaceServices {
 }
 
 export interface ProviderSettingsTabRendererContext {
-  plugin: ClaudianPlugin;
+  plugin: AidianPlugin;
   renderHiddenProviderCommandSetting(
     container: HTMLElement,
     providerId: ProviderId,
@@ -381,7 +381,7 @@ export interface ProviderSettingsTabRenderer {
 }
 
 export interface ProviderWorkspaceInitContext {
-  plugin: ClaudianPlugin;
+  plugin: AidianPlugin;
   storage: SharedAppStorage;
   vaultAdapter: VaultFileAdapter;
   homeAdapter: HomeFileAdapter;

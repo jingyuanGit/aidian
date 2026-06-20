@@ -143,8 +143,8 @@ describe('utils.ts', () => {
   });
 
   describe('expandHomePath', () => {
-    const envKey = 'CLAUDIAN_TEST_PATH';
-    const envValue = path.join(os.tmpdir(), 'claudian-env');
+    const envKey = 'AIDIAN_TEST_PATH';
+    const envValue = path.join(os.tmpdir(), 'aidian-env');
     let originalValue: string | undefined;
 
     beforeEach(() => {
@@ -183,8 +183,8 @@ describe('utils.ts', () => {
     });
 
     it('should leave unknown environment variables untouched', () => {
-      expect(expandHomePath('%CLAUDIAN_MISSING_VAR%')).toBe('%CLAUDIAN_MISSING_VAR%');
-      expect(expandHomePath('$CLAUDIAN_MISSING_VAR')).toBe('$CLAUDIAN_MISSING_VAR');
+      expect(expandHomePath('%AIDIAN_MISSING_VAR%')).toBe('%AIDIAN_MISSING_VAR%');
+      expect(expandHomePath('$AIDIAN_MISSING_VAR')).toBe('$AIDIAN_MISSING_VAR');
     });
   });
 
@@ -201,12 +201,12 @@ describe('utils.ts', () => {
     });
 
     it('expands environment variables before filesystem use', () => {
-      const envKey = 'CLAUDIAN_FS_TEST_PATH';
+      const envKey = 'AIDIAN_FS_TEST_PATH';
       const originalValue = process.env[envKey];
-      process.env[envKey] = '/tmp/claudian-test';
+      process.env[envKey] = '/tmp/aidian-test';
 
       try {
-        expect(normalizePathForFilesystem(`$${envKey}/notes/file.md`)).toBe('/tmp/claudian-test/notes/file.md');
+        expect(normalizePathForFilesystem(`$${envKey}/notes/file.md`)).toBe('/tmp/aidian-test/notes/file.md');
       } finally {
         if (originalValue === undefined) {
           delete process.env[envKey];
@@ -245,7 +245,7 @@ describe('utils.ts', () => {
     });
 
     it('handles chained home and environment variable expansions', () => {
-      const envKey = 'CLAUDIAN_TEST_SUBDIR';
+      const envKey = 'AIDIAN_TEST_SUBDIR';
       const originalValue = process.env[envKey];
       process.env[envKey] = 'project';
 

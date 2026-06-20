@@ -8,20 +8,20 @@ import {
 import { ProviderRegistry } from '../../../core/providers/ProviderRegistry';
 import type { EnvironmentScope, EnvSnippet } from '../../../core/types';
 import { t } from '../../../i18n/i18n';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { confirmDelete } from '../../../shared/modals/ConfirmModal';
 import { formatContextLimit, parseContextLimit, parseEnvironmentVariables } from '../../../utils/env';
-import type { ClaudianView } from '../../chat/ClaudianView';
+import type { AidianView } from '../../chat/AidianView';
 
 export class EnvSnippetModal extends Modal {
-  plugin: ClaudianPlugin;
+  plugin: AidianPlugin;
   snippet: EnvSnippet | null;
   snippetScope: EnvironmentScope;
   onSave: (snippet: EnvSnippet) => void;
 
   constructor(
     app: App,
-    plugin: ClaudianPlugin,
+    plugin: AidianPlugin,
     snippet: EnvSnippet | null,
     scope: EnvironmentScope,
     onSave: (snippet: EnvSnippet) => void,
@@ -37,7 +37,7 @@ export class EnvSnippetModal extends Modal {
     const { contentEl } = this;
     this.setTitle(this.snippet ? t('settings.envSnippets.modal.titleEdit') : t('settings.envSnippets.modal.titleSave'));
 
-    this.modalEl.addClass('claudian-env-snippet-modal');
+    this.modalEl.addClass('aidian-env-snippet-modal');
 
     let nameEl: HTMLInputElement;
     let descEl: HTMLInputElement;
@@ -110,11 +110,11 @@ export class EnvSnippetModal extends Modal {
       const uniqueModelIds = ProviderRegistry.getCustomModelIds(envVars);
 
       if (uniqueModelIds.size === 0) {
-        contextLimitsContainer.addClass('claudian-hidden');
+        contextLimitsContainer.addClass('aidian-hidden');
         return;
       }
 
-      contextLimitsContainer.removeClass('claudian-hidden');
+      contextLimitsContainer.removeClass('aidian-hidden');
 
       const existingLimits = this.snippet?.contextLimits ?? this.plugin.settings.customContextLimits ?? {};
       const existingAliases = this.snippet?.modelAliases ?? this.plugin.settings.customModelAliases ?? {};
@@ -129,14 +129,14 @@ export class EnvSnippetModal extends Modal {
       });
 
       for (const modelId of uniqueModelIds) {
-        const row = contextLimitsContainer.createDiv({ cls: 'claudian-snippet-limit-row' });
-        row.createSpan({ text: modelId, cls: 'claudian-snippet-limit-model' });
-        row.createSpan({ cls: 'claudian-snippet-limit-spacer' });
+        const row = contextLimitsContainer.createDiv({ cls: 'aidian-snippet-limit-row' });
+        row.createSpan({ text: modelId, cls: 'aidian-snippet-limit-model' });
+        row.createSpan({ cls: 'aidian-snippet-limit-spacer' });
 
         const aliasInput = row.createEl('input', {
           type: 'text',
           placeholder: t('settings.customModelAliases.placeholder'),
-          cls: 'claudian-snippet-alias-input',
+          cls: 'aidian-snippet-alias-input',
         });
         aliasInput.value = existingAliases[modelId] ?? '';
         aliasInput.setAttribute('aria-label', `Alias for ${modelId}`);
@@ -146,7 +146,7 @@ export class EnvSnippetModal extends Modal {
         const input = row.createEl('input', {
           type: 'text',
           placeholder: '200k',
-          cls: 'claudian-snippet-limit-input',
+          cls: 'aidian-snippet-limit-input',
         });
         input.value = existingLimits[modelId] ? formatContextLimit(existingLimits[modelId]) : '';
         input.setAttribute('aria-label', `Context window for ${modelId}`);
@@ -182,23 +182,23 @@ export class EnvSnippetModal extends Modal {
         text.inputEl.rows = 8;
         text.inputEl.addEventListener('blur', () => renderContextLimitFields());
       });
-    envVarsSetting.settingEl.addClass('claudian-env-snippet-setting');
-    envVarsSetting.controlEl.addClass('claudian-env-snippet-control');
+    envVarsSetting.settingEl.addClass('aidian-env-snippet-setting');
+    envVarsSetting.controlEl.addClass('aidian-env-snippet-control');
 
-    contextLimitsContainer = contentEl.createDiv({ cls: 'claudian-snippet-context-limits' });
+    contextLimitsContainer = contentEl.createDiv({ cls: 'aidian-snippet-context-limits' });
     renderContextLimitFields();
 
-    const buttonContainer = contentEl.createDiv({ cls: 'claudian-snippet-buttons' });
+    const buttonContainer = contentEl.createDiv({ cls: 'aidian-snippet-buttons' });
 
     const cancelBtn = buttonContainer.createEl('button', {
       text: t('settings.envSnippets.modal.cancel'),
-      cls: 'claudian-cancel-btn'
+      cls: 'aidian-cancel-btn'
     });
     cancelBtn.addEventListener('click', () => this.close());
 
     const saveBtn = buttonContainer.createEl('button', {
       text: this.snippet ? t('settings.envSnippets.modal.update') : t('settings.envSnippets.modal.save'),
-      cls: 'claudian-save-btn'
+      cls: 'aidian-save-btn'
     });
     saveBtn.addEventListener('click', () => saveSnippet());
 
@@ -214,13 +214,13 @@ export class EnvSnippetModal extends Modal {
 
 export class EnvSnippetManager {
   private containerEl: HTMLElement;
-  private plugin: ClaudianPlugin;
+  private plugin: AidianPlugin;
   private scope: EnvironmentScope;
   private onContextLimitsChange?: () => void;
 
   constructor(
     containerEl: HTMLElement,
-    plugin: ClaudianPlugin,
+    plugin: AidianPlugin,
     scope: EnvironmentScope,
     onContextLimitsChange?: () => void,
   ) {
@@ -234,11 +234,11 @@ export class EnvSnippetManager {
   private render() {
     this.containerEl.empty();
 
-    const headerEl = this.containerEl.createDiv({ cls: 'claudian-snippet-header' });
-    headerEl.createSpan({ text: t('settings.envSnippets.name'), cls: 'claudian-snippet-label' });
+    const headerEl = this.containerEl.createDiv({ cls: 'aidian-snippet-header' });
+    headerEl.createSpan({ text: t('settings.envSnippets.name'), cls: 'aidian-snippet-label' });
 
     const saveBtn = headerEl.createEl('button', {
-      cls: 'claudian-settings-action-btn',
+      cls: 'aidian-settings-action-btn',
       attr: { 'aria-label': t('settings.envSnippets.addBtn') },
     });
     setIcon(saveBtn, 'plus');
@@ -249,30 +249,30 @@ export class EnvSnippetManager {
     const snippets = this.plugin.settings.envSnippets.filter((snippet) => this.shouldDisplaySnippet(snippet));
 
     if (snippets.length === 0) {
-      const emptyEl = this.containerEl.createDiv({ cls: 'claudian-snippet-empty' });
+      const emptyEl = this.containerEl.createDiv({ cls: 'aidian-snippet-empty' });
       emptyEl.setText(t('settings.envSnippets.noSnippets'));
       return;
     }
 
-    const listEl = this.containerEl.createDiv({ cls: 'claudian-snippet-list' });
+    const listEl = this.containerEl.createDiv({ cls: 'aidian-snippet-list' });
 
     for (const snippet of snippets) {
-      const itemEl = listEl.createDiv({ cls: 'claudian-snippet-item' });
+      const itemEl = listEl.createDiv({ cls: 'aidian-snippet-item' });
 
-      const infoEl = itemEl.createDiv({ cls: 'claudian-snippet-info' });
+      const infoEl = itemEl.createDiv({ cls: 'aidian-snippet-info' });
 
-      const nameEl = infoEl.createDiv({ cls: 'claudian-snippet-name' });
+      const nameEl = infoEl.createDiv({ cls: 'aidian-snippet-name' });
       nameEl.setText(snippet.name);
 
       if (snippet.description) {
-        const descEl = infoEl.createDiv({ cls: 'claudian-snippet-description' });
+        const descEl = infoEl.createDiv({ cls: 'aidian-snippet-description' });
         descEl.setText(snippet.description);
       }
 
-      const actionsEl = itemEl.createDiv({ cls: 'claudian-snippet-actions' });
+      const actionsEl = itemEl.createDiv({ cls: 'aidian-snippet-actions' });
 
       const restoreBtn = actionsEl.createEl('button', {
-        cls: 'claudian-settings-action-btn',
+        cls: 'aidian-settings-action-btn',
         attr: { 'aria-label': 'Insert' },
       });
       setIcon(restoreBtn, 'clipboard-paste');
@@ -287,7 +287,7 @@ export class EnvSnippetManager {
       });
 
       const editBtn = actionsEl.createEl('button', {
-        cls: 'claudian-settings-action-btn',
+        cls: 'aidian-settings-action-btn',
         attr: { 'aria-label': 'Edit' },
       });
       setIcon(editBtn, 'pencil');
@@ -296,7 +296,7 @@ export class EnvSnippetManager {
       });
 
       const deleteBtn = actionsEl.createEl('button', {
-        cls: 'claudian-settings-action-btn claudian-settings-delete-btn',
+        cls: 'aidian-settings-action-btn aidian-settings-delete-btn',
         attr: { 'aria-label': 'Delete' },
       });
       setIcon(deleteBtn, 'trash-2');
@@ -376,7 +376,7 @@ export class EnvSnippetManager {
     await this.plugin.saveSettings();
 
     this.onContextLimitsChange?.();
-    const view = this.plugin.app.workspace.getLeavesOfType('claudian-view')[0]?.view as ClaudianView | undefined;
+    const view = this.plugin.app.workspace.getLeavesOfType('aidian-view')[0]?.view as AidianView | undefined;
     view?.refreshModelSelector();
   }
 
@@ -421,7 +421,7 @@ export class EnvSnippetManager {
   }
 
   private syncTextareaValue(scope: EnvironmentScope, value: string): void {
-    const selector = `.claudian-settings-env-textarea[data-env-scope="${scope}"]`;
+    const selector = `.aidian-settings-env-textarea[data-env-scope="${scope}"]`;
     const envTextarea = (this.containerEl.ownerDocument ?? window.document).querySelector<HTMLTextAreaElement>(selector);
     if (envTextarea) {
       envTextarea.value = value;

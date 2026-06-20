@@ -1,4 +1,4 @@
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { CodexAppServerProcess } from '../runtime/CodexAppServerProcess';
 import {
   initializeCodexAppServerTransport,
@@ -100,7 +100,7 @@ export class CodexSkillListingService implements CodexSkillListProvider {
   private readonly now: () => number;
 
   constructor(
-    private readonly plugin: ClaudianPlugin,
+    private readonly plugin: AidianPlugin,
     options: CodexSkillListingServiceOptions = {},
   ) {
     this.ttlMs = options.ttlMs ?? DEFAULT_SKILL_LIST_TTL_MS;

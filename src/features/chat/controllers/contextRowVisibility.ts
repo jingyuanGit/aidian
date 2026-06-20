@@ -1,15 +1,15 @@
 export function updateContextRowHasContent(contextRowEl: HTMLElement): void {
-  const editorIndicator = contextRowEl.querySelector('.claudian-selection-indicator');
-  const browserIndicator = contextRowEl.querySelector('.claudian-browser-selection-indicator');
-  const canvasIndicator = contextRowEl.querySelector('.claudian-canvas-indicator');
-  const fileIndicator = contextRowEl.querySelector('.claudian-file-indicator');
-  const imagePreview = contextRowEl.querySelector('.claudian-image-preview');
+  const editorIndicator = contextRowEl.querySelector('.aidian-selection-indicator');
+  const browserIndicator = contextRowEl.querySelector('.aidian-browser-selection-indicator');
+  const canvasIndicator = contextRowEl.querySelector('.aidian-canvas-indicator');
+  const fileIndicator = contextRowEl.querySelector('.aidian-file-indicator');
+  const imagePreview = contextRowEl.querySelector('.aidian-image-preview');
 
-  const hasEditorSelection = !!editorIndicator && !editorIndicator.hasClass('claudian-hidden');
-  const hasBrowserSelection = !!browserIndicator && !browserIndicator.hasClass('claudian-hidden');
-  const hasCanvasSelection = !!canvasIndicator && !canvasIndicator.hasClass('claudian-hidden');
-  const hasFileChips = !!fileIndicator && fileIndicator.hasClass('claudian-visible-flex');
-  const hasImageChips = !!imagePreview && imagePreview.hasClass('claudian-visible-flex');
+  const hasEditorSelection = !!editorIndicator && !editorIndicator.hasClass('aidian-hidden');
+  const hasBrowserSelection = !!browserIndicator && !browserIndicator.hasClass('aidian-hidden');
+  const hasCanvasSelection = !!canvasIndicator && !canvasIndicator.hasClass('aidian-hidden');
+  const hasFileChips = !!fileIndicator && fileIndicator.hasClass('aidian-visible-flex');
+  const hasImageChips = !!imagePreview && imagePreview.hasClass('aidian-visible-flex');
 
   contextRowEl.classList.toggle(
     'has-content',

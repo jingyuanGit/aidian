@@ -1,12 +1,10 @@
-# Claudian
-
-![GitHub stars](https://img.shields.io/github/stars/YishenTu/claudian?style=social)
-![GitHub release](https://img.shields.io/github/v/release/YishenTu/claudian)
-![License](https://img.shields.io/github/license/YishenTu/claudian)
+# Aidian
 
 ![Preview](assets/Preview.png)
 
 An Obsidian plugin that embeds AI coding agents (Claude Code, Codex, Opencode, Pi, and more to come) in your vault. Your vault becomes the agent's working directory — file read/write, search, bash, and multi-step workflows all work out of the box.
+
+Aidian is a personal fork of [Claudian](https://github.com/YishenTu/claudian) by Yishen Tu, extended with Android support: a WebSocket bridge lets the plugin reach a Claude Code CLI process running inside OperitAI on the device, since Obsidian Mobile has no Node.js runtime to spawn a CLI directly.
 
 ## Features & Usage
 
@@ -31,36 +29,17 @@ Open the chat sidebar from the ribbon icon or command palette. Select text and u
 - **Claude provider**: [Claude Code CLI](https://code.claude.com/docs/en/overview) installed (native install recommended). Claude subscription/API or compatible provider ([Openrouter](https://openrouter.ai/docs/guides/guides/claude-code-integration), [Kimi](https://platform.moonshot.ai/docs/guide/agent-support), etc.).
 - **Optional providers**: [Codex CLI](https://github.com/openai/codex), [Opencode](https://opencode.ai/), [Pi](https://github.com/earendil-works/pi).
 - Obsidian v1.7.2+
-- Desktop only (macOS, Linux, Windows)
+- Desktop (macOS, Linux, Windows), or Android via the OperitAI bridge (see below)
 
 ## Installation
 
-### From Obsidian Community Plugins (recommended)
-
-1. Open Obsidian → Settings → Community plugins → Browse
-2. Search for "Claudian" and click Install
-3. Enable the plugin
-
-Or install directly from the [community plugin page](https://community.obsidian.md/plugins/realclaudian).
-
-### From GitHub Release
-
-1. Download `main.js`, `manifest.json`, and `styles.css` from the [latest release](https://github.com/YishenTu/claudian/releases/latest)
-2. Create a folder called `claudian` in your vault's plugins folder:
-   ```
-   /path/to/vault/.obsidian/plugins/claudian/
-   ```
-3. Copy the downloaded files into the `claudian` folder
-4. Enable the plugin in Obsidian:
-   - Settings → Community plugins → Enable "Claudian"
-
-### From source (development)
+### Desktop, from source
 
 1. Clone this repository into your vault's plugins folder:
    ```bash
    cd /path/to/vault/.obsidian/plugins
-   git clone https://github.com/YishenTu/claudian.git
-   cd claudian
+   git clone https://github.com/jingyuanGit/aidian.git
+   cd aidian
    ```
 
 2. Install dependencies and build:
@@ -70,7 +49,7 @@ Or install directly from the [community plugin page](https://community.obsidian.
    ```
 
 3. Enable the plugin in Obsidian:
-   - Settings → Community plugins → Enable "Claudian"
+   - Settings → Community plugins → Enable "Aidian"
 
 ### Development
 
@@ -82,13 +61,42 @@ npm run dev
 npm run build
 ```
 
+### Android, via the OperitAI bridge
+
+Obsidian Mobile runs in a WebView with no Node.js, so the Claude CLI can't be spawned locally on the device. Instead, the plugin connects over a WebSocket to a small Python bridge server that runs inside OperitAI and spawns the CLI there:
+
+```
+Obsidian (Aidian plugin, WebView)
+  ↓ WebSocket (ws://localhost:7869/spawn)
+android-bridge/server.py (Python aiohttp, runs inside OperitAI)
+  ↓ subprocess stdin/stdout
+claude CLI
+```
+
+Setup:
+
+1. Build and patch the plugin for mobile:
+   ```bash
+   npm run build
+   node scripts/patch-mobile.js
+   ```
+2. Copy `main.js`, `manifest.json`, and `styles.css` into `<vault>/.obsidian/plugins/aidian/` on the device.
+3. Inside OperitAI, install `aiohttp` and run the bridge server:
+   ```bash
+   pip3 install aiohttp
+   python3 android-bridge/server.py [PORT]   # default port 7869
+   ```
+4. In Obsidian, enable the plugin, then in Settings → Claude → Android Bridge, turn it on and set the host/port the bridge is listening on.
+
+`patch-mobile.js` wraps the built bundle with polyfills for the Node.js built-ins (`events`, `fs`, `path`, `child_process`, `os`, `crypto`, `readline`, `stream`, etc.) that the Claude SDK expects but that don't exist in a mobile WebView. On desktop (Electron), the real `require` is detected and used instead, so behavior there is unchanged.
+
 ## Privacy & Data Use
 
 - **Sent to API**: Your input, attached files, images, and tool call outputs. Default: Anthropic (Claude), OpenAI (Codex), or the provider configured in Opencode/Pi; configurable via provider settings and environment variables.
-- **Local storage**: Claudian settings and session metadata in `vault/.claudian/`; Claude provider files in `vault/.claude/`; transcripts in `~/.claude/projects/` (Claude), `~/.codex/sessions/` (Codex), and `.pi/agent/sessions/` or `~/.pi/agent/sessions/` (Pi).
-- **Environment variables**: Provider subprocesses inherit the Obsidian process environment plus any variables you configure in Claudian. This is needed for CLI authentication, proxies, certificates, and PATH resolution.
+- **Local storage**: Aidian settings and session metadata in `vault/.aidian/`; Claude provider files in `vault/.claude/`; transcripts in `~/.claude/projects/` (Claude), `~/.codex/sessions/` (Codex), and `.pi/agent/sessions/` or `~/.pi/agent/sessions/` (Pi).
+- **Environment variables**: Provider subprocesses inherit the Obsidian process environment plus any variables you configure in Aidian. This is needed for CLI authentication, proxies, certificates, and PATH resolution.
 - **Device-specific paths**: Per-device CLI paths use an opaque local key stored in browser local storage, not your system hostname.
-- **Background activity**: Claudian does not run telemetry beacons. UI polling timers read local Obsidian/editor selection state only. Network activity is limited to explicit provider runtime work, configured MCP endpoints, and provider SDK/CLI calls needed to answer your requests.
+- **Background activity**: Aidian does not run telemetry beacons. UI polling timers read local Obsidian/editor selection state only. Network activity is limited to explicit provider runtime work, configured MCP endpoints, provider SDK/CLI calls needed to answer your requests, and — on Android — the WebSocket connection to the OperitAI bridge.
 
 ## Troubleshooting
 
@@ -96,7 +104,7 @@ npm run build
 
 If you encounter `spawn claude ENOENT` or `Claude CLI not found`, the plugin can't auto-detect your Claude installation. Common with Node version managers (nvm, fnm, volta).
 
-**Solution**: Leave the setting empty first so Claudian can auto-detect Claude Code. If auto-detection fails, find your CLI path and set it in Settings → Advanced → Claude CLI path.
+**Solution**: Leave the setting empty first so Aidian can auto-detect Claude Code. If auto-detection fails, find your CLI path and set it in Settings → Advanced → Claude CLI path.
 
 | Platform | Command | Example Path |
 |----------|---------|--------------|
@@ -122,9 +130,15 @@ If different, GUI apps like Obsidian may not find Node.js.
 1. Install native binary (recommended)
 2. Add Node.js path to Settings → Environment: `PATH=/path/to/node/bin`
 
+### Android bridge not connecting
+
+- Confirm the bridge server is running inside OperitAI and reachable at the host/port configured in Settings → Claude → Android Bridge (`curl http://<host>:<port>/health` should return `{"status":"ok"}`).
+- The bridge spawns `claude` with `cwd` set to `/sdcard/<vault folder name>` — make sure the vault actually lives under `/sdcard` on the device and the folder name matches.
+- Android Bridge mode forces `permissionMode: acceptEdits` and disables `bypassPermissions`, since there's no real OS process sandbox on the bridge side.
+
 ### Other providers
 
-Codex, Opencode, and Pi support are live but features might be incomplete, and still need more testing across platforms and installation methods. If you have feature request or run into any bugs, please [submit a GitHub issue](https://github.com/YishenTu/claudian/issues).
+Codex, Opencode, and Pi support are live but features might be incomplete, and still need more testing across platforms and installation methods. If you run into bugs, please open an issue on this fork.
 
 ## Architecture
 
@@ -141,6 +155,7 @@ src/
 │   └── ...                      # commands, mcp, prompt, storage, tools, types
 ├── providers/
 │   ├── claude/                  # Claude SDK adaptor, prompt encoding, storage, MCP, plugins
+│   │   └── runtime/androidBridgeSpawn.ts  # WebSocket spawn shim for the OperitAI bridge
 │   ├── codex/                   # Codex app-server adaptor, JSON-RPC transport, JSONL history
 │   ├── opencode/                # Opencode adaptor
 │   ├── pi/                      # Pi RPC adaptor, model discovery, JSONL history
@@ -154,37 +169,21 @@ src/
 ├── types/                       # Shared ambient types
 ├── utils/                       # Cross-cutting utilities
 └── style/                       # Modular CSS
+
+android-bridge/
+└── server.py                    # Python aiohttp WebSocket bridge, runs inside OperitAI
 ```
 
 ## License
 
 Licensed under the [MIT License](LICENSE).
 
-## Sponsorship
-
-### Ke Holdings Inc. (BEIKE)
-
-<img src="assets/sponsors/MOMA.png" alt="MOMA" width="90%">
-
-Claudian is proudly sponsored by Ke Holdings Inc. (BEIKE) and the MOMA team. Their support helps Claudian continue to
-improve through ongoing development and maintenance.
-
-> Want to support Claudian or appear here? Contact me: [tysk01213@gmail.com](mailto:tysk01213@gmail.com).
-
-## Star History
-
-<a href="https://www.star-history.com/?repos=YishenTu%2Fclaudian&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=YishenTu/claudian&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=YishenTu/claudian&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=YishenTu/claudian&type=date&legend=top-left" />
- </picture>
-</a>
-
 ## Acknowledgments
 
+- [Claudian](https://github.com/YishenTu/claudian) by Yishen Tu, the upstream project this fork builds on
 - [Obsidian](https://obsidian.md) for the plugin API
 - [Anthropic](https://anthropic.com) for Claude and the [Claude Agent SDK](https://platform.claude.com/docs/en/agent-sdk/overview)
 - [OpenAI](https://openai.com) for [Codex](https://github.com/openai/codex)
-- [Opencode](https://opencode.ai/) 
+- [Opencode](https://opencode.ai/)
 - [Pi](https://github.com/earendil-works/pi)
+- OperitAI for the on-device runtime the Android bridge connects to

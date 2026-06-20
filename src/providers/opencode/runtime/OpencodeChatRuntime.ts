@@ -36,7 +36,7 @@ import type {
   StreamChunk,
   ToolCallInfo,
 } from '../../../core/types';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { getEnhancedPath } from '../../../utils/env';
 import { getVaultPath } from '../../../utils/path';
 import {
@@ -170,7 +170,7 @@ export class OpencodeChatRuntime implements ChatRuntime {
   private unregisterTransportClose: (() => void) | null = null;
 
   constructor(
-    private readonly plugin: ClaudianPlugin,
+    private readonly plugin: AidianPlugin,
   ) {}
 
   getCapabilities(): Readonly<ProviderCapabilities> {
@@ -619,7 +619,7 @@ export class OpencodeChatRuntime implements ChatRuntime {
 
     this.connection = new AcpClientConnection({
       clientInfo: {
-        name: 'claudian',
+        name: 'aidian',
         version: this.plugin.manifest?.version ?? '0.0.0',
       },
       delegate: {

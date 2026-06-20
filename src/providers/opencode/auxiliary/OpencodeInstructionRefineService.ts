@@ -1,9 +1,9 @@
 import { QueryBackedInstructionRefineService } from '../../../core/auxiliary/QueryBackedInstructionRefineService';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { OpencodeAuxQueryRunner } from '../runtime/OpencodeAuxQueryRunner';
 
 export class OpencodeInstructionRefineService extends QueryBackedInstructionRefineService {
-  constructor(plugin: ClaudianPlugin) {
+  constructor(plugin: AidianPlugin) {
     super(new OpencodeAuxQueryRunner(plugin, {
       agentProfile: 'passive',
       artifactPurpose: 'instructions',

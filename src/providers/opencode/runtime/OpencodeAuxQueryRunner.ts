@@ -4,7 +4,7 @@ import * as path from 'node:path';
 import type { AuxQueryConfig, AuxQueryRunner } from '../../../core/auxiliary/AuxQueryRunner';
 import { getRuntimeEnvironmentText } from '../../../core/providers/providerEnvironment';
 import { ProviderSettingsCoordinator } from '../../../core/providers/ProviderSettingsCoordinator';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { getVaultPath } from '../../../utils/path';
 import {
   AcpClientConnection,
@@ -34,8 +34,8 @@ interface OpencodeAuxQueryRunnerOptions {
 }
 
 const OPENCODE_AUX_AGENT_IDS: Record<OpencodeAuxAgentProfile, string> = {
-  passive: 'claudian-aux-passive',
-  readonly: 'claudian-aux-readonly',
+  passive: 'aidian-aux-passive',
+  readonly: 'aidian-aux-readonly',
 };
 
 const OPENCODE_AUX_READ_PERMISSION = Object.freeze({
@@ -57,7 +57,7 @@ export class OpencodeAuxQueryRunner implements AuxQueryRunner {
   private transport: AcpJsonRpcTransport | null = null;
 
   constructor(
-    private readonly plugin: ClaudianPlugin,
+    private readonly plugin: AidianPlugin,
     private readonly options: OpencodeAuxQueryRunnerOptions,
   ) {}
 
@@ -269,7 +269,7 @@ export class OpencodeAuxQueryRunner implements AuxQueryRunner {
 
     this.connection = new AcpClientConnection({
       clientInfo: {
-        name: 'claudian-aux',
+        name: 'aidian-aux',
         version: this.plugin.manifest?.version ?? '0.0.0',
       },
       delegate: {
@@ -382,7 +382,7 @@ function buildOpencodeAuxAgentConfig(profile: OpencodeAuxAgentProfile): Opencode
   if (profile === 'readonly') {
     return {
       definition: {
-        description: 'Internal Claudian read-only agent for OpenCode auxiliary tasks.',
+        description: 'Internal Aidian read-only agent for OpenCode auxiliary tasks.',
         mode: 'primary',
         permission: {
           '*': 'deny',
@@ -402,7 +402,7 @@ function buildOpencodeAuxAgentConfig(profile: OpencodeAuxAgentProfile): Opencode
 
   return {
     definition: {
-      description: 'Internal Claudian no-tool agent for OpenCode auxiliary tasks.',
+      description: 'Internal Aidian no-tool agent for OpenCode auxiliary tasks.',
       mode: 'primary',
       permission: {
         '*': 'deny',

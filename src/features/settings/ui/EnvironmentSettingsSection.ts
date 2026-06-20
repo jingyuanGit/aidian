@@ -2,12 +2,12 @@ import { Setting } from 'obsidian';
 
 import { getEnvironmentReviewKeysForScope } from '../../../core/providers/providerEnvironment';
 import type { EnvironmentScope } from '../../../core/types/settings';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { EnvSnippetManager } from './EnvSnippetManager';
 
 interface EnvironmentSettingsSectionOptions {
   container: HTMLElement;
-  plugin: ClaudianPlugin;
+  plugin: AidianPlugin;
   scope: EnvironmentScope;
   heading?: string;
   name: string;
@@ -36,19 +36,19 @@ export function renderEnvironmentSettingsSection(
 
   let envTextarea: HTMLTextAreaElement | null = null;
   const reviewEl = container.createDiv({
-    cls: 'claudian-env-review-warning claudian-setting-validation claudian-setting-validation-warning claudian-hidden',
+    cls: 'aidian-env-review-warning aidian-setting-validation aidian-setting-validation-warning aidian-hidden',
   });
 
   const updateReviewWarning = () => {
     const reviewKeys = getEnvironmentReviewKeysForScope(envTextarea?.value ?? '', scope);
     if (reviewKeys.length === 0) {
-      reviewEl.toggleClass('claudian-hidden', true);
+      reviewEl.toggleClass('aidian-hidden', true);
       reviewEl.empty();
       return;
     }
 
     reviewEl.setText(`Review environment ownership for: ${reviewKeys.join(', ')}`);
-    reviewEl.toggleClass('claudian-hidden', false);
+    reviewEl.toggleClass('aidian-hidden', false);
   };
 
   new Setting(container)
@@ -60,7 +60,7 @@ export function renderEnvironmentSettingsSection(
         .setValue(plugin.getEnvironmentVariablesForScope(scope));
       text.inputEl.rows = 6;
       text.inputEl.cols = 50;
-      text.inputEl.addClass('claudian-settings-env-textarea');
+      text.inputEl.addClass('aidian-settings-env-textarea');
       text.inputEl.dataset.envScope = scope;
       text.inputEl.addEventListener('input', () => updateReviewWarning());
       text.inputEl.addEventListener('blur', () => {
@@ -75,10 +75,10 @@ export function renderEnvironmentSettingsSection(
 
   updateReviewWarning();
 
-  const contextLimitsContainer = container.createDiv({ cls: 'claudian-context-limits-container' });
+  const contextLimitsContainer = container.createDiv({ cls: 'aidian-context-limits-container' });
   renderCustomContextLimits?.(contextLimitsContainer);
 
-  const envSnippetsContainer = container.createDiv({ cls: 'claudian-env-snippets-container' });
+  const envSnippetsContainer = container.createDiv({ cls: 'aidian-env-snippets-container' });
   new EnvSnippetManager(envSnippetsContainer, plugin, scope, () => {
     renderCustomContextLimits?.(contextLimitsContainer);
   });

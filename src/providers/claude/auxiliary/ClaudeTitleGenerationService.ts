@@ -3,7 +3,7 @@ import type {
   TitleGenerationCallback,
   TitleGenerationResult,
 } from '../../../core/providers/types';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { parseEnvironmentVariables } from '../../../utils/env';
 import { runColdStartQuery } from '../runtime/claudeColdStartQuery';
 import { claudeChatUIConfig } from '../ui/ClaudeChatUIConfig';
@@ -11,10 +11,10 @@ import { claudeChatUIConfig } from '../ui/ClaudeChatUIConfig';
 export type { TitleGenerationResult };
 
 export class TitleGenerationService {
-  private plugin: ClaudianPlugin;
+  private plugin: AidianPlugin;
   private activeGenerations: Map<string, AbortController> = new Map();
 
-  constructor(plugin: ClaudianPlugin) {
+  constructor(plugin: AidianPlugin) {
     this.plugin = plugin;
   }
 

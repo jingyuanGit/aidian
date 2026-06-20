@@ -62,7 +62,7 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
       .setDesc('Optional absolute path to the OpenCode CLI for this computer. Leave empty to use `opencode` from PATH.');
 
     const validationEl = container.createDiv({
-      cls: 'claudian-cli-path-validation claudian-setting-validation claudian-setting-validation-error claudian-hidden',
+      cls: 'aidian-cli-path-validation aidian-setting-validation aidian-setting-validation-error aidian-hidden',
     });
 
     const validatePath = (value: string): string | null => {
@@ -88,16 +88,16 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
       const error = validatePath(value);
       if (error) {
         validationEl.setText(error);
-        validationEl.toggleClass('claudian-hidden', false);
+        validationEl.toggleClass('aidian-hidden', false);
         if (inputEl) {
-          inputEl.toggleClass('claudian-input-error', true);
+          inputEl.toggleClass('aidian-input-error', true);
         }
         return false;
       }
 
-      validationEl.toggleClass('claudian-hidden', true);
+      validationEl.toggleClass('aidian-hidden', true);
       if (inputEl) {
-        inputEl.toggleClass('claudian-input-error', false);
+        inputEl.toggleClass('aidian-input-error', false);
       }
       return true;
     };
@@ -152,7 +152,7 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
           await persistCliPath(value);
         });
 
-      text.inputEl.addClass('claudian-settings-cli-path-input');
+      text.inputEl.addClass('aidian-settings-cli-path-input');
       cliPathInputEl = text.inputEl;
 
       updateCliPathValidation(currentValue, text.inputEl);
@@ -164,34 +164,34 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
       .setName('Visible models')
       .setDesc('Choose which OpenCode models appear in the chat selector. Filter by provider or type to search. The current session model stays pinned even if it is not selected here.');
 
-    const pickerEl = container.createDiv({ cls: 'claudian-opencode-model-picker' });
+    const pickerEl = container.createDiv({ cls: 'aidian-opencode-model-picker' });
 
     let searchQuery = '';
     let providerFilter = ALL_PROVIDERS_KEY;
 
-    const summaryEl = pickerEl.createDiv({ cls: 'claudian-opencode-model-picker-summary' });
-    const selectedEl = pickerEl.createDiv({ cls: 'claudian-opencode-model-picker-selected' });
-    const catalogEl = pickerEl.createEl('details', { cls: 'claudian-opencode-model-picker-catalog' });
+    const summaryEl = pickerEl.createDiv({ cls: 'aidian-opencode-model-picker-summary' });
+    const selectedEl = pickerEl.createDiv({ cls: 'aidian-opencode-model-picker-selected' });
+    const catalogEl = pickerEl.createEl('details', { cls: 'aidian-opencode-model-picker-catalog' });
     catalogEl.open = getOpencodeProviderSettings(settingsBag).visibleModels.length === 0;
     const catalogSummaryEl = catalogEl.createEl('summary', {
-      cls: 'claudian-opencode-model-picker-catalog-summary',
+      cls: 'aidian-opencode-model-picker-catalog-summary',
     });
     catalogSummaryEl.createSpan({
-      cls: 'claudian-opencode-model-picker-catalog-caret',
+      cls: 'aidian-opencode-model-picker-catalog-caret',
       text: '▸',
     });
     catalogSummaryEl.createSpan({
-      cls: 'claudian-opencode-model-picker-catalog-title',
+      cls: 'aidian-opencode-model-picker-catalog-title',
       text: 'Browse models',
     });
     const catalogSummaryCountEl = catalogSummaryEl.createSpan({
-      cls: 'claudian-opencode-model-picker-catalog-count',
+      cls: 'aidian-opencode-model-picker-catalog-count',
     });
 
-    const controlsEl = catalogEl.createDiv({ cls: 'claudian-opencode-model-picker-controls' });
+    const controlsEl = catalogEl.createDiv({ cls: 'aidian-opencode-model-picker-controls' });
 
     const searchInput = controlsEl.createEl('input', {
-      cls: 'claudian-opencode-model-picker-search',
+      cls: 'aidian-opencode-model-picker-search',
       type: 'search',
     });
     searchInput.placeholder = 'Filter by model, provider, or ID…';
@@ -201,14 +201,14 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
     });
 
     const providerSelectEl = controlsEl.createEl('select', {
-      cls: 'claudian-opencode-model-picker-provider',
+      cls: 'aidian-opencode-model-picker-provider',
     });
     providerSelectEl.addEventListener('change', () => {
       providerFilter = providerSelectEl.value;
       renderList();
     });
 
-    const listEl = catalogEl.createDiv({ cls: 'claudian-opencode-model-picker-list' });
+    const listEl = catalogEl.createDiv({ cls: 'aidian-opencode-model-picker-list' });
     let loadingModelCatalog = false;
     let modelCatalogLoadFailed = false;
 
@@ -286,7 +286,7 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
 
       summaryEl.createSpan({ text: 'Visible: ' });
       summaryEl.createSpan({
-        cls: 'claudian-opencode-model-picker-summary-value',
+        cls: 'aidian-opencode-model-picker-summary-value',
         text: String(current.visibleModels.length),
       });
       summaryEl.createSpan({
@@ -306,22 +306,22 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
       selectedEl.empty();
       const current = getOpencodeProviderSettings(settingsBag);
       if (current.visibleModels.length === 0) {
-        selectedEl.toggleClass('claudian-hidden', true);
+        selectedEl.toggleClass('aidian-hidden', true);
         return;
       }
 
-      selectedEl.toggleClass('claudian-hidden', false);
+      selectedEl.toggleClass('aidian-hidden', false);
       const enrichedByRawId = new Map(
         getEnrichedModels().map((model) => [model.rawId, model] as const),
       );
 
-      const headerEl = selectedEl.createDiv({ cls: 'claudian-opencode-model-picker-selected-header' });
+      const headerEl = selectedEl.createDiv({ cls: 'aidian-opencode-model-picker-selected-header' });
       headerEl.createEl('span', {
-        cls: 'claudian-opencode-model-picker-selected-label',
+        cls: 'aidian-opencode-model-picker-selected-label',
         text: `Selected (${current.visibleModels.length})`,
       });
       const clearAllBtn = headerEl.createEl('button', {
-        cls: 'claudian-opencode-model-picker-selected-clear',
+        cls: 'aidian-opencode-model-picker-selected-clear',
         text: 'Clear all',
       });
       clearAllBtn.setAttribute('aria-label', 'Clear all selected models');
@@ -329,7 +329,7 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
         void persistVisibleModels([]);
       });
 
-      const rowsEl = selectedEl.createDiv({ cls: 'claudian-opencode-model-picker-selected-rows' });
+      const rowsEl = selectedEl.createDiv({ cls: 'aidian-opencode-model-picker-selected-rows' });
 
       for (const rawId of current.visibleModels) {
         const enriched = enrichedByRawId.get(rawId);
@@ -337,44 +337,44 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
           ? `${enriched.providerLabel}/${enriched.modelLabel}`
           : rawId;
 
-        const rowEl = rowsEl.createDiv({ cls: 'claudian-opencode-model-picker-selected-row' });
+        const rowEl = rowsEl.createDiv({ cls: 'aidian-opencode-model-picker-selected-row' });
         if (enriched && !enriched.isAvailable) {
-          rowEl.classList.add('claudian-opencode-model-picker-selected-row--unavailable');
+          rowEl.classList.add('aidian-opencode-model-picker-selected-row--unavailable');
         }
 
-        const infoEl = rowEl.createDiv({ cls: 'claudian-opencode-model-picker-selected-info' });
-        const titleEl = infoEl.createDiv({ cls: 'claudian-opencode-model-picker-selected-title' });
+        const infoEl = rowEl.createDiv({ cls: 'aidian-opencode-model-picker-selected-info' });
+        const titleEl = infoEl.createDiv({ cls: 'aidian-opencode-model-picker-selected-title' });
         if (enriched) {
           titleEl.createEl('span', {
-            cls: 'claudian-opencode-model-picker-selected-badge',
+            cls: 'aidian-opencode-model-picker-selected-badge',
             text: enriched.providerLabel,
           });
           titleEl.createEl('span', {
-            cls: 'claudian-opencode-model-picker-selected-name',
+            cls: 'aidian-opencode-model-picker-selected-name',
             text: enriched.modelLabel,
           });
         } else {
           titleEl.createEl('span', {
-            cls: 'claudian-opencode-model-picker-selected-name',
+            cls: 'aidian-opencode-model-picker-selected-name',
             text: rawId,
           });
         }
 
         if (enriched && !enriched.isAvailable) {
           infoEl.createEl('div', {
-            cls: 'claudian-opencode-model-picker-selected-unavailable',
+            cls: 'aidian-opencode-model-picker-selected-unavailable',
             text: 'Not currently reported by OpenCode',
           });
         }
 
         infoEl.createEl('div', {
-          cls: 'claudian-opencode-model-picker-selected-id',
+          cls: 'aidian-opencode-model-picker-selected-id',
           text: rawId,
         });
 
-        const controlsEl = rowEl.createDiv({ cls: 'claudian-opencode-model-picker-selected-controls' });
+        const controlsEl = rowEl.createDiv({ cls: 'aidian-opencode-model-picker-selected-controls' });
         const aliasInput = controlsEl.createEl('input', {
-          cls: 'claudian-opencode-model-picker-selected-alias',
+          cls: 'aidian-opencode-model-picker-selected-alias',
           type: 'text',
         });
         aliasInput.placeholder = defaultLabel;
@@ -413,7 +413,7 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
         });
 
         const removeBtn = controlsEl.createEl('button', {
-          cls: 'claudian-opencode-model-picker-selected-remove',
+          cls: 'aidian-opencode-model-picker-selected-remove',
           text: '×',
         });
         removeBtn.setAttribute('aria-label', `Remove ${defaultLabel}`);
@@ -464,24 +464,24 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
       const filtered = filterModels(enriched);
 
       if (filtered.length === 0) {
-        const emptyEl = listEl.createDiv({ cls: 'claudian-opencode-model-picker-empty' });
+        const emptyEl = listEl.createDiv({ cls: 'aidian-opencode-model-picker-empty' });
         let emptyText = 'No models match your filter.';
         if (loadingModelCatalog) {
           emptyText = 'Loading OpenCode model catalog...';
         } else if (modelCatalogLoadFailed) {
           emptyText = 'Could not load the OpenCode model catalog. Check the CLI path and login state, then expand this section again.';
         } else if (enriched.length === 0) {
-          emptyText = 'Start OpenCode once to load its model catalog. Claudian will then let you pick visible models.';
+          emptyText = 'Start OpenCode once to load its model catalog. Aidian will then let you pick visible models.';
         }
         emptyEl.setText(emptyText);
         return;
       }
 
       for (const model of filtered) {
-        const rowEl = listEl.createEl('label', { cls: 'claudian-opencode-model-picker-row' });
+        const rowEl = listEl.createEl('label', { cls: 'aidian-opencode-model-picker-row' });
         const isSelected = selectedIds.has(model.rawId);
         if (isSelected) {
-          rowEl.classList.add('claudian-opencode-model-picker-row--selected');
+          rowEl.classList.add('aidian-opencode-model-picker-row--selected');
         }
         rowEl.title = model.rawId;
 
@@ -500,31 +500,31 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
           })();
         });
 
-        const textEl = rowEl.createDiv({ cls: 'claudian-opencode-model-picker-row-text' });
+        const textEl = rowEl.createDiv({ cls: 'aidian-opencode-model-picker-row-text' });
 
-        const headerEl = textEl.createDiv({ cls: 'claudian-opencode-model-picker-row-header' });
+        const headerEl = textEl.createDiv({ cls: 'aidian-opencode-model-picker-row-header' });
         headerEl.createEl('span', {
-          cls: 'claudian-opencode-model-picker-row-name',
+          cls: 'aidian-opencode-model-picker-row-name',
           text: model.modelLabel,
         });
         const badgeEl = headerEl.createEl('span', {
-          cls: 'claudian-opencode-model-picker-row-badge',
+          cls: 'aidian-opencode-model-picker-row-badge',
           text: model.providerLabel,
         });
         if (!model.isAvailable) {
-          badgeEl.classList.add('claudian-opencode-model-picker-row-badge--unavailable');
+          badgeEl.classList.add('aidian-opencode-model-picker-row-badge--unavailable');
           badgeEl.setText('Unavailable');
           badgeEl.title = 'Configured model not currently reported by OpenCode';
         }
 
         textEl.createDiv({
-          cls: 'claudian-opencode-model-picker-row-meta',
+          cls: 'aidian-opencode-model-picker-row-meta',
           text: model.rawId,
         });
 
         if (model.description) {
           textEl.createDiv({
-            cls: 'claudian-opencode-model-picker-row-desc',
+            cls: 'aidian-opencode-model-picker-row-desc',
             text: model.description,
           });
         }
@@ -581,7 +581,7 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
 
     new Setting(container).setName('Commands and skills').setHeading();
 
-    const commandsDesc = container.createDiv({ cls: 'claudian-sp-settings-desc' });
+    const commandsDesc = container.createDiv({ cls: 'aidian-sp-settings-desc' });
     commandsDesc.createEl('p', {
       cls: 'setting-item-description',
       text: 'OpenCode can auto-detect vault-level Claude slash commands from .claude/commands/ and skills from .claude/skills/, .codex/skills/, and .agents/skills/. Manage those entries in the Claude or Codex settings tab. This setting only hides entries from the OpenCode dropdown.',
@@ -596,13 +596,13 @@ export const opencodeSettingsTabRenderer: ProviderSettingsTabRenderer = {
     if (opencodeWorkspace?.agentStorage) {
       new Setting(container).setName('Subagents').setHeading();
 
-      const subagentsDesc = container.createDiv({ cls: 'claudian-sp-settings-desc' });
+      const subagentsDesc = container.createDiv({ cls: 'aidian-sp-settings-desc' });
       subagentsDesc.createEl('p', {
         cls: 'setting-item-description',
         text: 'Manage vault-level OpenCode subagents from .opencode/agent/ and legacy .opencode/agents/. New entries are saved as subagent-only files and appear in the @mention menu.',
       });
 
-      const subagentsContainer = container.createDiv({ cls: 'claudian-slash-commands-container' });
+      const subagentsContainer = container.createDiv({ cls: 'aidian-slash-commands-container' });
       new OpencodeAgentSettings(
         subagentsContainer,
         opencodeWorkspace.agentStorage,

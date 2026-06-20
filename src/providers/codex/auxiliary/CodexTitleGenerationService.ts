@@ -1,10 +1,10 @@
 import { QueryBackedTitleGenerationService } from '../../../core/auxiliary/QueryBackedTitleGenerationService';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { CodexAuxQueryRunner } from '../runtime/CodexAuxQueryRunner';
 import { codexChatUIConfig } from '../ui/CodexChatUIConfig';
 
 export class CodexTitleGenerationService extends QueryBackedTitleGenerationService {
-  constructor(plugin: ClaudianPlugin) {
+  constructor(plugin: AidianPlugin) {
     super({
       createRunner: () => new CodexAuxQueryRunner(plugin),
       resolveModel: () => {

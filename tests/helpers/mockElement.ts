@@ -68,30 +68,30 @@ export interface MockElement {
 }
 
 const CLASS_DISPLAY: Record<string, string> = {
-  'claudian-browser-selection-indicator': 'block',
-  'claudian-canvas-indicator': 'block',
-  'claudian-context-meter': 'flex',
-  'claudian-file-indicator': 'none',
-  'claudian-image-preview': 'none',
-  'claudian-mcp-selector': 'flex',
-  'claudian-mode-selector': 'flex',
-  'claudian-permission-toggle': 'flex',
-  'claudian-selection-indicator': 'block',
-  'claudian-service-tier-toggle': 'flex',
-  'claudian-status-panel-bash': 'block',
-  'claudian-status-panel-bash-content': 'block',
-  'claudian-status-panel-bash-entry-content': 'block',
-  'claudian-status-panel-content': 'block',
-  'claudian-status-panel-todos': 'block',
-  'claudian-tab-content': 'flex',
-  'claudian-thinking-budget': 'flex',
-  'claudian-thinking-effort': 'flex',
+  'aidian-browser-selection-indicator': 'block',
+  'aidian-canvas-indicator': 'block',
+  'aidian-context-meter': 'flex',
+  'aidian-file-indicator': 'none',
+  'aidian-image-preview': 'none',
+  'aidian-mcp-selector': 'flex',
+  'aidian-mode-selector': 'flex',
+  'aidian-permission-toggle': 'flex',
+  'aidian-selection-indicator': 'block',
+  'aidian-service-tier-toggle': 'flex',
+  'aidian-status-panel-bash': 'block',
+  'aidian-status-panel-bash-content': 'block',
+  'aidian-status-panel-bash-entry-content': 'block',
+  'aidian-status-panel-content': 'block',
+  'aidian-status-panel-todos': 'block',
+  'aidian-tab-content': 'flex',
+  'aidian-thinking-budget': 'flex',
+  'aidian-thinking-effort': 'flex',
 };
 
 const DISPLAY_CLASSES = new Set([
-  'claudian-hidden',
-  'claudian-visible-block',
-  'claudian-visible-flex',
+  'aidian-hidden',
+  'aidian-visible-block',
+  'aidian-visible-flex',
   ...Object.keys(CLASS_DISPLAY),
 ]);
 
@@ -105,9 +105,9 @@ export function createMockEl(tag = 'div'): any {
   let textContent = '';
 
   const resolveDisplay = (): string | null => {
-    if (classes.has('claudian-hidden')) return 'none';
-    if (classes.has('claudian-visible-flex')) return 'flex';
-    if (classes.has('claudian-visible-block')) return 'block';
+    if (classes.has('aidian-hidden')) return 'none';
+    if (classes.has('aidian-visible-flex')) return 'flex';
+    if (classes.has('aidian-visible-block')) return 'block';
 
     for (const [cls, display] of Object.entries(CLASS_DISPLAY)) {
       if (classes.has(cls)) return display;

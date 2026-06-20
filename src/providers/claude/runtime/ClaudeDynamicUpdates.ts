@@ -8,7 +8,7 @@ import type { McpServerManager } from '../../../core/mcp/McpServerManager';
 import type {
   ChatRuntimeQueryOptions,
 } from '../../../core/runtime/types';
-import type { ClaudianSettings, PermissionMode } from '../../../core/types/settings';
+import type { AidianSettings, PermissionMode } from '../../../core/types/settings';
 import {
   resolveEffortLevel,
 } from '../types/models';
@@ -24,7 +24,7 @@ export interface ClaudeDynamicUpdateDeps {
   mutateCurrentConfig: (mutate: (config: PersistentQueryConfig) => void) => void;
   getVaultPath: () => string | null;
   getCliPath: () => string | null;
-  getScopedSettings: () => ClaudianSettings;
+  getScopedSettings: () => AidianSettings;
   getPermissionMode: () => PermissionMode;
   resolveSDKPermissionMode: (mode: PermissionMode) => SDKPermissionMode;
   mcpManager: McpServerManager;

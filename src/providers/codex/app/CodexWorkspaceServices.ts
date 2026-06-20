@@ -7,7 +7,7 @@ import type {
 } from '../../../core/providers/types';
 import type { HomeFileAdapter } from '../../../core/storage/HomeFileAdapter';
 import type { VaultFileAdapter } from '../../../core/storage/VaultFileAdapter';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { getVaultPath } from '../../../utils/path';
 import { CodexAgentMentionProvider } from '../agents/CodexAgentMentionProvider';
 import { CodexSkillCatalog } from '../commands/CodexSkillCatalog';
@@ -29,7 +29,7 @@ function createCodexCliResolver(): ProviderCliResolver {
 }
 
 export async function createCodexWorkspaceServices(
-  plugin: ClaudianPlugin,
+  plugin: AidianPlugin,
   vaultAdapter: VaultFileAdapter,
   homeAdapter: HomeFileAdapter,
 ): Promise<CodexWorkspaceServices> {

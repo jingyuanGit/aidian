@@ -4,20 +4,20 @@ import { CanvasSelectionController } from '@/features/chat/controllers/CanvasSel
 
 function createMockIndicator() {
   const indicator = createMockEl();
-  indicator.addClass('claudian-canvas-indicator');
-  indicator.addClass('claudian-hidden');
+  indicator.addClass('aidian-canvas-indicator');
+  indicator.addClass('aidian-hidden');
   return indicator;
 }
 
 function createMockContextRow() {
   const elements: Record<string, any> = {
-    '.claudian-selection-indicator': createMockEl(),
-    '.claudian-canvas-indicator': createMockIndicator(),
-    '.claudian-file-indicator': null,
-    '.claudian-image-preview': null,
+    '.aidian-selection-indicator': createMockEl(),
+    '.aidian-canvas-indicator': createMockIndicator(),
+    '.aidian-file-indicator': null,
+    '.aidian-image-preview': null,
   };
-  elements['.claudian-selection-indicator'].addClass('claudian-selection-indicator');
-  elements['.claudian-selection-indicator'].addClass('claudian-hidden');
+  elements['.aidian-selection-indicator'].addClass('aidian-selection-indicator');
+  elements['.aidian-selection-indicator'].addClass('aidian-hidden');
 
   const contextRow = createMockEl();
   const toggle = contextRow.classList.toggle;
@@ -152,9 +152,9 @@ describe('CanvasSelectionController', () => {
 
   it('keeps context row visible when editor selection indicator is visible', () => {
     const editorIndicator = createMockEl();
-    editorIndicator.addClass('claudian-selection-indicator');
+    editorIndicator.addClass('aidian-selection-indicator');
     contextRowEl.querySelector.mockImplementation((selector: string) => {
-      if (selector === '.claudian-selection-indicator') return editorIndicator;
+      if (selector === '.aidian-selection-indicator') return editorIndicator;
       return null;
     });
 

@@ -10,14 +10,14 @@ export {
   type SessionMetadata,
   type StreamChunk,
   type UsageInfo,
-  VIEW_TYPE_CLAUDIAN,
+  VIEW_TYPE_AIDIAN,
 } from './chat';
 export { type ProviderId } from './provider';
 
 // Settings and command types
 export {
+  type AidianSettings,
   type ApprovalDecision,
-  type ClaudianSettings,
   type EnvironmentScope,
   type EnvSnippet,
   type HostnameCliPaths,

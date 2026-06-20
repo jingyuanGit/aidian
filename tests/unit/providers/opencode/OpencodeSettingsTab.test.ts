@@ -546,7 +546,7 @@ describe('OpencodeSettingsTab', () => {
 
     opencodeSettingsTabRenderer.render(createContainer(), context);
 
-    const catalogEl = findElement('details', 'claudian-opencode-model-picker-catalog');
+    const catalogEl = findElement('details', 'aidian-opencode-model-picker-catalog');
     catalogEl.open = true;
     await catalogEl.dispatchMockEvent('toggle');
 

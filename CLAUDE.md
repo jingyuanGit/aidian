@@ -2,11 +2,11 @@
 
 ## Project Overview
 
-Claudian is an Obsidian plugin that embeds provider-backed chat runtimes in a sidebar and inline-edit flow. Claude is the default provider. Codex is optional and joins the same conversation model through `Conversation.providerId` plus provider-owned `providerState`.
+Aidian is an Obsidian plugin that embeds provider-backed chat runtimes in a sidebar and inline-edit flow. Claude is the default provider. Codex is optional and joins the same conversation model through `Conversation.providerId` plus provider-owned `providerState`.
 
 ## Architecture Status
 
-- Product status: Claudian is a multi-provider product. Claude is the full-feature provider. Codex is opt-in and currently supports send, stream, cancel, resume, history reload, fork, plan mode, image attachments, inline edit, `#` instruction mode, `$` skills, and subagents. Unsupported or gated Codex surfaces are rewind, runtime-discovered provider commands, in-app MCP management, and Claude plugin integration.
+- Product status: Aidian is a multi-provider product. Claude is the full-feature provider. Codex is opt-in and currently supports send, stream, cancel, resume, history reload, fork, plan mode, image attachments, inline edit, `#` instruction mode, `$` skills, and subagents. Unsupported or gated Codex surfaces are rewind, runtime-discovered provider commands, in-app MCP management, and Claude plugin integration.
 - App shell: `src/app/` owns shared settings defaults and plugin-level storage helpers. `src/core/` owns provider-neutral runtime, registry, tool, and type contracts.
 - Provider boundary: `src/core/runtime/` and `src/core/providers/` define the chat-facing seam. `ProviderRegistry` creates runtimes and provider-owned auxiliary services. `ProviderWorkspaceRegistry` owns workspace services such as command catalogs, agent mention providers, CLI resolution, MCP managers, and provider settings tabs.
 - Claude adaptor: `src/providers/claude/` owns the Claude runtime, prompt encoding, stream transforms, history hydration, CLI resolution, plugin and agent discovery, MCP storage, and Claude-specific settings UI. `ClaudeCommandCatalog` merges vault commands, vault skills, and runtime-supported commands behind the shared command catalog contract.
@@ -30,7 +30,7 @@ npm run test:coverage
 
 | Layer | Purpose | Details |
 |-------|---------|---------|
-| **app** | Shared defaults and plugin-level storage helpers | `defaultSettings`, `ClaudianSettingsStorage`, `SharedStorageService` |
+| **app** | Shared defaults and plugin-level storage helpers | `defaultSettings`, `AidianSettingsStorage`, `SharedStorageService` |
 | **core** | Provider-neutral contracts and infrastructure | See [`src/core/CLAUDE.md`](src/core/CLAUDE.md) |
 | **providers/claude** | Claude SDK adaptor | See [`src/providers/claude/CLAUDE.md`](src/providers/claude/CLAUDE.md) |
 | **providers/codex** | Codex app-server adaptor | See [`src/providers/codex/CLAUDE.md`](src/providers/codex/CLAUDE.md) |
@@ -57,12 +57,12 @@ Tests mirror the `src/` layout under `tests/unit/` and `tests/integration/`.
 | Path | Contents |
 |------|----------|
 | `.claude/settings.json` | Claude Code-compatible project settings, permissions, and plugin overrides |
-| `.claudian/claudian-settings.json` | Shared Claudian app settings plus provider-specific configuration |
-| `.claude/mcp.json` | Claudian-managed MCP servers for Claude |
+| `.aidian/aidian-settings.json` | Shared Aidian app settings plus provider-specific configuration |
+| `.claude/mcp.json` | Aidian-managed MCP servers for Claude |
 | `.claude/commands/**/*.md` | Claude slash commands |
 | `.claude/skills/*/SKILL.md` | Claude skills |
 | `.claude/agents/*.md` | Claude vault agents |
-| `.claudian/sessions/*.meta.json` | Provider-neutral session metadata |
+| `.aidian/sessions/*.meta.json` | Provider-neutral session metadata |
 | `.codex/skills/*/SKILL.md` | Codex vault skills |
 | `.agents/skills/*/SKILL.md` | Alternate Codex vault skill root |
 | `.codex/agents/*.toml` | Codex vault subagent definitions |

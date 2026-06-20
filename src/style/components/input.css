@@ -1,27 +1,27 @@
 /* Input area */
-.claudian-input-container {
+.aidian-input-container {
   position: relative;
   padding: 12px 0 0 0;
 }
 
 /* Input wrapper (border container) - flex column so textarea expands when no chips */
 /* Height calculation: context row (36px) + textarea min (60px) + toolbar (38px) + border (2px) = 136px */
-.claudian-input-wrapper {
-  --claudian-input-wrapper-border-color: var(--background-modifier-border);
-  --claudian-input-wrapper-box-shadow: none;
+.aidian-input-wrapper {
+  --aidian-input-wrapper-border-color: var(--background-modifier-border);
+  --aidian-input-wrapper-box-shadow: none;
   position: relative;
   display: flex;
   flex-direction: column;
   min-height: 140px;
-  border: 1px solid var(--claudian-input-wrapper-border-color);
+  border: 1px solid var(--aidian-input-wrapper-border-color);
   border-radius: 6px;
   background: var(--background-primary);
-  box-shadow: var(--claudian-input-wrapper-box-shadow);
+  box-shadow: var(--aidian-input-wrapper-box-shadow);
 }
 
 /* Context row (file chip start, selection indicator end) - inside input wrapper at top */
 /* Collapsed by default; expanded via .has-content class; textarea fills remaining space */
-.claudian-context-row {
+.aidian-context-row {
   display: none;
   align-items: flex-start;
   justify-content: flex-start;
@@ -31,12 +31,12 @@
 }
 
 /* Show context row when it has visible content */
-.claudian-context-row.has-content {
+.aidian-context-row.has-content {
   display: flex;
 }
 
 /* Nav row (tab badges start, header icons end) - above input wrapper */
-.claudian-input-nav-row {
+.aidian-input-nav-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -44,7 +44,7 @@
   min-height: 0;
 }
 
-.claudian-input-nav-content {
+.aidian-input-nav-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -53,16 +53,16 @@
 }
 
 /* Header mode: hide nav row above input (content moved to header) */
-.claudian-container--header-mode .claudian-input-nav-row {
+.aidian-container--header-mode .aidian-input-nav-row {
   display: none;
 }
 
 /* Selection indicator (shown when text is selected in editor) */
 /* Match file chip height (24px): chip has 16px remove button + 6px padding + 2px border */
 /* Indicator: 12px text + 10px padding (5+5) + 2px border = 24px */
-.claudian-selection-indicator,
-.claudian-browser-selection-indicator,
-.claudian-canvas-indicator {
+.aidian-selection-indicator,
+.aidian-browser-selection-indicator,
+.aidian-canvas-indicator {
   color: #7abaff;
   font-size: 12px;
   line-height: 1;
@@ -80,11 +80,11 @@
   text-overflow: ellipsis;
 }
 
-.claudian-input-wrapper textarea.claudian-input {
+.aidian-input-wrapper textarea.aidian-input {
   width: 100%;
   flex: 1 1 0;
-  min-height: var(--claudian-textarea-min-height, 60px);
-  max-height: var(--claudian-textarea-max-height, none);
+  min-height: var(--aidian-textarea-min-height, 60px);
+  max-height: var(--aidian-textarea-max-height, none);
   resize: none;
   padding: 8px 10px 10px 10px;
   border: none;
@@ -99,20 +99,20 @@
   unicode-bidi: plaintext; /* Proper BiDi text handling for mixed RTL/LTR */
 }
 
-.claudian-input-wrapper textarea.claudian-input:hover,
-.claudian-input-wrapper textarea.claudian-input:focus {
+.aidian-input-wrapper textarea.aidian-input:hover,
+.aidian-input-wrapper textarea.aidian-input:focus {
   outline: none;
   border: none;
   background: transparent;
   box-shadow: none;
 }
 
-.claudian-input-wrapper textarea.claudian-input::placeholder {
+.aidian-input-wrapper textarea.aidian-input::placeholder {
   color: var(--text-muted);
 }
 
 /* Input toolbar */
-.claudian-input-toolbar {
+.aidian-input-toolbar {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -121,13 +121,13 @@
 }
 
 /* File indicator (attached files) */
-.claudian-file-indicator {
+.aidian-file-indicator {
   display: none;
   flex-wrap: wrap;
   gap: 6px;
 }
 
-.claudian-file-chip {
+.aidian-file-chip {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -141,26 +141,26 @@
   cursor: pointer;
 }
 
-.claudian-file-chip-icon {
+.aidian-file-chip-icon {
   display: flex;
   align-items: center;
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.claudian-file-chip-icon svg {
+.aidian-file-chip-icon svg {
   width: 12px;
   height: 12px;
 }
 
-.claudian-file-chip-name {
+.aidian-file-chip-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: var(--text-normal);
 }
 
-.claudian-file-chip-remove {
+.aidian-file-chip-remove {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,17 +174,17 @@
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.claudian-file-chip-remove:hover {
+.aidian-file-chip-remove:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.claudian-file-chip:hover {
+.aidian-file-chip:hover {
   background: var(--background-modifier-hover);
 }
 
 /* Composer queue status row (queued follow-up preview + steer action) */
-.claudian-input-queue-row {
+.aidian-input-queue-row {
   display: none;
   font-size: 12px;
   color: var(--text-muted);
@@ -194,7 +194,7 @@
   padding: 0 2px 8px 2px;
 }
 
-.claudian-queue-indicator-text {
+.aidian-queue-indicator-text {
   min-width: 0;
   flex: 1 1 auto;
   white-space: nowrap;
@@ -202,14 +202,14 @@
   text-overflow: ellipsis;
 }
 
-.claudian-queue-indicator-actions {
+.aidian-queue-indicator-actions {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.claudian-queue-indicator-action {
+.aidian-queue-indicator-action {
   flex: 0 0 auto;
   padding: 1px 8px;
   border: 0;
@@ -219,17 +219,17 @@
   cursor: pointer;
 }
 
-.claudian-queue-indicator-action:hover {
+.aidian-queue-indicator-action:hover {
   text-decoration: underline;
 }
 
-.claudian-queue-indicator-action[disabled] {
+.aidian-queue-indicator-action[disabled] {
   color: var(--text-faint);
   cursor: default;
   text-decoration: none;
 }
 
-.claudian-queue-indicator-icon-action {
+.aidian-queue-indicator-icon-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -244,29 +244,29 @@
   cursor: pointer;
 }
 
-.claudian-queue-indicator-icon-action:hover {
+.aidian-queue-indicator-icon-action:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.claudian-queue-indicator-icon-action svg {
+.aidian-queue-indicator-icon-action svg {
   width: 14px;
   height: 14px;
 }
 
 /* Light blue border when instruction mode is active */
-.claudian-input-wrapper.claudian-input-instruction-mode {
-  --claudian-input-wrapper-border-color: #60a5fa;
-  --claudian-input-wrapper-box-shadow: 0 0 0 1px #60a5fa;
+.aidian-input-wrapper.aidian-input-instruction-mode {
+  --aidian-input-wrapper-border-color: #60a5fa;
+  --aidian-input-wrapper-box-shadow: 0 0 0 1px #60a5fa;
 }
 
 /* Pink border when bash mode is active */
-.claudian-input-wrapper.claudian-input-bang-bash-mode {
-  --claudian-input-wrapper-border-color: #f472b6;
-  --claudian-input-wrapper-box-shadow: 0 0 0 1px #f472b6;
+.aidian-input-wrapper.aidian-input-bang-bash-mode {
+  --aidian-input-wrapper-border-color: #f472b6;
+  --aidian-input-wrapper-box-shadow: 0 0 0 1px #f472b6;
 }
 
 /* Monospace input while in bash mode */
-.claudian-input-wrapper.claudian-input-bang-bash-mode .claudian-input {
+.aidian-input-wrapper.aidian-input-bang-bash-mode .aidian-input {
   font-family: var(--font-monospace);
 }

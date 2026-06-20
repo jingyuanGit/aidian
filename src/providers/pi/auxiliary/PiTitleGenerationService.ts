@@ -1,10 +1,10 @@
 import { QueryBackedTitleGenerationService } from '../../../core/auxiliary/QueryBackedTitleGenerationService';
-import type ClaudianPlugin from '../../../main';
+import type AidianPlugin from '../../../main';
 import { PiAuxQueryRunner } from '../runtime/PiAuxQueryRunner';
 import { piChatUIConfig } from '../ui/PiChatUIConfig';
 
 export class PiTitleGenerationService extends QueryBackedTitleGenerationService {
-  constructor(plugin: ClaudianPlugin) {
+  constructor(plugin: AidianPlugin) {
     super({
       createRunner: () => new PiAuxQueryRunner(plugin, { profile: 'passive' }),
       resolveModel: () => {

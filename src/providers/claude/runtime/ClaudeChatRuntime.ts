@@ -1,5 +1,5 @@
 /**
- * Claudian - Claude Agent SDK wrapper
+ * Aidian - Claude Agent SDK wrapper
  *
  * Handles communication with Claude via the Agent SDK. Manages streaming,
  * session persistence, permission modes, and security hooks.
@@ -55,8 +55,8 @@ import type {
   StreamChunk,
   ToolCallInfo,
 } from '../../../core/types';
-import type { ClaudianSettings, PermissionMode } from '../../../core/types/settings';
-import type ClaudianPlugin from '../../../main';
+import type { AidianSettings, PermissionMode } from '../../../core/types/settings';
+import type AidianPlugin from '../../../main';
 import { stripCurrentNoteContext } from '../../../utils/context';
 import { getEnhancedPath, getMissingNodeError, parseEnvironmentVariables } from '../../../utils/env';
 import { getVaultPath } from '../../../utils/path';
@@ -128,9 +128,9 @@ function isImageAttachmentArray(value: unknown): value is ImageAttachment[] {
     !!value[0] && typeof value[0] === 'object' && 'mediaType' in value[0] && 'data' in value[0];
 }
 
-export class ClaudianService implements ChatRuntime {
+export class AidianService implements ChatRuntime {
   readonly providerId = CLAUDE_PROVIDER_CAPABILITIES.providerId;
-  private plugin: ClaudianPlugin;
+  private plugin: AidianPlugin;
   private agentManager: Pick<AppAgentManager, 'setBuiltinAgentNames'> | null;
   private pluginManager: AppPluginManager | null;
   private abortController: AbortController | null = null;
@@ -186,14 +186,14 @@ export class ClaudianService implements ChatRuntime {
   private streamTransformState = createTransformStreamState();
   private usageTransformState = createTransformUsageState();
 
-  private getLegacyPluginDeps(): ClaudianPlugin & {
+  private getLegacyPluginDeps(): AidianPlugin & {
     agentManager?: Pick<AppAgentManager, 'setBuiltinAgentNames'>;
     pluginManager?: AppPluginManager;
   } {
     return this.plugin;
   }
 
-  constructor(plugin: ClaudianPlugin, services: ClaudeRuntimeServices | McpServerManager) {
+  constructor(plugin: AidianPlugin, services: ClaudeRuntimeServices | McpServerManager) {
     this.plugin = plugin;
     const legacyPlugin = this.getLegacyPluginDeps();
 
@@ -631,7 +631,7 @@ export class ClaudianService implements ChatRuntime {
   /**
    * Builds the base query options context from current state.
    */
-  private getScopedSettings(): ClaudianSettings {
+  private getScopedSettings(): AidianSettings {
     return ProviderSettingsCoordinator.getProviderSettingsSnapshot(
       this.plugin.settings,
       this.providerId,
